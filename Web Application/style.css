@@ -1,0 +1,42 @@
+header {
+	display: block;
+	height: 20%;
+	width: 100%;
+	font-family: Impact;
+	font-size: 100px;
+	color: white;
+	padding: 0px;
+	background-color: black;
+}
+
+li#homebox {
+	display: block;
+	width: 21%;
+	background-color: skyblue;
+	padding: 15px;
+	float: left;
+}
+
+li#notesbox {
+	display: block;
+	width: 21%;
+	background-color: lightgreen;
+	padding: 15px;
+	float: left;
+}
+
+li#reviewbox {
+	display: block;
+	width: 21%;
+	background-color: pink;
+	padding: 15px;
+	float: left;
+}
+
+li#schedbox {
+	display: block;
+	width: 21%;
+	background-color: gold;
+	padding: 15px;
+	float: left;
+}
