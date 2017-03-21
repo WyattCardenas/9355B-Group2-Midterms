@@ -1,24 +1,81 @@
-
+<!doctype html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<title> iReview </title>
-		<header> iReview </header>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Touch Swipeable Sidebar Menu Demo</title>
+		<link rel="stylesheet" type="text/css" href="assets/styles/style.css">
 	</head>
 
 	<body>
-		<p> Test Text! </p>
-		<div id="home">
-			<nav id="menu">
-			<ul> 
-				<li id="homebox"> Home </li>
-				<li id="notesbox"> Notes </li>
-				<li id="reviewbox"> Reviewer </li>
-				<li id="schedbox"> Schedule </li>
-			</ul>
-			</nav>	
+		<div class="container">
+			<nav id="sidebar">
+				<header>
+					<h1>iReview</h1>
+				</header>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="notes.html">Notes</a></li>
+					<li><a href="reviewer.html">Reviewer</a></li>
+					<li><a href="schedule.html">Schedule</a></li>
+				</ul>
+			</nav>
+		<div class="main-content">
+			<div class="swipe-area"></div>
+
+			<a href="#" data-toggle=".container" id="sidebar-toggle"> 
+				<span class="bar"></span> 
+				<span class="bar"></span> 
+				<span class="bar"></span> 
+			</a>
+			<div class="content">
+				<h2>Home</h1>
+				<div class="today">
+					<p>
+						<span id="day">
+							<script>
+								var d1 = new Date();
+								document.write(["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d1.getDay()]);
+							</script>
+						</span>
+						<span id="date">
+							<script>
+								var d2 = (new Date()).toString().split(' ').splice(1,3).join(' ');
+								document.write(d2);
+							</script>
+						</span>
+					</p>
+				</div>
+			
+				<div class="reminders">
+					<p>REMINDERS GO HERE</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita maiores temporibus explicabo sequi optio at, fugit magni unde ea, dolor neque voluptatum ut nemo in molestias rerum odio minus molestiae.Quibusdam provident, a veniam odio! Id repudiandae laborum distinctio quibusdam a? Necessitatibus quasi illo itaque dolore distinctio aliquam nisi voluptatibus. Debitis nostrum, assumenda voluptatem quod asperiores sint iusto ad dolorem.Soluta aliquam inventore blanditiis similique quae porro corporis, illum natus dolorum fuga quos omnis autem quo tenetur adipisci repudiandae veniam hic! Explicabo quis totam iusto fugit, nam quod at unde?</p>
+				</div>
+			</div>
 		</div>
 
-	</body>
-
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script> 
+		<script>
+			$(window).load(function(){
+				$("[data-toggle]").click(function() {
+					var toggle_el = $(this).data("toggle");
+					$(toggle_el).toggleClass("open-sidebar");
+				});
+				$(".swipe-area").swipe({
+					swipeStatus:function(event, phase, direction, distance, duration, fingers){
+						if (phase=="move" && direction =="right") {
+							$(".container").addClass("open-sidebar");
+							return false;
+						}
+						if (phase=="move" && direction =="left") {
+							$(".container").removeClass("open-sidebar");
+							return false;
+						}
+					}
+				}); 
+			});
+		</script>
+</body>
 </html>
