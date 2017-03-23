@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>iReview</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+
+	<body>
+		<div class="container">
+			<nav id="sidebar">
+				<header>
+					<h1>iReview</h1>
+				</header>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="pages/notes.html">Notes</a></li>
+					<li><a href="pages/reviewer.html">Reviewer</a></li>
+					<li><a href="pages/schedule.html">Schedule</a></li>
+				</ul>
+			</nav>
+
+			<div class="main-content">
+				<div class="swipe-area"></div>
+
+				<a href="#" data-toggle=".container" id="sidebar-toggle"> 
+					<span class="bar"></span> 
+					<span class="bar"></span> 
+					<span class="bar"></span> 
+				</a>
+				<div class="content">
+					<h2>Schedule</h2>
+				
+					<div class="schedule-container"> <!-- Monday -->
+						<p onclick="showDivMon()"> Monday </p>
+						<table id="schedulemon">   <!-- Changed to class and added to CSS -->
+						<script>
+						function showDivMon() {
+							var x = document.getElementById('schedulemon');
+							if (x.style.display === 'none') {
+								x.style.display = 'block';
+								x.style.width = '100%';
+							} else {
+								x.style.display = 'none';
+							}
+						}
+						</script>
+							<tr>
+								<td rowspan="2" class="subj">The LamFam's Laboratory</td>
+								<td class="border">10:30 - 12:00</td>
+							</tr>
+							<tr>
+								<td class="border">S427</td>
+							</tr>
+							
+							<tr>
+								<td rowspan="2" class="subj">NOT Nier Automata </td>
+								<td class="border">1:00 - 2:00</td>
+							</tr>
+							<tr>
+								<td class="border">S424</td>
+							</tr>
+							
+							<tr>
+								<td rowspan="2" class="subj">Dissecting Programming Languages</td>
+								<td class="border">10:30 - 12:00</td>
+							</tr>
+							<tr>
+								<td class="border">S424</td>
+							</tr>
+							
+							<tr>
+								<td rowspan="2" class="subj">Jojo's Lecture Adventure</td>
+								<td class="border">10:30 - 12:00</td>
+							</tr>
+							<tr>
+								<td class="border">S423</td>
+							</tr>
+						</table>
+						
+						<div> <!-- Tuesday -->
+						<p onclick="showDivTue()"> Tuesday </p>
+						<table id="scheduletue" >   <!-- Changed to class and added to CSS -->
+						<script>
+						function showDivTue() {
+							var x = document.getElementById('scheduletue');
+							if (x.style.display === 'none') {
+								x.style.display = 'block';
+								x.style.width = '100%';
+							} else {
+								x.style.display = 'none';
+							}
+						}
+						</script>
+							<tr>
+								<td rowspan="2" class="subj">Hard to Understand Algebra</td>
+								<td class="border">9:00 - 10:30</td>
+							</tr>
+							<tr>
+								<td class="border">S522</td>
+							</tr>
+							
+							<tr>
+								<td rowspan="2" class="subj">The LamFam's Lecture </td>
+								<td class="border">10:30 - 11:30</td>
+							</tr>
+							<tr>
+								<td class="border">S527</td>
+							</tr>
+							
+							<tr>
+								<td rowspan="2" class="subj">EBSCO Research and Report</td>
+								<td class="border">1:00 - 2:30</td>
+							</tr>
+							<tr>
+								<td class="border">S424</td>
+							</tr>
+							
+							<tr>
+								<td rowspan="2" class="subj">Jojo's Laboratory Adventure</td>
+								<td class="border">4:00 - 5:30</td>
+							</tr>
+							<tr>
+								<td class="border">S326</td>
+							</tr>
+						</table>
+						</div>
+						
+						<div><!-- Wednesday -->
+						<p onclick="showDivWed()"> Wednesday </p> 
+						<table id="schedulewed" >   <!-- Changed to class and added to CSS -->
+						<script>
+						function showDivWed() {
+							var x = document.getElementById('schedulewed');
+							if (x.style.display === 'none') {
+								x.style.display = 'block';
+								x.style.width = '100%';
+							} else {
+								x.style.display = 'none';
+							}
+						}
+						</script>	
+							<tr>
+								<td rowspan="2" class="subj">NOT Nier Automata</td>
+								<td class="border">1:00 - 2:00</td>
+							</tr>
+							<tr>
+								<td class="border">S424</td>
+							</tr>
+							
+							<tr>
+								<td rowspan="2" class="subj">Dissecting Programming Languages </td>
+								<td class="border">2:00 - 3:00</td>
+							</tr>
+							<tr>
+								<td class="border">S424</td>
+							</tr>
+						</table>
+						</div>
+						
+						<div> <!-- Thursday -->
+						<p onclick="showDivThu()"> Thursday </p>
+						<table id="schedulethu" >   <!-- Changed to class and added to CSS -->
+						<script>
+						function showDivThu() {
+							var x = document.getElementById('schedulethu');
+							if (x.style.display === 'none') {
+								x.style.display = 'block';
+								x.style.width = '100%';
+							} else {
+								x.style.display = 'none';
+							}
+						}
+						</script>	
+							<tr>
+								<td rowspan="2" class="subj">Hard to Understand Algebra</td>
+								<td class="border">9:00 - 10:30</td>
+							</tr>
+							<tr>
+								<td class="border">S522</td>
+							</tr>
+							
+							<tr>
+								<td rowspan="2" class="subj">The LamFam's Laboratory </td>
+								<td class="border">10:30 - 12:30</td>
+							</tr>
+							<tr>
+								<td class="border">S527</td>
+							</tr>
+							
+							<tr>
+								<td rowspan="2" class="subj">EBSCO Research and Report</td>
+								<td class="border">1:00 - 2:30</td>
+							</tr>
+							<tr>
+								<td class="border">S424</td>
+							</tr>
+							
+							<tr>
+								<td rowspan="2" class="subj">Jojo's Lecture Adventure</td>
+								<td class="border">4:00 - 5:00</td>
+							</tr>
+							<tr>
+								<td class="border">S326</td>
+							</tr>
+						</table>
+						</div>
+						
+						<div> <!-- Friday -->
+						<p onclick="showDivFri()"> Friday </p> 
+						<table id="schedulefri" >   <!-- Changed to class and added to CSS -->
+						<script>
+						function showDivFri() {
+							var x = document.getElementById('schedulefri');
+							if (x.style.display === 'none') {
+								x.style.display = 'block';
+								x.style.width = '100%';
+							} else {
+								x.style.display = 'none';
+							}
+						}
+						</script>	
+							<tr>
+								<td rowspan="2" class="subj">The LamFam's Laboratory</td>
+								<td class="border">10:30 - 12:00</td>
+							</tr>
+							<tr>
+								<td class="border">S427</td>
+							</tr>
+							
+							<tr>
+								<td rowspan="2" class="subj">NOT Nier Automata </td>
+								<td class="border">1:00 - 2:00</td>
+							</tr>
+							<tr>
+								<td class="border">S424</td>
+							</tr>
+							
+							<tr>
+								<td rowspan="2" class="subj">Dissecting Programming Languages</td>
+								<td class="border">2:00 - 3:00</td>
+							</tr>
+							<tr>
+								<td class="border">S424</td>
+							</tr>
+							
+							<tr>
+								<td rowspan="2" class="subj">Jojo's Laboratory Adventure</td>
+								<td class="border">4:00 - 5:30</td>
+							</tr>
+							<tr>
+								<td class="border">S423</td>
+							</tr>
+						</table>
+						</div>
+						
+						<div> <!-- Saturday -->
+						<p onclick="showDivSat()"> Saturday </p> 
+						<table id="schedulesat" >   <!-- Changed to class and added to CSS -->
+						<script>
+						function showDivSat() {
+							var x = document.getElementById('schedulesat');
+							if (x.style.display === 'none') {
+								x.style.display = 'block';
+								x.style.width = '100%';
+							} else {
+								x.style.display = 'none';
+							}
+						}
+						</script>	
+							<tr>
+								<td rowspan="2" class="subj">Rest and Relaxation</td>
+								<td class="border">All Day</td>
+							</tr>
+							<tr>
+								<td class="border">Home</td>
+							</tr>
+						</table>
+						</div>
+						
+						<div> <!-- Sunday -->
+						<p onclick="showDivSun()"> Saturday </p> 
+						<table id="schedulesun" >   <!-- Changed to class and added to CSS -->
+						<script>
+						function showDivSun() {
+							var x = document.getElementById('schedulesun');
+							if (x.style.display === 'none') {
+								x.style.display = 'block';
+								x.style.width = '100%';
+							} else {
+								x.style.display = 'none';
+							}
+						}
+						</script>	
+							<tr>
+								<td rowspan="2" class="subj">Rest and Relaxation (as God intended)</td>
+								<td class="border">All Day</td>
+							</tr>
+							<tr>
+								<td class="border">Home</td>
+							</tr>
+						</table>
+						</div>
+						<br>
+					</div>
+					
+				
+				
+				</div>
+			</div>
+		</div>
+
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script> 
+		<script src="../assets/js/scripts.js"></script>
+</body>
+</html>
