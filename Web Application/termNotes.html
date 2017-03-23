@@ -4,8 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>iReview</title>
-		<link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
-
+		<link rel="stylesheet" type="text/css" href="styles/style.css">
 	</head>
 
 	<body>
@@ -15,28 +14,29 @@
 					<h1>iReview</h1>
 				</header>
 				<ul>
-					<li><a href="../index.html">Home</a></li>
-					<li><a href="terms.html">Notes</a></li>
-					<li><a href="reviewer.html">Reviewer</a></li>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="termNotes.html">Notes</a></li>
+					<li><a href="termReview.html">Reviewer</a></li>
 					<li><a href="schedule.html">Schedule</a></li>
 				</ul>
 			</nav>
 
 			<div class="main-content">
 				<div class="swipe-area"></div>
-
-				<a href="#" data-toggle=".container" id="sidebar-toggle"> 
-					<span class="bar"></span> 
-					<span class="bar"></span> 
-					<span class="bar"></span> 
-				</a>
+					<div class="heading">
+					<a href="#" data-toggle=".container" id="sidebar-toggle"> 
+						<span class="bar"></span> 
+						<span class="bar"></span> 
+						<span class="bar"></span> 
+					</a>
+					<h2>Notes</h2>
+				</div>
 				<div class="content">
 					<script type="text/javascript">
 						function Notes(){
-							window.location = "../pages/notes.html"
+							window.location = "notes.html"
 						}
 					</script>
-					<h2>Notes</h2>
 					<div id="term" class="terms">
 						<form>
 						<input type="button" id="prelim" value="PRELIMS" onclick="Notes();" /> 
@@ -52,8 +52,8 @@
 			</div>
 		</div>
 
-		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script> 
-		<script src="../assets/js/scripts.js"></script>
+		<script src="assets/js/jquery-1.11.3.min.js"></script> 
+		<script src="assets/js/jquery.touchSwipe.min.js"></script> 
+		<script src="assets/js/scripts.js"></script>
 </body>
 </html>

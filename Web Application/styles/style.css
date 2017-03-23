@@ -4,6 +4,7 @@ html, body {
 	margin: 0;
 	font-family: helvetica;
 	font-weight: 100;
+	overflow: hidden;
 }
 
 /* GENERAL FOR ALL */
@@ -123,7 +124,11 @@ html, body {
 	padding-left: 75px;
 }
 
-/* INDEX.HTML DATE THING */
+.content{
+	padding: 15px 20px 0;
+}
+
+/* INDEX.HTML */
 
 .today{
 	padding: 25px;
@@ -137,11 +142,130 @@ html, body {
 
 #addbutton {
 	float: right;
-	position: relative;
 }
 
-#recent {
-	position: relative;
+.nodata{
+	text-align: center;
+}
+
+.button{
+	color: black;
+	text-decoration: none;
+	padding: 3px 10px;
+	border: 2px dashed black;
+}
+
+.button:hover{
+	border: 1px solid black;	
+}
+
+@media only screen and (max-width: 400px){
+	.button{
+		border: 2px solid black;
+		border-radius: 10px;
+	}	
+}
+
+/* REVIEWER */
+
+h3{
+	margin: 0;
+	display: inline;
+}
+
+.add{
+	float: right;
+	text-decoration: none;
+	color: black;
+	padding: 1px 5px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+
+.rev-link{
+	display: block;
+}
+
+/* DATA.HTML -- REVIEWER -- */
+.choices{
+	float: left;
+	width:20%;
+	border: 1px solid black;
+}
+
+.layout{
+	float: left;
+	width: 79%;
+	height: 100%;
+	border: 1px solid black;
+}
+
+#multipleChoice{
+	display: block;
+	margin: 10px auto;
+}
+
+#identification{
+	display: block;
+	margin: 10px auto;
+}
+
+#matchingType{
+	display: block;
+	margin: 10px auto;
+}
+
+#fillInTheBlanks{
+	display: block;
+	margin: 10px auto;
+}
+
+#multipleChoiceForm{
+	display: block;
+	margin: 10px auto;
+}
+
+#identificationForm{
+	display: block;
+	margin: 10px auto;
+}
+
+#matchingTypeForm{
+	display: block;
+	margin: 10px auto;
+}
+
+#fillInTheBlanksForm{
+	display: block;
+	margin: 10px auto;
+}
+
+input{
+	display: block;
+	margin: auto;
+}
+
+#saveButton{
+	float: left;
+	display: block;
+	width: 100%;
+	margin: 10px auto;
+}
+
+
+/* SCHED SETUP */
+form{
+	width: 350px;
+	margin: 0 auto;
+}
+
+
+.checkboxes{
+	padding: 0 30px;
+}
+
+.checkboxes input{
+	float: left;
 }
 
 .terms {

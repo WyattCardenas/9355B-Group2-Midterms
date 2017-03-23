@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/text_to_speech.css">
+
+    <script type="text/javascript" src="scripts/script.js"></script>
+    <script type="text/javascript" src="scripts/speechToText.js"></script>
+  </head>
+  
+  <body>
+    <div class="choices">
+        <button onclick="generateMCQuiz()" id="multipleChoice">Multiple Choice</button>
+        <button onclick="generateIQuiz()" id="identification">Identification</button>
+        <button onclick="generateMTQuiz()" id="matchingType">Matching Type</button>
+        <button onclick="generateFIBQuiz()" id="fillInTheBlanks">Fill in The Blanks</button>
+    </div>
+
+    <form id="reviewer" action="quizes/quizes.html">
+      <div class="layout">
+        <from id="multipleChoiceForm"></form>
+        <from id="identificationForm"></form>
+        <from id="matchingTypeForm"></form>
+        <from id="fillInTheBlanksForm"></form>
+      </div>
+    </form>
+
+    <div id="saveButton">
+      <input type="button" onclick="saveQuiz()" value="Save">
+    </div>
+
+    <iframe src="speech_recognition.html"></iframe>
+  </body>
+</html>
