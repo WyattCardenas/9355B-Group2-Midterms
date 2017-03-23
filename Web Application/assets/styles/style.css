@@ -1,7 +1,6 @@
 html, body {
 	height: 100%;
 	margin: 0;
-	overflow: hidden;
 	font-family: helvetica;
 	font-weight: 100;
 }
@@ -113,4 +112,13 @@ html, body {
 #day, #date{
 	display: block;
 	text-align: center;
+}
+
+#addbutton {
+	float: right;
+	position: relative;
+}
+
+#recent {
+	position: relative;
 }
