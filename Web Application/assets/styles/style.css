@@ -129,7 +129,7 @@ html, body {
 	padding: 25px;
 	background-color: blue;
 }
-
+ 
 #day, #date{
 	display: block;
 	text-align: center;
@@ -142,4 +142,15 @@ html, body {
 
 #recent {
 	position: relative;
+}
+
+.terms {
+	display:block;
+	margin: 0 0 1em 0;
+ 	height: 2em;
+  	padding: 0 0.3em;
+}
+
+#prelim{
+	padding-top: -10px;
 }

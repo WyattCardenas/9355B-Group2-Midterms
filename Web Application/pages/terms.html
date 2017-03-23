@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>iReview</title>
 		<link rel="stylesheet" type="text/css" href="../assets/styles/style.css">
+
 	</head>
 
 	<body>
@@ -14,10 +15,10 @@
 					<h1>iReview</h1>
 				</header>
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="pages/notes.html">Notes</a></li>
-					<li><a href="pages/reviewer.html">Reviewer</a></li>
-					<li><a href="pages/schedule.html">Schedule</a></li>
+					<li><a href="../index.html">Home</a></li>
+					<li><a href="terms.html">Notes</a></li>
+					<li><a href="reviewer.html">Reviewer</a></li>
+					<li><a href="schedule.html">Schedule</a></li>
 				</ul>
 			</nav>
 
@@ -30,16 +31,22 @@
 					<span class="bar"></span> 
 				</a>
 				<div class="content">
+					<script type="text/javascript">
+						function Notes(){
+							window.location = "../pages/notes.html"
+						}
+					</script>
 					<h2>Notes</h2>
-					
-				
 					<div id="term" class="terms">
-						<a href="">PRELIMS</a>
-						<a href="">MIDTERMS</a>
-						<a href="">FINALS</a>
-					</div>
-					<div>
-						<button type="button" id="addbutton">+</button>
+						<form>
+						<input type="button" id="prelim" value="PRELIMS" onclick="Notes();" /> 
+						</form>
+						<form>
+						<input type="button" id="midterm" value="MIDTERMS" onclick="Notes();" /> 
+						</form>
+						<form>
+						<input type="button" id="final" value="FINALS" onclick="Notes();" /> 
+						</form>
 					</div>
 				</div>
 			</div>
