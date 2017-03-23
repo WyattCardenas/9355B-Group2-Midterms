@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>iReview</title>
-		<link rel="stylesheet" type="text/css" href="assets/styles/style.css">
+		<link rel="stylesheet" type="text/css" href="styles/style.css">
 		
 	</head>
 
@@ -15,10 +15,10 @@
 					<h1>iReview</h1>
 				</header>
 				<ul>
-					<li><a href="../index.html">Home</a></li>
-					<li><a href="pages/notes.html">Notes</a></li>
-					<li><a href="pages/reviewer.html">Reviewer</a></li>
-					<li><a href="pages/schedule.html">Schedule</a></li>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="termNotes.html">Notes</a></li>
+					<li><a href="termReview.html">Reviewer</a></li>
+					<li><a href="schedule.html">Schedule</a></li>
 				</ul>
 			</nav>
 
@@ -33,38 +33,49 @@
 					</a>
 					<h2>Home</h2>
 				</div>
+				<div class="today">
+					<p>
+						<span id="day">
+							<script>
+								var d1 = new Date();
+								document.write(["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d1.getDay()]);
+							</script>
+						</span>
+						<span id="date">
+							<script>
+								var d2 = (new Date()).toString().split(' ').splice(1,3).join(' ');
+								document.write(d2);
+							</script>
+						</span>
+					</p>
+				</div>
 				<div class="content">
-					<div class="today">
-						<p>
-							<span id="day">
-								<script>
-									var d1 = new Date();
-									document.write(["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d1.getDay()]);
-								</script>
-							</span>
-							<span id="date">
-								<script>
-									var d2 = (new Date()).toString().split(' ').splice(1,3).join(' ');
-									document.write(d2);
-								</script>
-							</span>
-						</p>
-					</div>
-				
 					<div id="reminders" class="reminders">
-						<p>REMINDERS GO HERE</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita maiores temporibus explicabo sequi optio at, fugit magni unde ea, dolor neque voluptatum ut nemo in molestias rerum odio minus molestiae.Quibusdam provident, a veniam odio! Id repudiandae laborum distinctio quibusdam a? Necessitatibus quasi illo itaque dolore distinctio aliquam nisi voluptatibus. Debitis nostrum, assumenda voluptatem quod asperiores sint iusto ad dolorem.Soluta aliquam inventore blanditiis similique quae porro corporis, illum natus dolorum fuga quos omnis autem quo tenetur adipisci repudiandae veniam hic! Explicabo quis totam iusto fugit, nam quod at unde?</p>
+						<h3>Reminders</h3>
+						<a href="newrem.html" class="add">+</a>
+						<ul>
+							<li>reminder 1</li>
+							<li>reminder 2</li>
+							<li>reminder 3</li>
+						</ul>
 					</div>
 
 					<div class="recentnotes" id="recent">
-						<h2>Recent notes</h2>
+						<h3>Recent notes</h3>
 						<button type="button" id="addbutton">+</button>
+					</div>
+
+					<div class="nodata">
+						<BR><Br>   <!-- TEMPORARY BR -->
+						<h3>IF NO DATA</h3>
+						<p>Oops! You have no data yet.</p>
+						<a href="schedsetup.html" class="button">Setup!</a>
 					</div>
 				</div>
 			</div>
 		</div>
-		<script src="../assets/js/jquery-1.11.3.min.js"></script> 
-		<script src="../assets/js/jquery.touchSwipe.min.js"></script> 
-		<script src="../assets/js/scripts.js"></script>
+		<script src="scripts/jquery-1.11.3.min.js"></script> 
+		<script src="scripts/jquery.touchSwipe.min.js"></script> 
+		<script src="scripts/scripts.js"></script>
 </body>
 </html>
