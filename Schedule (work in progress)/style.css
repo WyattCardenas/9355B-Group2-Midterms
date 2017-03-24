@@ -107,9 +107,34 @@ html, body {
 	display: none;
 }
 
-.subj {
+#addform {
+	display: none;
 	border: 1px solid black;
 	padding: 10px;
+}
+
+#subjectform {
+	width: 100%;
+	clear: both;
+}
+
+#subjectform input {
+	width: 100%;
+	clear: both;
+}
+
+#user_input {
+	border: 1px solid black;
+	height: 20px;
+}
+
+#addsubject {
+	
+}
+
+.subj {
+	border: 1px solid black;
+	padding: 15px;
 	width: 70%;
 }
 
@@ -118,8 +143,6 @@ html, body {
 	font-weight: bold;
 }
 
-
-
 .schedule-container p {
 	border: 1px solid black;
 	padding: 5px;
@@ -127,6 +150,10 @@ html, body {
 	font-size: 20px;
 	
 }
+
+
+
+
 
 /* GENERAL THINGIES FOR THE MAIN CONTENT */
 

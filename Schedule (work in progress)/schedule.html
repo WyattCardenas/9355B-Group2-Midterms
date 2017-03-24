@@ -41,6 +41,7 @@
 							if (x.style.display === 'none') {
 								x.style.display = 'block';
 								x.style.width = '100%';
+								x.style.paddingLeft = '5px';
 							} else {
 								x.style.display = 'none';
 							}
@@ -76,6 +77,45 @@
 							</tr>
 							<tr>
 								<td class="border">S423</td>
+							</tr>
+							<tr>
+								<td>
+								<br>
+								<div id="subjectform">
+								<form id="addform">
+									<label>Subject Name</label>
+									<input type="text" name="message" id="user_input"><br>
+									<label>Subject Time</label>
+									<input type="text" name="message" id="user_input"><br>
+									<label>Subject Room</label>
+									<input type="text" name="message" id="user_input"><br>
+								</form>
+								</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+								<input type="button" id="newsubject" value="New Subject" onclick="subjectNew();"/>
+								<input type="button" id="addsubject" value="Add Subject" onclick="subjectAdd();"/>
+								<script>
+								function subjectNew() {
+									var x = document.getElementById('addform');
+									if (x.style.display === 'none') {
+										x.style.display = 'block';
+									} else {
+										x.style.display = 'none';
+									}
+								}
+								</script>
+								<!--
+								<script>
+								function subjectAdd() {
+									document.getElementById('newsubject').innerHTML = 
+												document.getElementById("user_input").value;
+								}
+								</script>
+								-->
+								</td>
 							</tr>
 						</table>
 						
@@ -303,6 +343,7 @@
 						</table>
 						</div>
 						<br>
+						
 					</div>
 					
 				
@@ -313,6 +354,6 @@
 
 		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script> 
-		<script src="../assets/js/scripts.js"></script>
+		<script src="scripts.js"></script>
 </body>
 </html>
