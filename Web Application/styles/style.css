@@ -259,6 +259,95 @@ form{
 	margin: 0 auto;
 }
 
+#schedulemon {
+	padding-left: 5px;
+	width: 100%;
+}
+
+#scheduletue {
+	padding-left: 5px;
+	width: 100%;
+}
+
+#schedulewed {
+	padding-left: 5px;
+	width: 100%;
+}
+
+#schedulethu {
+	padding-left: 5px;
+	width: 100%;
+}
+
+#schedulefri {
+	padding-left: 5px;
+	width: 100%;
+}
+
+#schedulesat {
+	padding-left: 5px;
+	width: 100%;
+}
+
+#schedulesun {
+	padding-left: 5px;
+	width: 100%;
+}
+
+#addform {
+	display: none;
+	border: 1px solid black;
+	padding: 10px;
+}
+
+#subjectform {
+	width: 100%;
+	clear: both;
+}
+
+#subjectform input {
+	width: 100%;
+	clear: both;
+}
+
+#user_input {
+	border: 1px solid black;
+	height: 20px;
+}
+
+#addsubject {
+	
+}
+
+.subj {
+	border: 1px solid black;
+	padding: 15px;
+	width: 70%;
+}
+
+.border {
+	border: 1px solid black;
+	font-weight: bold;
+}
+
+.schedule-container p {
+	border: 1px solid black;
+	padding: 5px;
+	font-weight: bold;
+	font-size: 20px;
+	background-color: #C9223D; 
+	color: white;
+	
+}
+
+/* Notes */
+
+.textbox{
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	margin-bottom: 0.5px;
+}
 
 .checkboxes{
 	padding: 0 30px;
@@ -277,4 +366,28 @@ form{
 
 #prelim{
 	padding-top: -10px;
+	
+}
+
+.subdrop{
+	position: relative;
+	display: block;
+	padding-bottom: 100px;
+	padding-top: 20px;
+}
+.notedrop{
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.notedrop a{
+	display: block;
+}
+
+.subdrop.notedrop{
+	display: block;
 }
