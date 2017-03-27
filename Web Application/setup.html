@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>iReview</title>
+		<style>
+			body{
+				margin: 0;
+				text-align: center;
+			}
+
+			h1{
+				text-align: center
+			}
+
+			.but{
+				text-align: center;
+				padding-top: 15px;
+			}
+
+			#get-started{
+				border: none;
+				color: #F3F3F3;
+				background-color: #393939;
+				padding: 10px 15px;
+				transition: all .3s ease;
+				border-radius: 5px;
+				text-decoration: none;
+			}
+
+			#get-started:hover{
+				background-color: #F3F3F3;
+				color: #393939;
+				border-radius: initial;
+			}
+
+			.hide{
+				display: none;
+			}
+			
+			.questions{
+				text-align: center;
+			}
+
+			.button{
+				border: none;
+				color: #F3F3F3;
+				background-color: #393939;
+				padding: 5px 15px;
+				transition: all .3s ease;
+				border-radius: 5px;
+				text-decoration: none;
+			}
+
+			.button:hover{
+				background-color: #F3F3F3;
+				color: #393939;
+				border-radius: initial;
+			}
+
+			#add-button{
+				border-radius: 100px;
+				
+				padding: 7px 10px;
+				botton: 0;
+				right: 0;
+			}
+
+			.bot-right{
+				padding-top: 99%;
+				padding-left: 80%;
+			}
+		</style>
+	</head>
+
+
+	<body>
+		<h1>iReview</h1>
+
+		<div class="but">
+			<a href="#" id="get-started" class="button">Get Started!</a>
+		</div>
+
+
+		<div class="hide" id="content">
+				<p>When does the semester start?</p>
+				<div id="start">
+					<select name="month" id="month">
+						<option value="">Month</option>
+						<option value="">---------------</option>
+						<option value="January">January</option>
+						<option value="February">February</option>
+						<option value="March">March</option>
+						<option value="April">April</option>
+						<option value="March">March</option>
+						<option value="June">June</option>
+						<option value="July">July</option>
+						<option value="August">August</option>
+						<option value="September">September</option>
+						<option value="October">October</option>
+						<option value="November">November</option>
+						<option value="December">December</option>
+					</select>
+					<select name="day" id="day">
+						<option value="">Day</option>
+						<option value="">---------------</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+						<option value="24">24</option>
+						<option value="25">25</option>
+						<option value="26">26</option>
+						<option value="27">27</option>
+						<option value="28">28</option>
+						<option value="29">29</option>
+						<option value="30">30</option>
+						<option value="31">31</option>
+					</select>
+				</div>
+				<p>When does the semester end?</p>
+				<div id="end">
+					<select name="month" id="month">
+						<option value="">Month</option>
+						<option value="">---------------</option>
+						<option value="January">January</option>
+						<option value="February">February</option>
+						<option value="March">March</option>
+						<option value="April">April</option>
+						<option value="March">March</option>
+						<option value="June">June</option>
+						<option value="July">July</option>
+						<option value="August">August</option>
+						<option value="September">September</option>
+						<option value="October">October</option>
+						<option value="November">November</option>
+						<option value="December">December</option>
+					</select>
+					<select name="day" id="day">
+						<option value="">Day</option>
+						<option value="">---------------</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+						<option value="24">24</option>
+						<option value="25">25</option>
+						<option value="26">26</option>
+						<option value="27">27</option>
+						<option value="28">28</option>
+						<option value="29">29</option>
+						<option value="30">30</option>
+						<option value="31">31</option>
+					</select>
+				</div>
+				<div class="but">
+					<input type="submit" id="submit-button" class="button"/>
+				</div>
+			
+			<p id="start-end"></p>
+		</div>
+
+		<div id="content1" class="hide">
+			<div class="bot-right">
+				<button id="add-button" class="button">+</button>
+			</div>
+			<form id="subjects">
+				
+				
+			</form>
+			<div class="but">
+				<input id="save-subjects" type="submit" class="hide"/>
+			</div>
+		</div>
+
+	</body>
+
+	<script>
+		var getStarted = document.getElementById("get-started");
+		var content = document.getElementById("content");
+		var content1 = document.getElementById("content1");
+		getStarted.addEventListener("click",start);
+
+		function start(){
+			if(content.className === "hide"){
+				content.className = "questions";
+				getStarted.className = "hide";
+			}
+		}
+
+		var startItems = document.getElementById("start");
+		var endItems = document.getElementById("end");
+		var submitButton = document.getElementById("submit-button");
+		submitButton.addEventListener("click",save);
+		
+		function save(){
+			var startMonth = startItems.querySelector("#month").value;
+			var startDay = startItems.querySelector("#day").value;
+			var endMonth = endItems.querySelector("#month").value;
+			var endDay = endItems.querySelector("#day").value;
+			if(startMonth == "" || endMonth == ""){
+				document.getElementById("start-end").innerHTML = "wala ka piniling month gago";	
+			}else if(startDay == "" || endDay == ""){
+				document.getElementById("start-end").innerHTML = "wala ka piniling day gago";
+			}else if(startMonth == endMonth && startDay == endDay){
+				document.getElementById("start-end").innerHTML = "same day nagstart at nag end nice";
+			}else{
+				document.getElementById("start-end").innerHTML = "The semester starts/ed " +startMonth+" "+startDay+"<br> The semster ends "+endMonth+" "+endDay;
+				if(content1.className === "hide"){
+					content1.className = "";
+					content.className = "hide";
+				}
+			}
+		}
+
+		var addButton = document.getElementById("add-button");
+		var subjectForm = document.getElementById("subjects");
+		var saveSubjects = document.getElementById("save-subjects");
+		addButton.addEventListener("click",addSubject);
+
+		function addSubject(){
+			if(saveSubjects.className === "hide"){
+				saveSubjects.className = "button";
+			}
+			subjectForm.innerHTML += "<form>Course Number:<input type='text'/><br>Course Description:<input type='text'/><br>Time:-TIME INPUT THING-<br>Days:-DAYS INPUT THING";
+		}
+	</script>
+</html>
