@@ -1,0 +1,88 @@
+body{
+  margin-top: 10px;
+  margin-left: 1px;
+  margin-right: 1px;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.choices{
+  float: left;
+  width:20%;
+  border-right: 1px solid black;
+  height: 525px;
+}
+
+.layout{
+  float: left;
+  width: 79%;
+  height: 100%;
+}
+
+#multipleChoice{
+  display: block;
+  margin: 10px auto;
+  margin-top: 25%; 
+}
+
+#identification{
+  display: block;
+  margin: 10px auto;
+  margin-top: 25%;
+}
+
+#matchingType{
+  display: block;
+  margin: 10px auto;
+  margin-top: 25%;
+}
+
+#fillInTheBlanks{
+  display: block;
+  margin: 10px auto;
+  margin-top: 25%;
+}
+
+#multipleChoiceForm{
+  display: block;
+  margin: 10px auto;
+}
+
+#identificationForm{
+  display: block;
+  margin: 10px auto;
+}
+
+#matchingTypeForm{
+  display: block;
+  margin: 10px auto;
+}
+
+#fillInTheBlanksForm{
+  display: block;
+  margin: 10px auto;
+}
+
+#saveButton{
+  padding-left: 90%;
+}
+
+input{
+  display: block;
+  margin: auto;
+}
+
+h1{
+  text-align: center;
+  font-size: 20px;
+}
+
+h2{
+  text-align: center;
+  font-size: 14px;
+}
+
+.Questions{
+  width: 50%;
+}

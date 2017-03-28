@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>iReview</title>
+		<link rel="stylesheet" type="text/css" href="styles/styles.css">
+	</head>
+
+	<body>
+		<div class="container">
+			<nav id="sidebar" class="bottomnavthing">
+				<ul>
+					<li><span class="icon"><img src="" alt=""></span><span class="page-name"><a href="index.html">Home</a></span></li>
+					<li><span class="icon"><img src="" alt=""></span><span class="page-name"><a href="notes.html">Notes</a></span></li>
+					<li><span class="icon"><img src="" alt=""></span><span class="page-name"><a href="#">+</a></span></li>
+					<li><span class="icon"><img src="" alt=""></span><span class="page-name"><a href="review.html">Review</a></span></li>
+					<li><span class="icon"><img src="" alt=""></span><span class="page-name"><a href="schedule.html">Schedule</a></span></li>
+				</ul>
+			</nav>
+
+			<div class="main-content">
+				<div class="swipe-area"></div>
+				<div class="topthing">
+					<a href="#" data-toggle=".container" id="sidebar-toggle"> 
+						<span class="bar"></span> 
+						<span class="bar"></span> 
+						<span class="bar"></span> 
+					</a>
+					<h2>Reviewers</h2>
+				</div>
+				<div class="content">
+					<div id="notes" class="notes">
+						<h3>Subjects</h3>
+						<div class="subdrop">
+							<span> Subject 1</span>
+							<div class="notedrop">
+								<a href="">Quiz 1 </a>
+								<a href="">Quiz 2 </a>
+								<a href="">Quiz 3 </a>
+						<form>
+							<input type="button" id="addnotes" value="+" onclick="NewNotes();" /> 
+						</form>
+						</div>						
+					</div>
+						<div class="subdrop">
+							<span> Subject 2</span>
+							<div class="notedrop">
+								<a href="">Quiz 1 </a>
+								<a href="">Quiz 2 </a>
+								<a href="">Quiz 3 </a>
+						<form>
+							<input type="button" id="addnotes" value="+" onclick="NewNotes();" /> 
+						</form>
+						</div>						
+					</div>
+						<div class="subdrop">
+							<span> Subject 3</span>
+							<div class="notedrop">
+								<a href="">Quiz 1 </a>
+								<a href="">Quiz 2 </a>
+								<a href="">Quiz 3 </a>
+						<form>
+							<input type="button" id="addnotes" value="+" onclick="NewNotes();" /> 
+						</form>
+						</div>						
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="scripts/jquery-1.11.3.min.js"></script> 
+		<script src="scripts/jquery.touchSwipe.min.js"></script> 
+		<script src="scripts/scripts.js"></script>
+</body>
+</html>

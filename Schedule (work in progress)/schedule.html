@@ -4,49 +4,50 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>iReview</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="styles/styles.css">
 	</head>
 
 	<body>
 		<div class="container">
-			<nav id="sidebar">
-				<header>
-					<h1>iReview</h1>
-				</header>
+			<nav id="sidebar" class="bottomnavthing"> 
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="pages/notes.html">Notes</a></li>
-					<li><a href="pages/reviewer.html">Reviewer</a></li>
-					<li><a href="pages/schedule.html">Schedule</a></li>
+					<li><span class="icon"><img src="" alt=""></span><span class="page-name"><a href="index.html">Home</a></span></li>
+					<li><span class="icon"><img src="" alt=""></span><span class="page-name"><a href="notes.html">Notes</a></span></li>
+					<li><span class="icon"><img src="" alt=""></span><span class="page-name"><a href="#">+</a></span></li>
+					<li><span class="icon"><img src="" alt=""></span><span class="page-name"><a href="review.html">Review</a></span></li>
+					<li><span class="icon"><img src="" alt=""></span><span class="page-name"><a href="schedule.html">Schedule</a></span></li>
 				</ul>
 			</nav>
 
 			<div class="main-content">
-				<div class="swipe-area"></div>
-
-				<a href="#" data-toggle=".container" id="sidebar-toggle"> 
-					<span class="bar"></span> 
-					<span class="bar"></span> 
-					<span class="bar"></span> 
-				</a>
-				<div class="content">
+				<div class="topthing">
+					<a href="#" data-toggle=".container" id="sidebar-toggle"> 
+						<span class="bar"></span> 
+						<span class="bar"></span> 
+						<span class="bar"></span> 
+					</a>
 					<h2>Schedule</h2>
+				</div>
+				<div class="content">
+					
 				
 					<div class="schedule-container"> <!-- Monday -->
+						<div>
 						<p onclick="showDivMon()"> Monday </p>
+						<div id="dropboxmon">
 						<table id="schedulemon">   <!-- Changed to class and added to CSS -->
+						
 						<script>
 						function showDivMon() {
-							var x = document.getElementById('schedulemon');
+							var x = document.getElementById('dropboxmon');
 							if (x.style.display === 'none') {
 								x.style.display = 'block';
-								x.style.width = '100%';
-								x.style.paddingLeft = '5px';
 							} else {
 								x.style.display = 'none';
 							}
 						}
 						</script>
+						
 							<tr>
 								<td rowspan="2" class="subj">The LamFam's Laboratory</td>
 								<td class="border">10:30 - 12:00</td>
@@ -64,8 +65,8 @@
 							</tr>
 							
 							<tr>
-								<td rowspan="2" class="subj">Dissecting Programming Languages</td>
-								<td class="border">10:30 - 12:00</td>
+								<td rowspan="2" class="subj">2017: A Compiler Odyssey</td>
+								<td class="border">2:00 - 3:00</td>
 							</tr>
 							<tr>
 								<td class="border">S424</td>
@@ -73,68 +74,33 @@
 							
 							<tr>
 								<td rowspan="2" class="subj">Jojo's Lecture Adventure</td>
-								<td class="border">10:30 - 12:00</td>
+								<td class="border">4:00 - 5:00</td>
 							</tr>
 							<tr>
 								<td class="border">S423</td>
 							</tr>
-							<tr>
-								<td>
-								<br>
-								<div id="subjectform">
-								<form id="addform">
-									<label>Subject Name</label>
-									<input type="text" name="message" id="user_input"><br>
-									<label>Subject Time</label>
-									<input type="text" name="message" id="user_input"><br>
-									<label>Subject Room</label>
-									<input type="text" name="message" id="user_input"><br>
-								</form>
-								</div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-								<input type="button" id="newsubject" value="New Subject" onclick="subjectNew();"/>
-								<input type="button" id="addsubject" value="Add Subject" onclick="subjectAdd();"/>
-								<script>
-								function subjectNew() {
-									var x = document.getElementById('addform');
-									if (x.style.display === 'none') {
-										x.style.display = 'block';
-									} else {
-										x.style.display = 'none';
-									}
-								}
-								</script>
-								<!--
-								<script>
-								function subjectAdd() {
-									document.getElementById('newsubject').innerHTML = 
-												document.getElementById("user_input").value;
-								}
-								</script>
-								-->
-								</td>
-							</tr>
 						</table>
+						</div>
+					</div>
 						
 						<div> <!-- Tuesday -->
 						<p onclick="showDivTue()"> Tuesday </p>
+						<div id="dropboxtue">
 						<table id="scheduletue" >   <!-- Changed to class and added to CSS -->
+
 						<script>
 						function showDivTue() {
-							var x = document.getElementById('scheduletue');
+							var x = document.getElementById('dropboxtue');
 							if (x.style.display === 'none') {
 								x.style.display = 'block';
-								x.style.width = '100%';
 							} else {
 								x.style.display = 'none';
 							}
 						}
 						</script>
+
 							<tr>
-								<td rowspan="2" class="subj">Hard to Understand Algebra</td>
+								<td rowspan="2" class="subj">Picasso's Algebra</td>
 								<td class="border">9:00 - 10:30</td>
 							</tr>
 							<tr>
@@ -150,7 +116,7 @@
 							</tr>
 							
 							<tr>
-								<td rowspan="2" class="subj">EBSCO Research and Report</td>
+								<td rowspan="2" class="subj">Putting Library Materials to Good Use</td>
 								<td class="border">1:00 - 2:30</td>
 							</tr>
 							<tr>
@@ -164,15 +130,19 @@
 							<tr>
 								<td class="border">S326</td>
 							</tr>
+							
 						</table>
 						</div>
+					</div>
 						
-						<div><!-- Wednesday -->
+						<div> <!-- Wednesday -->
 						<p onclick="showDivWed()"> Wednesday </p> 
+						<div id="dropboxwed">
 						<table id="schedulewed" >   <!-- Changed to class and added to CSS -->
+
 						<script>
 						function showDivWed() {
-							var x = document.getElementById('schedulewed');
+							var x = document.getElementById('dropboxwed');
 							if (x.style.display === 'none') {
 								x.style.display = 'block';
 								x.style.width = '100%';
@@ -180,7 +150,8 @@
 								x.style.display = 'none';
 							}
 						}
-						</script>	
+						</script>
+
 							<tr>
 								<td rowspan="2" class="subj">NOT Nier Automata</td>
 								<td class="border">1:00 - 2:00</td>
@@ -190,7 +161,7 @@
 							</tr>
 							
 							<tr>
-								<td rowspan="2" class="subj">Dissecting Programming Languages </td>
+								<td rowspan="2" class="subj">2017: A Compiler Odyssey</td>
 								<td class="border">2:00 - 3:00</td>
 							</tr>
 							<tr>
@@ -198,13 +169,16 @@
 							</tr>
 						</table>
 						</div>
+					</div>
 						
 						<div> <!-- Thursday -->
 						<p onclick="showDivThu()"> Thursday </p>
+						<div id="dropboxthu">
 						<table id="schedulethu" >   <!-- Changed to class and added to CSS -->
+						
 						<script>
 						function showDivThu() {
-							var x = document.getElementById('schedulethu');
+							var x = document.getElementById('dropboxthu');
 							if (x.style.display === 'none') {
 								x.style.display = 'block';
 								x.style.width = '100%';
@@ -212,9 +186,10 @@
 								x.style.display = 'none';
 							}
 						}
-						</script>	
+						</script>
+						
 							<tr>
-								<td rowspan="2" class="subj">Hard to Understand Algebra</td>
+								<td rowspan="2" class="subj">Picasso's Algebra</td>
 								<td class="border">9:00 - 10:30</td>
 							</tr>
 							<tr>
@@ -230,7 +205,7 @@
 							</tr>
 							
 							<tr>
-								<td rowspan="2" class="subj">EBSCO Research and Report</td>
+								<td rowspan="2" class="subj">Putting Library Materials to Good Use</td>
 								<td class="border">1:00 - 2:30</td>
 							</tr>
 							<tr>
@@ -246,13 +221,16 @@
 							</tr>
 						</table>
 						</div>
+					</div>	
 						
 						<div> <!-- Friday -->
 						<p onclick="showDivFri()"> Friday </p> 
+						<div id="dropboxfri">
 						<table id="schedulefri" >   <!-- Changed to class and added to CSS -->
+						
 						<script>
 						function showDivFri() {
-							var x = document.getElementById('schedulefri');
+							var x = document.getElementById('dropboxfri');
 							if (x.style.display === 'none') {
 								x.style.display = 'block';
 								x.style.width = '100%';
@@ -260,7 +238,8 @@
 								x.style.display = 'none';
 							}
 						}
-						</script>	
+						</script>
+											
 							<tr>
 								<td rowspan="2" class="subj">The LamFam's Laboratory</td>
 								<td class="border">10:30 - 12:00</td>
@@ -278,7 +257,7 @@
 							</tr>
 							
 							<tr>
-								<td rowspan="2" class="subj">Dissecting Programming Languages</td>
+								<td rowspan="2" class="subj">2017: A Compiler Odyssey</td>
 								<td class="border">2:00 - 3:00</td>
 							</tr>
 							<tr>
@@ -294,13 +273,16 @@
 							</tr>
 						</table>
 						</div>
-						
+					</div>
+
 						<div> <!-- Saturday -->
 						<p onclick="showDivSat()"> Saturday </p> 
+						<div id="dropboxsat">
 						<table id="schedulesat" >   <!-- Changed to class and added to CSS -->
+						
 						<script>
 						function showDivSat() {
-							var x = document.getElementById('schedulesat');
+							var x = document.getElementById('dropboxsat');
 							if (x.style.display === 'none') {
 								x.style.display = 'block';
 								x.style.width = '100%';
@@ -308,7 +290,8 @@
 								x.style.display = 'none';
 							}
 						}
-						</script>	
+						</script>
+						
 							<tr>
 								<td rowspan="2" class="subj">Rest and Relaxation</td>
 								<td class="border">All Day</td>
@@ -318,13 +301,16 @@
 							</tr>
 						</table>
 						</div>
+					</div>	
 						
 						<div> <!-- Sunday -->
-						<p onclick="showDivSun()"> Saturday </p> 
+						<p onclick="showDivSun()"> Sunday </p> 
+						<div id="dropboxsat">
 						<table id="schedulesun" >   <!-- Changed to class and added to CSS -->
+						
 						<script>
 						function showDivSun() {
-							var x = document.getElementById('schedulesun');
+							var x = document.getElementById('dropboxsat');
 							if (x.style.display === 'none') {
 								x.style.display = 'block';
 								x.style.width = '100%';
@@ -332,7 +318,8 @@
 								x.style.display = 'none';
 							}
 						}
-						</script>	
+						</script>
+						
 							<tr>
 								<td rowspan="2" class="subj">Rest and Relaxation (as God intended)</td>
 								<td class="border">All Day</td>
@@ -342,12 +329,12 @@
 							</tr>
 						</table>
 						</div>
+					</div>	
+
 						<br>
 						
 					</div>
 					
-				
-				
 				</div>
 			</div>
 		</div>
