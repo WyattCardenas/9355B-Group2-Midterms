@@ -1,0 +1,290 @@
+html, body{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #062F4F;
+
+}
+
+
+.main-container{
+	color: #fff;
+	margin-bottom: 70px;
+}
+
+/* BOTTOM NAV THING */
+.bottomnavthing{
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	background-color: #EBEBEB;
+	text-align: center;
+	z-index: 50;
+}
+
+.bottomnavthing ul{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.bottomnavthing ul li{
+	display: inline-block;
+	padding: 15px 10px;
+	border-left: 1px solid black;
+}
+
+.bottomnavthing ul li:first-child{
+	border-left: none;
+}
+
+.bottomnavthing ul li:hover{
+	background-color: #FCFCFC;
+}
+
+.bottomnavthing a{
+	text-decoration: none;
+	color: #000;	
+}
+
+/* HAMBURGER MENU */
+
+.hamburger-menu{
+	height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+.hamburger-menu > ul{
+	list-style-type: none;
+}
+
+.hamburger > ul > li{
+	display: block;
+}
+
+.hamburger a{
+	padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s	
+}
+
+
+.container{
+	left: 0;
+	transiton: left 0.2s ease;
+}
+
+.open{
+	left: 250px;
+}
+
+/* GENERAL LAYOUT */
+
+.topthing{
+	padding: 10px 0;
+	background-color: #F1F1F1;
+	color: #000;
+}
+
+.topthing a{
+	display: inline-block;
+	float: left;
+	padding: 11px;
+	height: 100%;
+	overflow-x: hidden;
+}
+
+.topthing .bar{
+	width: 18px;
+	height: 2px;
+	display: block;
+	margin-bottom: 3px;
+	border-radius: 1px;
+	background-color: black;
+}
+
+.topthing h1, .topthing h2{
+	margin: 0;
+	display: inline;
+	padding-left: 15px;
+}
+
+
+/* INDEX.HTML */
+.today{
+	text-align: center;
+}
+
+#day, #date{
+	display: block;
+	padding: 5px 0;
+}
+
+
+
+/* NOTES */
+.textbox{
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	margin-bottom: 0.5px;
+}
+
+.checkboxes{
+	padding: 0 30px;
+}
+
+.checkboxes input{
+	float: left;
+}
+
+.terms {
+	display:block;
+	margin: 0 0 1em 0;
+ 	height: 2em;
+  	padding: 0 0.3em;
+}
+
+#prelim{
+	padding-top: -10px;
+	
+}
+
+.subdrop{
+	position: relative;
+	display: block;
+	padding-bottom: 100px;
+	padding-top: 20px;
+}
+.notedrop{
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.notedrop a{
+	display: block;
+}
+
+.subdrop.notedrop{
+	display: block;
+}
+
+
+/* REVIEWER */
+h3{
+	margin: 0;
+	display: inline;
+}
+
+.add{
+	float: right;
+	text-decoration: none;
+	color: black;
+	padding: 1px 5px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+
+.rev-link{
+	display: block;
+}
+
+/* schedul */
+#dropboxmon {
+	display: none;
+}
+
+#dropboxtue {
+	display: none;
+}
+
+#dropboxwed {
+	display: none;
+}
+
+#dropboxthu {
+	display: none;
+}
+
+#dropboxfri {
+	display: none;
+}
+
+#dropboxsat {
+	display: none;
+}
+
+#dropboxsun {
+	display: none;
+}
+
+#schedulemon {
+	padding-left: 5px;
+	width: 100%;
+}
+
+#scheduletue {
+	padding-left: 5px;
+	width: 100%;
+}
+
+#schedulewed {
+	padding-left: 5px;
+	width: 100%;
+}
+
+#schedulethu {
+	padding-left: 5px;
+	width: 100%;
+}
+
+#schedulefri {
+	padding-left: 5px;
+	width: 100%;
+}
+
+#schedulesat {
+	padding-left: 5px;
+	width: 100%;
+}
+
+#schedulesun {
+	padding-left: 5px;
+	width: 100%;
+}
+
+.subj {
+	border: 1px solid black;
+	padding: 15px;
+	width: 70%;
+}
+
+.border {
+	border: 1px solid black;
+	font-weight: bold;
+}
+
+.schedule-container p {
+	border: 1px solid black;
+	padding: 5px;
+	font-weight: bold;
+	font-size: 20px;
+	background-color: #813772;
+	color: white;
+}

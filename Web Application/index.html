@@ -1,83 +1,50 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>iReview</title>
-		<link rel="stylesheet" type="text/css" href="styles/style.css">
+<html manifest="caching.appcache">
+<head>
+	<title>iReview</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="styles/styles.css">
+</head>
+<body>
+	<div class="main-container">
+		<header class="topthing">
+			<h1>iReview</h1>
+		</header>
+		<header>
+			<h2>Home</h2>	
+		</header>
 		
-	</head>
-
-	<body>
-		<div class="container">
-			<nav id="sidebar">
-				<header>
-					<h1>iReview</h1>
-				</header>
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="termNotes.html">Notes</a></li>
-					<li><a href="termReview.html">Reviewer</a></li>
-					<li><a href="schedule.html">Schedule</a></li>
-
-				</ul>
-			</nav>
-
-			<div class="main-content">
-				<div class="swipe-area"></div>
-				
-				<div class="heading">
-					<a href="#" data-toggle=".container" id="sidebar-toggle"> 
-						<span class="bar"></span> 
-						<span class="bar"></span> 
-						<span class="bar"></span> 
-					</a>
-					<h2>Home</h2>
-				</div>
-				<div class="today">
-					<p>
-						<span id="day">
-							<script>
-								var d1 = new Date();
-								document.write(["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d1.getDay()]);
-							</script>
-						</span>
-						<span id="date">
-							<script>
-								var d2 = (new Date()).toString().split(' ').splice(1,3).join(' ');
-								document.write(d2);
-							</script>
-						</span>
-					</p>
-				</div>
-				<div class="content">
-					<div id="reminders" class="reminders">
-						<h3>Reminders</h3>
-						<a href="newrem.html" class="add">+</a>
-						<ul>
-							<li>reminder 1</li>
-							<li>reminder 2</li>
-							<li>reminder 3</li>
-						</ul>
-					</div>
-
-					<div class="recentnotes" id="recent">
-						<h3>Recent notes</h3>
-						<button type="button" id="addbutton">+</button>
-					</div>
-
-					<div class="nodata">
-						<BR><Br>   <!-- TEMPORARY BR -->
-						<h3>IF NO DATA</h3>
-						<p>Oops! You have no data yet.</p>
-						<a href="schedsetup.html" class="button">Setup!</a>
-					</div>
-				</div>
-			</div>
+		<div class="today">
+			<p>
+				<span id="day">
+					<script>
+						var d1 = new Date();
+						document.write(["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d1.getDay()]);
+					</script>
+				</span>
+				<span id="date">
+					<script>
+						var d2 = (new Date()).toString().split(' ').splice(1,3).join(' ');
+						document.write(d2);
+					</script>
+				</span>
+			</p>
 		</div>
-</body>
-		<script src="scripts/jquery-1.11.3.min.js"></script> 
-		<script src="scripts/jquery.touchSwipe.min.js"></script> 
-		<script src="scripts/scripts.js"></script>
+		
+		<div id="reminders" class="reminders">
+			<p>stuff go here</p>
+		</div>
+	</div>
 
+	<nav class="bottomnavthing">
+		<ul>
+			<li><span class="icon"><img src="" alt=""></span><span class="page-name"><a href="index.html">Home</a></span></li>
+			<li><span class="icon"><img src="" alt=""></span><span class="page-name"><a href="notes.html">Notes</a></span></li>
+			<li><span class="icon"><img src="" alt=""></span><span class="page-name"><a href="#">+</a></span></li>
+			<li><span class="icon"><img src="" alt=""></span><span class="page-name"><a href="review.html">Review</a></span></li>
+			<li><span class="icon"><img src="" alt=""></span><span class="page-name"><a href="schedule.html">Schedule</a></span></li>
+		</ul>
+	</nav>
+	<script src="scripts/scripts.js"></script>
+</body>
 </html>
