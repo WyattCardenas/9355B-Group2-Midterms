@@ -1,61 +1,33 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>iReview</title>
 		<link rel="stylesheet" type="text/css" href="styles/style.css">
 	</head>
-
 	<body>
-		<div class="container">
-			<nav id="sidebar">
+		<div class="main-container">
+			<div class="topthing">
 				<header>
-					<h1>iReview</h1>
+					<h2>Reviewers</h2>
 				</header>
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="termNotes.html">Notes</a></li>
-					<li><a href="termReview.html">Reviewer</a></li>
-					<li><a href="schedule.html">Schedule</a></li>
-				</ul>
-			</nav>
-
-			<div class="main-content">
-				<div class="swipe-area"></div>
-				<div class="heading">
-					<a href="#" data-toggle=".container" id="sidebar-toggle"> 
-						<span class="bar"></span> 
-						<span class="bar"></span> 
-						<span class="bar"></span> 
-					</a>
-					<h2>Notes</h2>
-				</div>
-
-
-				<div class="content">
-					<div id="notes" class="notes">
-						<h3>New Note</h3>
-						<form>
-							<input type="text" value="Title" class="textbox">
-							<textarea class="textbox">Notes Here </textarea>
-						</form>	
-					</div>
-				</div>
-
-
-				<div>
-					<button type="button" id="addbutton">add</button>
-					<button type="button" id="addbutton">-drawicon-</button>
-				</div>
+			</div>
+			<div class="creation">
+				<header>
+					<h3>New Note</h3>
+				</header>
+				<form>
+					<input type="text" value="Title" class="textbox">
+					<textarea class="textbox">Notes Here </textarea>
+				</form>
 			</div>
 
-				<a href="#"></a>
+			<div class="icons">
+				<button type="button" id="save-notes">add</button>
+				<button type="button" id="draw-button">-drawicon-</button>
 			</div>
 		</div>
 
-		<script src="scripts/jquery-1.11.3.min.js"></script> 
-		<script src="scripts/jquery.touchSwipe.min.js"></script> 
 		<script src="scripts/scripts.js"></script>
-</body>
+	</body>
 </html>
