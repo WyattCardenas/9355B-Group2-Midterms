@@ -4,11 +4,13 @@
 		<title>iReview</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="styles/styles.css">
+		<link rel="stylesheet" href="styles/quiz.css">
+		<script async src="scripts/quiz.js"></script>
 	</head>
 	<body>
 		<div class="main-container">
 			<div class="topthing">
-				<a href="#" data-toggle=".container" id="sidebar-toggle"> 
+				<a href="" data-toggle=".container" id="sidebar-toggle"> 
 					<span class="bar"></span> 
 					<span class="bar"></span> 
 					<span class="bar"></span> 
@@ -20,25 +22,25 @@
 				<div class="subdrop">
 					<span>Subject 1</span>
 					<div class="notedrop">
-						<a href="">Quiz 1</a>
-						<a href="">Quiz 2</a>
-						<a href="">Quiz 3</a>
+						<button onclick="loadQuiz()"><a href="#takeQuiz">Quiz 1</a></button>
+						<!-- <a href="">Quiz 2</a>
+						<a href="">Quiz 3</a> -->
 					</div>
 				</div>
 				<div class="subdrop">
 					<span>Subject 2</span>
 					<div class="notedrop">
-						<a href="">Quiz 1</a>
+						<!-- <a href="">Quiz 1</a>
 						<a href="">Quiz 2</a>
-						<a href="">Quiz 3</a>
+						<a href="">Quiz 3</a> -->
 					</div>
 				</div>
 				<div class="subdrop">
 					<span>Subject 3</span>
 					<div class="notedrop">
-						<a href="">Quiz 1</a>
+						<!-- <a href="">Quiz 1</a>
 						<a href="">Quiz 2</a>
-						<a href="">Quiz 3</a>
+						<a href="">Quiz 3</a> -->
 					</div>
 				</div>
 			</div>
@@ -55,7 +57,7 @@
 				</li>
 				<li>
 					<span class="icon"><img src="" alt=""></span>
-					<span class="page-name"><a href="newrem.html">+</a></span>
+					<span class="page-name"><a href="quizGenerator.html">+</a></span>
 				</li>
 				<li>
 					<span class="icon"><img src="" alt=""></span>
@@ -67,5 +69,26 @@
 				</li>
 			</ul>
 		</nav>
+
+		<div id="takeQuiz">
+			<div class="grid" >
+		      <div id="quiz">
+		        <h1>Quiz</h1>
+
+		        <p id="question"></p>
+
+		        <div class="buttons">
+		          <button id="btn0"><span id="choice0"></span></button>
+		          <button id="btn1"><span id="choice1"></span></button>
+		          <button id="btn2"><span id="choice2"></span></button>
+		          <button id="btn3"><span id="choice3"></span></button>
+		        </div> 
+
+		        <footer>
+		        <p id="progress"></p>
+		        </footer>
+		      </div>
+		    </div>
+		</div>
 	</body>
 </html>
