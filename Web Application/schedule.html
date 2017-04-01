@@ -1,167 +1,109 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
-		<link rel="stylesheet" href="styles/styles.css">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="styles/styles.css">
+	<script src="scripts/scripts.js"></script>
+	<style>	
+		td{
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body onload="schedule()">
+	<div class="topthing">
+		<a href="#" data-toggle=".container" id="sidebar-toggle"> 
+			<span class="bar"></span> 
+			<span class="bar"></span> 
+			<span class="bar"></span> 
+		</a>
+		<h2>Schedule</h2>
+	</div>
 
-		<style>	
-			table{
-				border: 1px solid black;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="topthing">
-			<a href="#" data-toggle=".container" id="sidebar-toggle"> 
-				<span class="bar"></span> 
-				<span class="bar"></span> 
-				<span class="bar"></span> 
-			</a>
-			<h2>Schedule</h2>
-		</div>
+	<div class="schedule-container">
+		<div>
+			<p class="day" id="monday" data-toggle="mon-div">Monday</p>
+			<div id="mon-div" class="hide">
+				<table id="mon">
 
-		<div class="schedule-container">
-			<div>
-				<p class="day" id="monday" data-toggle="mon-div">Monday</p>
-				<div id="mon-div" class="hide">
-					<table id="mon-sched">
-						<tr>
-							<td rowspan="2">The LamFam's Laboratory</td>
-							<td>10:30 - 12:00</td>
-						</tr>
-						<tr>
-							<td>S427</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-
-			<div>
-				<p class="day" id="tuesday" data-toggle="tue-div">Tuesday</p>
-				<div id="tue-div" class="hide">
-					<table id="mon-sched">
-						<tr>
-							<td rowspan="2"></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<div>
-				<p class="day" id="wednesday" data-toggle="wed-div">Wednesday</p>
-				<div id="wed-div" class="hide">
-					<table id="web-sched">
-						<tr>
-							<td rowspan="2"></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<div>
-				<p class="day" id="thursday" data-toggle="thu-div">Thursday</p>
-				<div id="thu-div" class="hide">
-					<table id="thu-sched">
-						<tr>
-							<td rowspan="2"></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<div>
-				<p class="day" id="friday" data-toggle="fri-div">Friday</p>
-				<div id="fri-div" class="hide">
-					<table id="fri-sched">
-						<tr>
-							<td rowspan="2"></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<div>
-				<p class="day" id="saturday" data-toggle="sat-div">Saturday</p>
-				<div id="sat-div" class="hide">
-					<table id="sat-sched">
-						<tr>
-							<td rowspan="2"></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<div>
-				<p class="day" id="sunday" data-toggle="sun-div">Sunday</p>
-				<div id="sun-div" class="hide">
-					<table id="sun-sched">
-						<tr>
-							<td rowspan="2"></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
-					</table>
-				</div>
+				</table>
 			</div>
 		</div>
 
-		<nav class="bottomnavthing">
-			<ul>
-				<li>
-					<span class="icon"><img src="" alt=""></span>
-					<span class="page-name"><a href="index.html">Home</a></span>
-				</li>
-				<li>
-					<span class="icon"><img src="" alt=""></span>
-					<span class="page-name"><a href="notes.html">Notes</a></span>
-				</li>
-				<li>
-					<span class="icon"><img src="" alt=""></span>
-					<span class="page-name"><a href="#">+</a></span>
-				</li>
-				<li>
-					<span class="icon"><img src="" alt=""></span>
-					<span class="page-name"><a href="review.html">Review</a></span>
-				</li>
-				<li>
-					<span class="icon"><img src="" alt=""></span>
-					<span class="page-name"><a href="schedule.html">Schedule</a></span>
-				</li>
-			</ul>
-		</nav>
+		<div>
+			<p class="day" id="tuesday" data-toggle="tue-div">Tuesday</p>
+			<div id="tue-div" class="hide">
+				<table id="tue">
 
-		<script>
-			var days = document.getElementsByClassName("day");
-			for(i=0;i<days.length;i++){
-				days[i].addEventListener("click",showDay);
-			}
-			function showDay() {
-				var toggle = this.attributes["data-toggle"].value;
-				var thing = document.getElementById(toggle);
-				if(thing.className === "hide"){				
-					thing.className = "";
-				}else{
-					thing.className = "hide";
-				}
-			}
-		</script>
-	</body>
+				</table>
+			</div>
+		</div>
+		<div>
+			<p class="day" id="wednesday" data-toggle="wed-div">Wednesday</p>
+			<div id="wed-div" class="hide">
+				<table id="wed">
+
+				</table>
+			</div>
+		</div>
+		<div>
+			<p class="day" id="thursday" data-toggle="thu-div">Thursday</p>
+			<div id="thu-div" class="hide">
+				<table id="thu">
+
+				</table>
+			</div>
+		</div>
+		<div>
+			<p class="day" id="friday" data-toggle="fri-div">Friday</p>
+			<div id="fri-div" class="hide">
+				<table id="fri">
+
+				</table>
+			</div>
+		</div>
+		<div>
+			<p class="day" id="saturday" data-toggle="sat-div">Saturday</p>
+			<div id="sat-div" class="hide">
+				<table id="sat">
+
+				</table>
+			</div>
+		</div>
+		<div>
+			<p class="day" id="sunday" data-toggle="sun-div">Sunday</p>
+			<div id="sun-div" class="hide">
+				<table id="sun">
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<nav class="bottomnavthing">
+		<ul>
+			<li>
+				<span class="icon"><img src="" alt=""></span>
+				<span class="page-name"><a href="index.html">Home</a></span>
+			</li>
+			<li>
+				<span class="icon"><img src="" alt=""></span>
+				<span class="page-name"><a href="notes.html">Notes</a></span>
+			</li>
+			<li>
+				<span class="icon"><img src="" alt=""></span>
+				<span class="page-name"><a href="#">+</a></span>
+			</li>
+			<li>
+				<span class="icon"><img src="" alt=""></span>
+				<span class="page-name"><a href="review.html">Review</a></span>
+			</li>
+			<li>
+				<span class="icon"><img src="" alt=""></span>
+				<span class="page-name"><a href="schedule.html">Schedule</a></span>
+			</li>
+		</ul>
+	</nav>
+
+</body>
 </html>

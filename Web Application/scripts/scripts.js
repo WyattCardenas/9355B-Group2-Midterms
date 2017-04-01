@@ -1,10 +1,24 @@
-//INDEX.HTML
+/********************
+	
+	GLOBAL VARIABLES
+
+ ********************/
+d = new Date();
+dayToday = ["sun","mon","tue","wed","thu","fri","sat"][d.getDay()];
+var subjectArray = [];
+
+
+/********************
+	
+	INDEX.HTML
+
+ ********************/
 
 function today(){
 	if(localStorage.getItem("hasData") === null){
 		window.location = "setup.html"
 	}else{
-		var d = new Date();
+		
 		var dayString = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d.getDay()];
 		var date = d.toString().split(' ').splice(1,3).join(' ');
 		document.getElementById("day").innerHTML = dayString;
@@ -12,7 +26,7 @@ function today(){
 
 		var subjects = JSON.parse(localStorage.getItem("subjects"));
 		var d = new Date();
-		var dayToday = ["sun","mon","tue","wed","thu","fri","sat"][d.getDay()];
+		
 		var classesToday = document.getElementById("classes");
 		for( i=0; i<subjects.length; i++){
 			for( ii=0; ii<subjects[i].days.length; ii++){
@@ -24,7 +38,11 @@ function today(){
 	}
 }
 
-//SETUP.HTML
+/********************
+	
+	SETUP.HTML
+
+ ********************/
 function firstTime () {
 	var startEnd = document.getElementById("start-end");
 	var header = document.getElementById("header");
@@ -64,8 +82,8 @@ function recordSemester(){
 		if(subjectAddition.className === "hide"){
 			subjectAddition.className = "";
 			startEnd.className = "hide";
-    }
-  }
+		}
+	}
 }
 
 function checkMonths(sMonth,eMonth){
@@ -162,7 +180,6 @@ function checkMonths(sMonth,eMonth){
 	}
 }
 
-var subjectArray = [];
 function recordSubjects(){
 	var cCode = document.getElementById("cCode").value;
 	var cno = document.getElementById("cno").value;
@@ -174,6 +191,7 @@ function recordSubjects(){
 	if( cCode === "" || cdesc === "" || timeStart === "" || timeEnd === "" || room === ""){
 		document.getElementById("may-mali").innerHTML = "Please fill up all fields";
 		return;
+	}
 	
 
 	var validTime = timeStart < timeEnd;
@@ -259,9 +277,43 @@ function saveSubjects(){
     localStorage.setItem("hasData","true");
 		window.location = "index.html";
 	}else{
-    saveButton.value = "Finish";
+   		saveButton.value = "Finish";
 	}
-};
+}
 
-//SCHEDULE.HTML
+/********************
+	
+	SCHEDULE.HTML
 
+ ********************/
+function schedule(){
+	var days = document.getElementsByClassName("day");
+	for( i=0;i<days.length;i++ ){
+		days[i].addEventListener("click",showDay);
+	}
+	generateSchedule();
+}
+
+function showDay() {
+	var toggle = this.attributes["data-toggle"].value;
+	var thing = document.getElementById(toggle);
+	if(thing.className === "hide"){
+		thing.className = "";
+	}else{
+		thing.className = "hide";
+	}
+}
+
+function generateSchedule(){
+	var sched = JSON.parse(localStorage.getItem("subjects"));
+	var thing = document.getElementById(`${dayToday}-div`);
+	if(thing.id === `${dayToday}-div`){
+		thing.className = "";
+	}
+	for( i=0; i<sched.length; i++){
+		for( ii=0; ii<sched[i].days.length; ii++){
+			var writeTo = document.getElementById(sched[i].days[ii]);
+			writeTo.innerHTML += `<tr><td rowspan="2"><span class="classCode">${sched[i].classCode}</span><br><span class="courseDesc">${sched[i].courseDescription}</span></td> <td>${sched[i].timeStart} - ${sched[i].timeEnd} </td>  </tr> <tr><td>${sched[i].room}</td></tr>`
+		}
+	}
+}
