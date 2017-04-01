@@ -2,7 +2,14 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="styles/styles.css">
+		
+		<link rel="stylesheet" href="styles/styles.css">
+
+		<style>	
+			table{
+				border: 1px solid black;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="topthing">
@@ -16,8 +23,8 @@
 
 		<div class="schedule-container">
 			<div>
-				<p>Monday</p>
-				<div id="mon-div">
+				<p class="day" id="monday" data-toggle="mon-div">Monday</p>
+				<div id="mon-div" class="hide">
 					<table id="mon-sched">
 						<tr>
 							<td rowspan="2"></td>
@@ -30,8 +37,8 @@
 				</div>
 			</div>
 			<div>
-				<p>Tuesday</p>
-				<div id="tue-div">
+				<p class="day" id="tuesday" data-toggle="tue-div">Tuesday</p>
+				<div id="tue-div" class="hide">
 					<table id="mon-sched">
 						<tr>
 							<td rowspan="2"></td>
@@ -44,8 +51,8 @@
 				</div>
 			</div>
 			<div>
-				<p>Wednesday</p>
-				<div id="wed-div">
+				<p class="day" id="wednesday" data-toggle="wed-div">Wednesday</p>
+				<div id="wed-div" class="hide">
 					<table id="web-sched">
 						<tr>
 							<td rowspan="2"></td>
@@ -58,8 +65,8 @@
 				</div>
 			</div>
 			<div>
-				<p>Thursday</p>
-				<div id="thu-div">
+				<p class="day" id="thursday" data-toggle="thu-div">Thursday</p>
+				<div id="thu-div" class="hide">
 					<table id="thu-sched">
 						<tr>
 							<td rowspan="2"></td>
@@ -72,8 +79,8 @@
 				</div>
 			</div>
 			<div>
-				<p>Friday</p>
-				<div id="fri-div">
+				<p class="day" id="friday" data-toggle="fri-div">Friday</p>
+				<div id="fri-div" class="hide">
 					<table id="fri-sched">
 						<tr>
 							<td rowspan="2"></td>
@@ -86,8 +93,8 @@
 				</div>
 			</div>
 			<div>
-				<p>Saturday</p>
-				<div id="sat-div">
+				<p class="day" id="saturday" data-toggle="sat-div">Saturday</p>
+				<div id="sat-div" class="hide">
 					<table id="sat-sched">
 						<tr>
 							<td rowspan="2"></td>
@@ -100,8 +107,8 @@
 				</div>
 			</div>
 			<div>
-				<p>Sunday</p>
-				<div id="sun-div">
+				<p class="day" id="sunday" data-toggle="sun-div">Sunday</p>
+				<div id="sun-div" class="hide">
 					<table id="sun-sched">
 						<tr>
 							<td rowspan="2"></td>
@@ -117,7 +124,7 @@
 
 		<nav class="bottomnavthing">
 			<ul>
-				<<li>
+				<li>
 					<span class="icon"><img src="" alt=""></span>
 					<span class="page-name"><a href="index.html">Home</a></span>
 				</li>
@@ -139,5 +146,21 @@
 				</li>
 			</ul>
 		</nav>
+
+		<script>
+			var days = document.getElementsByClassName("day");
+			for(i=0;i<days.length;i++){
+				days[i].addEventListener("click",showDay);
+			}
+			function showDay() {
+				var toggle = this.attributes["data-toggle"].value;
+				var thing = document.getElementById(toggle);
+				if(thing.className === "hide"){				
+					thing.className = "";
+				}else{
+					thing.className = "hide";
+				}
+			}
+		</script>
 	</body>
 </html>

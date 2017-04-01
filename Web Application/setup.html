@@ -13,7 +13,7 @@
 			<h1 id="header" class="first-position">iReview</h1>
 
 			<div class="get-started-wrapper">
-				<button id="get-started" class="button">Get Started!</button>
+				<button id="get-started" class="button" onclick="firstTime()">Get Started!</button>
 			</div>
 
 
@@ -127,41 +127,40 @@
 						</select>
 					</div>
 					<div class="button-wrapper">
-						<input type="submit" id="submit-button" class="button"/>
+						<input type="submit" id="submit-button" class="button" onclick="recordSemester()"/>
 					</div>
 				
 				<p id="warning"></p>
 			</div>
-
+	
 			<div id="subject-addition" class="hide">
+				<p id="may-mali"></p>
 				<form id="subject-form">
+					<p><span class="text">*Class Code:</span><input type="text" id="cCode"></p>
 					<p><span class="text">Course Number:</span><input id="cno" type='text'/></p>
-					<p><span class="text">Course Description:</span><input id="cdesc" type='text'/></p>
-					<p><span class="text">Time:</span>-TIME INPUT THING-</p>
+					<p><span class="text">*Course Description:</span><input id="cdesc" type='text'/></p>
+					<p><span class="text">*Time Start:</span><input type="time" id="time-start"/></p>
+					<p><span class="text">*Time End:</span><input type="time" id="time-end"/></p>
+					<p><span class="text">*Class Room</span><input type="text" id="room"></p>
 					<p>
-						<span class="text">Days:</span>
-						<select name="days" id="days">
-							<option value="" selected></option>
-							<option value="mon">Monday</option>
-							<option value="tue">Tuesday</option>
-							<option value="wed">Wednesday</option>
-							<option value="thu">Thursday</option>
-							<option value="fri">Friday</option>
-							<option value="sat">Saturday</option>
-							<option value="sun">Sunday</option>
-						</select>
+						<span class="text">*Days:</span>
+						<span class="days-container"><input type="checkbox" value="mon" class="day">Monday</span>
+						<span class="days-container"><input type="checkbox" value="tue" class="day">Tuesday</span>
+						<span class="days-container"><input type="checkbox" value="wed" class="day">Wednesday</span>
+						<span class="days-container"><input type="checkbox" value="thu" class="day">Thursday</span>
+						<span class="days-container"><input type="checkbox" value="fri" class="day">Friday</span>
+						<span class="days-container"><input type="checkbox" value="sat" class="day">Saturday</span>
+						<span class="days-container"><input type="checkbox" value="sun" class="day">Sunday</span>
 					</p>
 				</form>
 				<div class="button-wrapper">
-					<button id="add-subject" class="button">Add Subject</button>
-					<input id="save-subjects" type="submit" class="button" value="Save">
+					<button id="add-subject" class="button" onclick="recordSubjects()">Add Subject</button>
+					<input id="save-subjects" type="submit" class="button" value="Save" onclick="saveSubjects()">
 				</div>
-				<select name="subjects" id="list-subjects">
-					
-				</select>
-				<p id="subjs"></p>
 				
-				<div id="recorded-subjs">
+				
+				
+				<div id="recorded-subs">
 					<div id="mon" class="hide">
 						<h2>Monday</h2>
 					</div>
@@ -187,6 +186,6 @@
 			</div>
 		</div>	
 
-		<script src="scripts/setupScripts.js"></script>
+		<script src="scripts/scripts.js"></script>
 	</body>
 </html>
