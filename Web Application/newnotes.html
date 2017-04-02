@@ -4,6 +4,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>iReview</title>
 		<link rel="stylesheet" type="text/css" href="styles/style.css">
+		<script src="scripts/notes.js"></script>
 	</head>
 	<body>
 		<div class="main-container">
@@ -16,17 +17,23 @@
 				<header>
 					<h3>New Note</h3>
 				</header>
-				<form>
-					<input type="text" value="Title" class="textbox">
-					<textarea class="textbox">Notes Here </textarea>
+				<form id="titleForm">
+					<input type="text" name="noteTitle" class="textbox">
+				</form>
+				<form id="textForm">
+					<textarea id="textForm" name="noteArea" class="textbox">Notes Here </textarea>
 				</form>
 			</div>
 
 			<div class="icons">
-				<button type="button" id="save-notes">add</button>
+				<button type="button" id="save-notes" onclick="saveNotes()">add</button>
 				<button type="button" id="draw-button">-drawicon-</button>
 			</div>
 		</div>
+
+		<div id="titleOutput"></div>
+		<div id="textOutput"></div>
+
 
 		<script src="scripts/scripts.js"></script>
 	</body>

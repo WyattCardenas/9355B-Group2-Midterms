@@ -4,6 +4,7 @@
 		<title>iReview</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="styles/styles.css">
+		<script src="scripts/notes.js"></script>
 	</head>
 	<body>
 		<div class="main-container">
@@ -16,36 +17,22 @@
 				<h2>Notes</h2>
 			</div>
 			
-			<div id="notes" class="notes">
-				<h3>Subjects</h3>
-				<div class="subdrop">
-					<span>Subject 1</span>
-					<div class="notedrop">
-						<a href="">Notes 1</a>
-						<a href="">Notes 2</a>
-						<a href="">Notes 3</a>
-					</div>
-				</div>
-				<div class="subdrop">
-					<span>Subject 2</span>
-					<div class="notedrop">
-						<a href="">Notes 1</a>
-						<a href="">Notes 2</a>
-						<a href="">Notes 3</a>
-					</div>
-				</div>
-				<div class="subdrop">
-					<span>Subject 3</span>
-					<div class="notedrop">
-						<a href="">Notes 1</a>
-						<a href="">Notes 2</a>
-						<a href="">Notes 3</a>
-					</div>
-				</div>
-			</div>
+				<div class="content">
+					<div id="notes" class="notes">
+						<h3>Subjects</h3>
+						<div class="subdrop">
+							<span> Subject 1</span>
+							<div class="notedrop">
+								<div id="titleOutput"></div>
+								<form>
+									<input type="button" id="addnotes" value="+" onclick="newNotes();" /> 
+								</form>
+							</div>
 
-			
-		</div>
+		
+						</div>
+					</div>
+
 		<nav class="bottomnavthing">
 			<ul>
 				<li>
