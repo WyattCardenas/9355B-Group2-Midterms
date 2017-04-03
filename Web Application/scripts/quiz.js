@@ -68,14 +68,12 @@ function saveQuiz(){
         answerToQuestion = document.getElementById(`answer${x}`).value;
     }
 
-    for(y = 0; y < w; y++){
+    for(y = 0; y < 4; y++){
         choices.push(document.getElementById(`mC${y}`).value);
     }
 
-    var i = 0; 
     for(var z = 0; z < a; z ++){
         questions.push(new Question(question, choices, answerToQuestion));
-        i = i + 4;
     }
 
     quiz = new Quiz(questions);
@@ -94,10 +92,8 @@ function loadQuiz(){
     var quizzz = JSON.parse(localStorage.getItem("quiz"));
  
     var a = localStorage.getItem("a");
-    var i = 0; 
     for(var z = 0; z < a; z ++){
-        questions.push(new Question(quizzz.questions[0].question, quizzz.questions[0].choices, quizzz.questions[0].answerToQuestion));
-        i = i + 4;
+        questions.push(new Question(quizzz.questions[0].question, quizzz.questions[0].choices, quizzz.questions[0].answer));
     }
 
     quiz = new Quiz(questions);
