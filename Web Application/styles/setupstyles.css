@@ -1,8 +1,27 @@
+/*
+	FONTS
+*/
+
+@font-face {
+	font-family: 'FeatherScript';
+	src: url(../fonts/FeatherScript.otf);
+}
+
+@font-face {
+	font-family: 'fourhand';
+	src: url(../fonts/fourhand.otf);
+}
+
+@font-face {
+	font-family: 'chewedpen';
+	src: url(../fonts/chewedpenbb.otf);
+}
+
 body{
 	margin: 0;
 	height: 100%;
 	width: 100%;
-	background-color: #062F4F;
+	background-color: #4484CE;
 	
 }
 
@@ -14,13 +33,22 @@ body>div.container{
 	margin: 0 auto;
 }
 
+/*
+	HEADERS
+*/
+
+#header{
+	font-family: FeatherScript;
+}
+
 .first-position{
 	position: absolute;
-	top: 20%;
+	top: 10%;
 	left: 50%;
-	transform: translateY(-20%);
+	transform: translateY(-10%);
 	transform: translateX(-50%);
-	font-size: 60px;
+	font-size: 80px;	
+	font-family: FeatherScript;
 }
 
 .get-started-wrapper{
@@ -34,43 +62,97 @@ body>div.container{
 #get-started{
 	border: none;
 	color: #F3F3F3;
-	background-color: #813772;
-	padding: 10px 15px;
+	background-color: #F19F4D;
+	padding: 15px 20px;
 	transition: all .3s ease;
-	border-radius: 5px;
+	border-radius: 50px;
 	text-decoration: none;
+	font-size: 25px;
+	font-family: fourhand;
 	margin: auto;
 }
 
 #get-started:hover{
-	background-color: #813772;
-	color: #393939;
-	border-radius: initial;
+	background-color: #F3F3F3;
+	color: #F19F4D;
+	border-radius: 50px;
 }
-
 
 .hide{
 	display: none;
 }
 
+/*
+	MONTH/DAYS
+*/
+
+#month{
+	font-family: chewedpen;
+	font-size: 22px;
+	padding: 3px;
+}
+
+#day{
+	font-family: chewedpen;
+	font-size: 22px;
+	padding: 3px;
+}
+
+#start-end{
+	font-family: fourhand;
+	font-size: 25px;
+}
+
+/*
+	SUBMIT BUTTON
+*/
+
 .button-wrapper{
 	margin-top: 20px;
+
 }
 
 .button{
 	border: none;
 	color: #F3F3F3;
-	background-color: #813772;
+	background-color: #F19F4D;
 	padding: 5px 15px;
 	transition: all .3s ease;
-	border-radius: 5px;
+	border-radius: 50px;
 	text-decoration: none;
+	font-size: 25px;
+	font-family: fourhand;
 }
 
 .button:hover{
 	background-color: #F3F3F3;
-	color: #393939;
-	border-radius: initial;
+	color: #F19F4D;
+	border-radius: 50px;
+}
+
+/*
+	SCHEDULE INPUTS
+*/
+
+.text{
+	font-size: 22px;
+	font-family: fourhand;
+}
+
+.days-container{
+	font-family: fourhand;
+	font-size: 17px;
+}
+
+#may-mali{
+	font-family: chewedpen;
+	font-size: 20px;
+	color: #F9CF00;
+}
+
+#recorded-subs{
+	font-family: chewedpen;
+	color: #F9CF00;
 }
 
 select, input[type="text"]{
@@ -87,8 +169,6 @@ select>option{
 select>option#day{
 	height: 200px;
 }
-
-
 
 @media only screen and (min-width: 376px){
 	#suject-form .text{

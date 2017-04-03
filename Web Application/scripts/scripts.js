@@ -64,11 +64,11 @@ function recordSemester(){
   	}else if(startDay == "" || endDay == ""){
 		document.getElementById("warning").innerHTML = "Please pick a day.";
   	}else if(startMonth == endMonth && startDay == endDay){
-		document.getElementById("warning").innerHTML = "same day nagstart at nag end";
+		document.getElementById("warning").innerHTML = "The semester cannot start and end at the same day.";
   	}else if(valid === "false"){
-		document.getElementById("warning").innerHTML = "di pa nga ang sstart ung sem ang end na agad";
+		document.getElementById("warning").innerHTML = "The semester hasn't started yet and it has already ended?";
   	}else if(valid === "same"){
-		document.getElementById("warning").innerHTML = "nice " + (endDay - startDay) +" days lang ung sem";
+		document.getElementById("warning").innerHTML = "The semester only has " + (endDay - startDay) +" days?";
   	}else{
   		var start = [startDay,startMonth];
   		var end = [endDay, endMonth];
@@ -193,7 +193,7 @@ function recordSubjects(){
 
 	var validTime = timeStart < timeEnd;
 	if(validTime === false){
-		document.getElementById("may-mali").innerHTML = "Time end is earlier than time start";
+		document.getElementById("may-mali").innerHTML = "Time end is earlier than time start.";
 		return undefined;
 	}else if( validTime === true && (timeEnd.split(":")[0] - timeStart.split(":")[0]) > 8){
 		var c = confirm("Are you sure your class lasts for" + (timeEnd.split(":")[0] - timeStart.split(":")[0]) + "hours?");
@@ -248,7 +248,7 @@ function recordSubjects(){
 
 	subjectArray.push(subjectObject);
 	
-	document.getElementById("may-mali").innerHTML = "Added!"
+	document.getElementById("may-mali").innerHTML = "Subject Added!"
 	resetForm();
 }
 
