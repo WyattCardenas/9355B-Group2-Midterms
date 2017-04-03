@@ -16,7 +16,7 @@ function generateMCQuiz() {
     <input id=answer${a} value="Answer"></input><br>`;
 
     w = w + 4;
-    a = a + 1;  
+    a = a + 1; 
 
     localStorage.setItem("a", a);
 }
@@ -61,46 +61,53 @@ function saveQuiz(){
     //localStorage.clear();
 
     var questions = [];
+    var choices = [];
 
     for(var x = 0; x < a; x++){
-        localStorage.setItem(`question${x}`, document.getElementById(`mcQ${x}`).value);
-        localStorage.setItem(`answer${x}`, document.getElementById(`answer${x}`).value);
+        question = document.getElementById(`mcQ${x}`).value;
+        answerToQuestion = document.getElementById(`answer${x}`).value;
     }
 
     for(y = 0; y < w; y++){
-        localStorage.setItem(`choice${y}`, document.getElementById(`mC${y}`).value);
+        choices.push(document.getElementById(`mC${y}`).value);
     }
 
     var i = 0; 
     for(var z = 0; z < a; z ++){
-        questions.push(new Question(localStorage.getItem(`question${z}`), [localStorage.getItem(`choice${i}`), localStorage.getItem(`choice${i+1}`), localStorage.getItem(`choice${i+2}`), localStorage.getItem(`choice${i+3}`)], localStorage.getItem(`answer${z}`)));
+        questions.push(new Question(question, choices, answerToQuestion));
         i = i + 4;
     }
 
     quiz = new Quiz(questions);
 
-    // quizObject = JSON.stringify(quiz);
+    quizObject = JSON.stringify(quiz);
 
-    // localStorage.setItem("quiz", quizObject);
+    localStorage.setItem("quiz", quizObject);
 
-    populate();
+    //populate();
 
     window.location = "review.html";
 }
 
 function loadQuiz(){
-    var questions = [];
-
-    var i = 0; 
+    var questions = []
+    var quizzz = JSON.parse(localStorage.getItem("quiz"));
+ 
     var a = localStorage.getItem("a");
+    var i = 0; 
     for(var z = 0; z < a; z ++){
-        questions.push(new Question(localStorage.getItem(`question${z}`), [localStorage.getItem(`choice${i}`), localStorage.getItem(`choice${i+1}`), localStorage.getItem(`choice${i+2}`), localStorage.getItem(`choice${i+3}`)], localStorage.getItem(`answer${z}`)));
+        questions.push(new Question(quizzz.questions[0].question, quizzz.questions[0].choices, quizzz.questions[0].answerToQuestion));
         i = i + 4;
     }
 
     quiz = new Quiz(questions);
 
     populate();
+
+    if (document.getElementById("takeQuiz").className === "hide"){
+        document.getElementById("takeQuiz").className = "";
+        document.getElementById("content").className = "hide";
+    }
 }
 
 Question.prototype.correctAnswer = function (choice){
@@ -128,7 +135,7 @@ function populate(){
         showScore();
     }else{
         var element = document.getElementById("question");
-        element.innerHTML = quiz.getQuestionIndex().text;
+        element.innerHTML = quiz.getQuestionIndex().question;
 
         var choices = quiz.getQuestionIndex().choices;
         for(var  i = 0; i < choices.length; i++){
@@ -159,14 +166,22 @@ function showProgress(){
 
 function showScore(){
     var endHTML = "<h1>Result</h1>";
-    endHTML += `<h2 id=score>Your score is ${quiz.score}</h2`;
+    endHTML += `<h2 id=score>Your score is ${quiz.score}</h2>
+                <button onclick="window.location = 'review.html'" style="background-color: #778897;
+                                                                        width: 250px;
+                                                                        font-size: 20px;
+                                                                        color: white;
+                                                                        border: 1px solid #136c6a;
+                                                                        border-radius: 50px;
+                                                                        margin: 10px 40px 10px 0;
+                                                                        padding: 10px 10px;">End</button>`;
 
     var element = document.getElementById("quiz");
     element.innerHTML = endHTML;
 }   
 
-function Question(text, choices, answer){
-    this.text = text;
+function Question(question, choices, answer){
+    this.question = question;
     this.choices = choices;
     this.answer = answer;
 }

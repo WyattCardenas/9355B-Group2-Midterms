@@ -1,15 +1,5 @@
 /********************
 	
-	GLOBAL VARIABLES
-
- ********************/
-d = new Date();
-dayToday = ["sun","mon","tue","wed","thu","fri","sat"][d.getDay()];
-var subjectArray = [];
-
-
-/********************
-	
 	INDEX.HTML
 
  ********************/
@@ -18,7 +8,8 @@ function today(){
 	if(localStorage.getItem("hasData") === null){
 		window.location = "setup.html"
 	}else{
-		
+		var d = new Date();
+		var dayToday = ["sun","mon","tue","wed","thu","fri","sat"][d.getDay()];
 		var dayString = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d.getDay()];
 		var date = d.toString().split(' ').splice(1,3).join(' ');
 		document.getElementById("day").innerHTML = dayString;
@@ -31,7 +22,11 @@ function today(){
 		for( i=0; i<subjects.length; i++){
 			for( ii=0; ii<subjects[i].days.length; ii++){
 				if( subjects[i].days[ii] === dayToday){
-					classesToday.innerHTML += `Course Number: ${subjects[i].courseNumber} <br> Course Description: ${subjects[i].courseDescription} <br> Time start: ${subjects[i].timeStart} <br> Time end: ${subjects[i].timeEnd}`;
+					if( subjects[i].courseNumber === "" ){
+						classesToday.innerHTML += `Class Code: ${subjects[i].classCode} <br> Course Description: ${subjects[i].courseDescription} <br> Time start: ${subjects[i].timeStart} <br> Time end: ${subjects[i].timeEnd} <br><br>`;
+					}else{
+						classesToday.innerHTML += `Class Code: ${subjects[i].classCode} <br> Course Number: ${subjects[i].courseNumber} <br> Course Description: ${subjects[i].courseDescription} <br> Time start: ${subjects[i].timeStart} <br> Time end: ${subjects[i].timeEnd} <br><br>`;
+					}
 				}
 			}
 		}
@@ -180,6 +175,8 @@ function checkMonths(sMonth,eMonth){
 	}
 }
 
+
+var subjectArray = [];
 function recordSubjects(){
 	var cCode = document.getElementById("cCode").value;
 	var cno = document.getElementById("cno").value;
@@ -188,16 +185,21 @@ function recordSubjects(){
 	var timeEnd = document.getElementById("time-end").value;
 	var room = document.getElementById("room").value;
 
+
 	if( cCode === "" || cdesc === "" || timeStart === "" || timeEnd === "" || room === ""){
 		document.getElementById("may-mali").innerHTML = "Please fill up all fields";
 		return;
 	}
-	
 
 	var validTime = timeStart < timeEnd;
 	if(validTime === false){
 		document.getElementById("may-mali").innerHTML = "Time end is earlier than time start";
 		return undefined;
+	}else if( validTime === true && (timeEnd.split(":")[0] - timeStart.split(":")[0]) > 8){
+		var c = confirm("Are you sure your class lasts for" + (timeEnd.split(":")[0] - timeStart.split(":")[0]) + "hours?");
+		if ( c === false){
+			return;
+		}
 	}else{
 		document.getElementById("may-mali").innerHTML = "";
 	}
@@ -273,8 +275,8 @@ function saveSubjects(){
 		alert("saved");  
 	}
 	var c = confirm("Do you want to finish setup?");
-	if(c == true){
-    localStorage.setItem("hasData","true");
+	if(c === true){
+    	localStorage.setItem("hasData","true");
 		window.location = "index.html";
 	}else{
    		saveButton.value = "Finish";
@@ -305,6 +307,8 @@ function showDay() {
 }
 
 function generateSchedule(){
+	var d = new Date();
+	var dayToday = ["sun","mon","tue","wed","thu","fri","sat"][d.getDay()];
 	var sched = JSON.parse(localStorage.getItem("subjects"));
 	var thing = document.getElementById(`${dayToday}-div`);
 	if(thing.id === `${dayToday}-div`){
