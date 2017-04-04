@@ -17,16 +17,14 @@
 				<header>
 					<h3>New Note</h3>
 				</header>
-				<form id="titleForm">
-					<input type="text" name="noteTitle" class="textbox">
-				</form>
-				<form id="textForm">
-					<textarea id="textForm" name="noteArea" class="textbox">Notes Here </textarea>
+				<form>
+					<input type="text" id="titleForm" name="noteTitle" class="textbox" value="Title" onFocus="this.value=''">
+					<textarea id="textForm" name="noteArea" class="textbox" onFocus="this.value=''">Notes Here </textarea>
 				</form>
 			</div>
 
 			<div class="icons">
-				<button type="button" id="save-notes" onclick="saveNotes()">add</button>
+				<button type="button" id="save-notes" onclick="saveNotes()">save</button>
 				<button type="button" id="draw-button">-drawicon-</button>
 			</div>
 		</div>
