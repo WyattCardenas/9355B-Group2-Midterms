@@ -6,7 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="styles/style.css">
 		<script src="scripts/notes.js"></script>
 	</head>
-	<body>
+	<body onload="displaySubjects()">
 		<div class="main-container">
 			<div class="topthing">
 				<header>
@@ -14,10 +14,11 @@
 				</header>
 			</div>
 			<div class="creation">
-				<header>
+				<header class="topthing">
 					<h3>New Note</h3>
 				</header>
 				<form>
+					Subject: <select name="subject" id="subject"></select>
 					<input type="text" id="titleForm" name="noteTitle" class="textbox" value="Title" onFocus="this.value=''">
 					<textarea id="textForm" name="noteArea" class="textbox" onFocus="this.value=''">Notes Here </textarea>
 				</form>

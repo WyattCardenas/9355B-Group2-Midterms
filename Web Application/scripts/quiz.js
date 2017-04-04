@@ -4,6 +4,15 @@ w = 0;
 // y = 0;
 // z = 0;
 
+if(JSON.parse(localStorage.getItem("nOQuizes")) != 0){
+    var num = JSON.parse(localStorage.getItem("nOQuizes"));
+    var element = document.getElementById("quiz-container");
+    
+    for(var  i = 1; i < num + 1; i++){    
+        element.innerHTML += `<button onclick="loadQuiz()" id="quiz${i}" class="button"><a href="#takeQuiz">Quiz ${i}</a></button><br>`;
+    }
+}
+
 function generateMCQuiz() {
     document.getElementById("multipleChoiceForm").innerHTML += `<h2>Question ${a+1}: </h2>
     <input id=mcQ${a} class="Questions" value="Question: "></input> <br>
@@ -56,8 +65,10 @@ function generateMCQuiz() {
 // }
 
 function saveQuiz(){
-    alert("Are you sure you're done?");
-
+    alert("Quiz Saved");
+    var num = JSON.parse(localStorage.getItem("nOQuizes")) + 1;
+    localStorage.setItem("nOQuizes", num);
+    var a = localStorage.getItem("a");
     //localStorage.clear();
 
     var questions = [];
@@ -73,14 +84,14 @@ function saveQuiz(){
     }
 
     for(var z = 0; z < a; z ++){
-        questions.push(new Question(question, choices, answerToQuestion));
+        questions.push(new Question(a, question, choices, answerToQuestion));
     }
 
     quiz = new Quiz(questions);
 
     quizObject = JSON.stringify(quiz);
 
-    localStorage.setItem("quiz", quizObject);
+    localStorage.setItem(`quiz${num}`, quizObject);
 
     //populate();
 
@@ -89,11 +100,13 @@ function saveQuiz(){
 
 function loadQuiz(){
     var questions = []
-    var quizzz = JSON.parse(localStorage.getItem("quiz"));
- 
+    var num = JSON.parse(localStorage.getItem("nOQuizes"));
+    var quizzz = JSON.parse(localStorage.getItem(`quiz${num}`));
+    var a = localStorage.getItem("a");
+    
     var a = localStorage.getItem("a");
     for(var z = 0; z < a; z ++){
-        questions.push(new Question(quizzz.questions[0].question, quizzz.questions[0].choices, quizzz.questions[0].answer));
+        questions.push(new Question(a, quizzz.questions[0].question, quizzz.questions[0].choices, quizzz.questions[0].answer));
     }
 
     quiz = new Quiz(questions);
@@ -163,20 +176,14 @@ function showProgress(){
 function showScore(){
     var endHTML = "<h1>Result</h1>";
     endHTML += `<h2 id=score>Your score is ${quiz.score}</h2>
-                <button onclick="window.location = 'review.html'" style="background-color: #778897;
-                                                                        width: 250px;
-                                                                        font-size: 20px;
-                                                                        color: white;
-                                                                        border: 1px solid #136c6a;
-                                                                        border-radius: 50px;
-                                                                        margin: 10px 40px 10px 0;
-                                                                        padding: 10px 10px;">End</button>`;
+                <button onclick="window.location = 'review.html'" class="button">End Quiz</button>`;
 
     var element = document.getElementById("quiz");
     element.innerHTML = endHTML;
 }   
 
-function Question(question, choices, answer){
+function Question(nOQuestions, question, choices, answer){
+    this. nOQuestions = nOQuestions;
     this.question = question;
     this.choices = choices;
     this.answer = answer;

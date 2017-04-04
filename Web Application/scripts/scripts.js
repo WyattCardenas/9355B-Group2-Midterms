@@ -178,6 +178,7 @@ function checkMonths(sMonth,eMonth){
 
 var subjectArray = [];
 function recordSubjects(){
+	window.scrollTo(0,0);
 	var cCode = document.getElementById("cCode").value;
 	var cno = document.getElementById("cno").value;
 	var cdesc = document.getElementById("cdesc").value;
@@ -195,11 +196,14 @@ function recordSubjects(){
 	if(validTime === false){
 		document.getElementById("may-mali").innerHTML = "Time end is earlier than time start.";
 		return undefined;
-	}else if( validTime === true && (timeEnd.split(":")[0] - timeStart.split(":")[0]) > 8){
+	}else if( validTime === true && (timeEnd.split(":")[0] - timeStart.split(":")[0]) > 3){
 		var c = confirm("Are you sure your class lasts for" + (timeEnd.split(":")[0] - timeStart.split(":")[0]) + "hours?");
 		if ( c === false){
 			return;
 		}
+	}else if( timeStart >= "20:00" || timeStart <= "07:30" || timeEnd >= "20:00" || timeEnd <= "07:30"){
+		document.getElementById("may-mali").innerHTML = "You cannot have classes from 8:00 pm - 7:30pm";
+		return;
 	}else{
 		document.getElementById("may-mali").innerHTML = "";
 	}
@@ -240,8 +244,8 @@ function recordSubjects(){
 		"classCode": cCode,
 		"courseNumber": cno,
 		"courseDescription": cdesc,
-		"timeStart": timeStart,
-		"timeEnd": timeEnd,
+		"timeStart": timeStart.split(":")[0]%12 + ":" + timeStart.split(":")[1],
+		"timeEnd": timeEnd.split(":")[0]%12 + ":" + timeEnd.split(":")[1],
 		"days": classDays,
 		"room": room
 	}
@@ -319,5 +323,82 @@ function generateSchedule(){
 			var writeTo = document.getElementById(sched[i].days[ii]);
 			writeTo.innerHTML += `<tr><td rowspan="2"><span class="classCode">${sched[i].classCode}</span><br><span class="courseDesc">${sched[i].courseDescription}</span></td> <td>${sched[i].timeStart} - ${sched[i].timeEnd} </td>  </tr> <tr><td>${sched[i].room}</td></tr>`
 		}
+	}
+}
+
+
+/********************
+	
+	NOTES.HTML
+	NEWNOTES.HTML
+
+ ********************/
+function saveNotes(){
+	var subject = document.getElementById("subject").value;
+	var noteTitle=document.getElementById("titleForm").value;
+	document.getElementById("titleOutput").innerHTML= noteTitle;
+	var noteContent=document.getElementById("textForm").value;
+	document.getElementById("textOutput").innerHTML= noteContent;
+
+	var noteObject = {
+		"subject" : subject,
+		"noteTitle" : noteTitle,
+		"noteContent" : noteContent 
+	}
+	
+	var noteArray = [];
+	
+	if( localStorage.getItem(`${subject.split("-")[0]}`) === null ){
+		noteArray.push(noteObject); 
+		var noteJSON = JSON.stringify(noteArray);	
+		localStorage.setItem(`${subject.split("-")[0]}`, noteJSON);
+		alert("saved");
+	}else{
+		noteArray = JSON.parse(localStorage.getItem(`${subject.split("-")[0]}`));
+		noteArray.push(noteObject);
+		var noteJSON = JSON.stringify(noteArray);
+		localStorage.setItem(`${subject.split("-")[0]}`, noteJSON);
+		alert("saved"); 
+	}
+	window.location = "notes.html";
+}
+
+
+function notes(){
+	var subjects = JSON.parse(localStorage.getItem("subjects"));
+	var subDrop = document.getElementById("subdrop");
+	var classCodes = []
+
+	for( i=0; i<subjects.length; i++){
+	    classCodes.push(subjects[i].classCode);
+	}
+
+	for( i=0; i<classCodes.length; i++){
+	    if( localStorage.getItem(`${classCodes[i]}`) != null ){
+			asd = JSON.parse(localStorage.getItem(`${classCodes[i]}`));
+			subDrop.innerHTML += `<span class="subject">${asd[0].subject}</span>`
+			for( ii=0; ii<asd.length; ii++){
+				subDrop.innerHTML += `
+					<div class="notedrop">
+						<div data-toggle="${asd[ii].noteTitle}" class="title"> <a href="#"> ${asd[ii].noteTitle} </a></div>
+						<div id="${asd[ii].noteTitle}" class="hide"> <p> ${asd[ii].noteContent} </p>
+					</div>
+				`
+			}
+	    }
+	}
+
+	var titles = document.getElementsByClassName("title");
+	var notes = document.getElementsByClassName("hide");
+	for( i=0; i<titles.length; i++){
+		titles[i].addEventListener("click", showDay);
+	}
+}
+
+function displaySubjects(){
+	var subjects = JSON.parse(localStorage.getItem("subjects"));
+	var writeTo = document.getElementById("subject");
+	for( i=0; i<subjects.length; i++ ) {
+		writeTo.innerHTML += `<option>${subjects[i].classCode}-${subjects[i].courseDescription}</option>`;
 	}
 }
