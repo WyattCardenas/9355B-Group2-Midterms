@@ -3,6 +3,7 @@
 	<head>
 		<title></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="styles/styles.css">
 		<script src="scripts/scripts.js"></script>
 	</head>
 	<body onload="displaySubjects()">
@@ -21,7 +22,7 @@
 					<p>Title: <input type="text" id="title"></p>
 					<p>Reminder: <textarea id="reminder" cols="30" rows="10"></textarea></p>
 					<p>Time Due: <input type="datetime-local" id="timeDue"></p>
-					<input type="submit" name="" onclick="saveRem()">
+					<input type="submit" id="subbutton" name="" onclick="saveRem()">
 				</form>
 			</div>
 		</div>
