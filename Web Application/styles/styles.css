@@ -40,6 +40,19 @@ html, body{
 	margin-bottom: 70px;
 }
 
+#subbutton{
+	border: none;
+	color: #F3F3F3;
+	background-color: #FF3B3F;
+	padding: 10px 15px;
+	transition: all .3s ease;
+	border-radius: 50px;
+	text-decoration: none;
+	font-size: 25px;
+	font-family: fourhand;
+	margin: auto;
+}
+
 /* BOTTOM NAV THING */
 .bottomnavthing{
 	position: fixed;
@@ -77,9 +90,12 @@ html, body{
 	color: #FF3B3F;
 }
 
+#reminders {
+	color: #696969;
+}
 .bottomnavthing a{
 	text-decoration: none;
-	color: #EFEFEF;	
+	color: #696969;	
 }
 
 .bottomnavthing img{
@@ -221,12 +237,6 @@ html, body{
 
 #notes {
 	border-bottom: 2px solid black;
-	border-top: 1px solid grey;
-	font-family: fourhand;
-	padding-left: 15px;
-	font-size: 15px;
-	color: #696969;
-	background-color: #CAEBF2;
 }
 
 .checkboxes{
@@ -250,6 +260,8 @@ html, body{
 }
 
 .subdrop{
+	padding-bottom: 100px;
+	padding-top: 20px;
 	color: #696969;
 }
 
@@ -274,6 +286,7 @@ html, body{
 h3{
 	margin: 0;
 	display: inline;
+	color: #696969;
 }
 
 .add{
