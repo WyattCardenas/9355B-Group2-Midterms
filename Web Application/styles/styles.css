@@ -45,7 +45,7 @@ html, body{
 	position: fixed;
 	width: 100%;
 	bottom: 0;
-	background-color: #FF3B3F;
+	background-color: #4484CE;
 	text-align: center;
 	z-index: 50;
 	border-top: 1px solid black;
@@ -133,9 +133,10 @@ html, body{
 
 .topthing{
 	padding: 10px 0;
-	background-color: #FF3B3F;
+	background-color: #996699;
 	color: #EFEFEF;
 	border-bottom: 1px solid grey;
+	opacity: 0.8;
 }
 
 .topthing h1{
@@ -143,7 +144,7 @@ html, body{
 	display: inline;
 	padding-left: 15px;
 	font-family: FeatherScript;
-	color: #EFEFEF;
+	color: black;
 }
 
 .notes h3{
@@ -381,6 +382,7 @@ h3{
 		width: 25%;
 	}
 }
+
 
 @media only screen and (min-width: 768px){
 	.navblock{
