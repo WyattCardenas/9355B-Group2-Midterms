@@ -250,37 +250,10 @@ function recordSubjects(){
 		"room": room
 	}
 
-	var validSubject = checkValid(subjectArray, subjectObject);
-	if( validSubject === true ){
-		subjectArray.push(subjectObject);	
-	}else{
-		alert("teka nag cconflict duns a nilagay mo dati na time and day");
-		return;
-	}
-	
+	subjectArray.push(subjectObject);		
 	
 	document.getElementById("may-mali").innerHTML = "Subject Added!"
 	resetForm();
-}
-
-function checkValid(subjects, subObject){
-	var valid = true;
-	for(i=0; i<subjects.length; i++){
-		for(ii=0; ii<subjects[i].days.length; ii++){
-			for(iii=0; iii<subObject.days.length; ii++){
-				if( subjects[i].days[ii] === subObject.days[iii] ){
-					if( subjects[i].timeStart === subObject.timeStart ){
-						valid = false;
-					}else{
-						return valid;
-					}
-				}else{
-					return valid;
-				}
-			}
-		}
-	}
-	return valid;
 }
 
 function resetForm(){
@@ -363,9 +336,7 @@ function generateSchedule(){
 function saveNotes(){
 	var subject = document.getElementById("subject").value;
 	var noteTitle=document.getElementById("titleForm").value;
-	document.getElementById("titleOutput").innerHTML= noteTitle;
 	var noteContent=document.getElementById("textForm").value;
-	document.getElementById("textOutput").innerHTML= noteContent;
 
 	var noteObject = {
 		"subject" : subject,
@@ -375,16 +346,16 @@ function saveNotes(){
 	
 	var noteArray = [];
 	
-	if( localStorage.getItem(`${subject.split("-")[0]}`) === null ){
+	if( localStorage.getItem(`${subject.split("-")[0]}notes`) === null ){
 		noteArray.push(noteObject);
 		var noteJSON = JSON.stringify(noteArray);
-		localStorage.setItem(`${subject.split("-")[0]}`, noteJSON);
+		localStorage.setItem(`${subject.split("-")[0]}notes`, noteJSON);
 		alert("saved");
 	}else{
-		noteArray = JSON.parse(localStorage.getItem(`${subject.split("-")[0]}`));
+		noteArray = JSON.parse(localStorage.getItem(`${subject.split("-")[0]}notes`));
 		noteArray.push(noteObject);
 		var noteJSON = JSON.stringify(noteArray);
-		localStorage.setItem(`${subject.split("-")[0]}`, noteJSON);
+		localStorage.setItem(`${subject.split("-")[0]}notes`, noteJSON);
 		alert("saved");
 	}
 	window.location = "notes.html";
@@ -401,8 +372,8 @@ function notes(){
 	}
 
 	for( i=0; i<classCodes.length; i++){
-	    if( localStorage.getItem(`${classCodes[i]}`) != null ){
-			var asd = JSON.parse(localStorage.getItem(`${classCodes[i]}`));
+	    if( localStorage.getItem(`${classCodes[i]}notes`) != null ){
+			var asd = JSON.parse(localStorage.getItem(`${classCodes[i]}notes`));
 			subDrop.innerHTML += `<span class="subject">${asd[0].subject}</span>`
 			for( ii=0; ii<asd.length; ii++){
 				subDrop.innerHTML += `
