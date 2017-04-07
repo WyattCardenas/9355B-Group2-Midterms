@@ -78,6 +78,11 @@ html, body{
 	color: #000;	
 }
 
+.bottomnavthing img{
+	height: 23px;
+	width: 23px;
+}
+
 /* HAMBURGER MENU */
 
 .hamburger-menu{
@@ -159,13 +164,13 @@ html, body{
 	font-size: 20px;
 	background-color: beige;
 	color: black;
-	border-top: 2px solid black;
+	border-top: 1px solid grey;
 	border-bottom: 2px solid black;
 }
 
 .reminders{
-	font-family: chewedpen;
-	font-size: 25px;
+	font-family: kingsmen;
+	font-size: 16px;
 }
 
 .reminders p{
@@ -272,13 +277,13 @@ h3{
 .schedule-container {
 	color: black;
 	font-family: kingsmen;
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .day {
 	font-family: fourhand;
 	padding: 15px;
-	font-size: 25px;
+	font-size: 20px;
 	border-bottom: 2px solid black;
 	margin: auto;
 	color: #F3F3F3;
@@ -332,14 +337,48 @@ h3{
 	font-weight: bold;
 }
 
+/* MEDIA QUERIES */
+
 @media only screen and (max-width: 320px){
 	.bottomnavthing ul li{
 		font-size: 16px;
 	}
 }
 
-@media only screen and (max-width: 335px){
+@media only screen and (max-width: 425px){
 	.bottomnavthing ul li{
 		font-size: 16px;
+	}
+}
+
+@media only screen and (max-width: 380px){
+	.page-name a{
+		display: none;
+	}
+
+	.bottomnavthing img{
+		width: 30px;
+	}
+
+	.bottomnavthing li{
+		margin-left: 0px;
+		width: 15%;
+	}
+}
+
+@media only screen and (min-width: 1024px){
+	.navblock{
+		width: 25%;
+	}
+}
+
+@media only screen and (min-width: 768px){
+	.navblock{
+		width: 25%;
+	}
+
+	.bottomnavthing li{
+		margin-left: 0px;
+		width: 20%;
 	}
 }
