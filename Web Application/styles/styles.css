@@ -27,7 +27,7 @@ html, body{
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	background-color: #4484CE;
+	background-color: #EFEFEF;
 }
 
 .hide{
@@ -45,7 +45,7 @@ html, body{
 	position: fixed;
 	width: 100%;
 	bottom: 0;
-	background-color: #F3F3F3;
+	background-color: #FF3B3F;
 	text-align: center;
 	z-index: 50;
 	border-top: 1px solid black;
@@ -70,12 +70,16 @@ html, body{
 }
 
 .bottomnavthing ul li:hover{
-	background-color: #FCFCFC;
+	background-color: #EFEFEF;
+}
+
+.bottomnavthing a:hover {
+	color: #FF3B3F;
 }
 
 .bottomnavthing a{
 	text-decoration: none;
-	color: #000;	
+	color: #EFEFEF;	
 }
 
 .bottomnavthing img{
@@ -129,8 +133,8 @@ html, body{
 
 .topthing{
 	padding: 10px 0;
-	background-color: #F19F4D;
-	color: #000;
+	background-color: #FF3B3F;
+	color: #EFEFEF;
 	border-bottom: 1px solid grey;
 }
 
@@ -139,13 +143,17 @@ html, body{
 	display: inline;
 	padding-left: 15px;
 	font-family: FeatherScript;
-	color: #F3F3F3;
+	color: #EFEFEF;
+}
+
+.notes h3{
+	color: #696969;
 }
 
 .tophead h2{
 	padding-left: 15px;
 	font-family: chewedpen;
-	color: #F3F3F3;
+	color: #696969;
 }
 
 
@@ -162,8 +170,8 @@ html, body{
 .today{
 	font-family: kingsmen;
 	font-size: 20px;
-	background-color: beige;
-	color: black;
+	background-color: #CAEBF2;
+	color: #696969;
 	border-top: 1px solid grey;
 	border-bottom: 2px solid black;
 }
@@ -171,6 +179,7 @@ html, body{
 .reminders{
 	font-family: kingsmen;
 	font-size: 16px;
+	color: #696969;
 }
 
 .reminders p{
@@ -179,7 +188,7 @@ html, body{
 
 #classes{
 	color: black;
-	background-color: beige;
+	background-color: #EFEFEF;
 	padding-top: 10px;
 	border-top: 2px solid black;
 	border-bottom: 2px solid black;
@@ -230,10 +239,11 @@ html, body{
 .subdrop{
 	padding-bottom: 100px;
 	padding-top: 20px;
+	color: #696969;
 }
 
 .notedrop{
-    background-color: #f9f9f9;
+    background-color: #CAEBF2;
     min-width: 160px;
     box-shadow: 0px 5px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
@@ -286,8 +296,8 @@ h3{
 	font-size: 20px;
 	border-bottom: 2px solid black;
 	margin: auto;
-	color: #F3F3F3;
-	background-color: #4484CE;
+	color: #696969;
+	background-color: #CAEBF2;
 }
 
 #mon {
