@@ -391,3 +391,21 @@ form{
 .subdrop.notedrop{
 	display: block;
 }
+
+.topthing {
+	padding: 10px 0;
+	background-color: #996699;
+	color: #EFEFEF;
+	border-bottom: 1px solid grey;
+	opacity: 0.8;
+}
+
+.topthing h2{
+	margin: 0;
+	display: inline;
+	padding-left: 15px;
+	font-family: FeatherScript;
+	color: black;
+}
+
+
