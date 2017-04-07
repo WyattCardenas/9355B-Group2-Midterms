@@ -378,10 +378,10 @@ function notes(){
 			for( ii=0; ii<asd.length; ii++){
 				subDrop.innerHTML += `
 					<div class="notedrop">
-						<div data-toggle="${asd[ii].noteTitle}" class="title"> 
-							<a href="#" style="float: left"> ${asd[ii].noteTitle} 
+						<div> 
+							<a href="#" style="float: left" data-toggle="${asd[ii].noteTitle}" class="title"> ${asd[ii].noteTitle} 
 							</a> 
-							<button onclick="del()" style="display: inline; margin-left: 10px;">
+							<button onclick="del(${ii}, '${classCodes[i]}')" style="display: inline; margin-left: 10px;">
 								X
 							</button>
 						</div>
@@ -399,8 +399,17 @@ function notes(){
 	}
 }
 
-function del(){
-	var title = localStorage.getItem("");
+function del(index, subject){
+	var asd = JSON.parse(localStorage.getItem(`${subject}notes`));
+	asd.splice(index, 1);
+	var asdString = JSON.stringify(asd);
+	if ( asd.length === 0){
+		localStorage.removeItem(`${subject}notes`);
+	}else{
+		localStorage.setItem(`${subject}notes`,asdString);
+	}
+
+	window.location = "notes.html"
 }
 
 function displaySubjects(){
@@ -443,14 +452,12 @@ function saveRem(){
 	}
 }
 
-	function openNav() {
-	    document.getElementById("mySidenav").style.width = "250px";
-	    document.getElementById("+").className = "hide";
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("+").className = "hide";
 
-	}
-	function closeNav() {
-	    document.getElementById("mySidenav").style.width = "0";
-	      document.getElementById("+").className = "plus";
-
-
-	}
+}
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+     document.getElementById("+").className = "plus";
+}
