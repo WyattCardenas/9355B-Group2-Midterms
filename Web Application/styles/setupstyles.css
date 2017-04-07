@@ -177,6 +177,10 @@ select>option#day{
 	height: 200px;
 }
 
+.text{
+	color: #696969;
+}
+
 @media only screen and (min-width: 376px){
 	#suject-form .text{
 		display: inline-block;
