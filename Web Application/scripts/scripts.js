@@ -23,9 +23,9 @@ function today(){
 			for( ii=0; ii<subjects[i].days.length; ii++){
 				if( subjects[i].days[ii] === dayToday){
 					if( subjects[i].courseNumber === "" ){
-						classesToday.innerHTML += `Class Code: ${subjects[i].classCode} <br> Course Description: ${subjects[i].courseDescription} <br> Time start: ${subjects[i].timeStart} <br> Time end: ${subjects[i].timeEnd} <br><br>`;
+						classesToday.innerHTML += `${subjects[i].classCode}, ${subjects[i].courseDescription} <br> Time start: ${subjects[i].timeStart} <br> Time end: ${subjects[i].timeEnd} <br> Room: ${subjects[i].room} <br><br>`;
 					}else{
-						classesToday.innerHTML += `Class Code: ${subjects[i].classCode} <br> Course Number: ${subjects[i].courseNumber} <br> Course Description: ${subjects[i].courseDescription} <br> Time start: ${subjects[i].timeStart} <br> Time end: ${subjects[i].timeEnd} <br><br>`;
+						classesToday.innerHTML += `${subjects[i].classCode}, ${subjects[i].courseNumber} <br>${subjects[i].courseDescription} <br>${subjects[i].timeStart} - ${subjects[i].timeEnd} <br> ${subjects[i].room} <br><br>`;
 					}
 				}
 			}
@@ -250,10 +250,37 @@ function recordSubjects(){
 		"room": room
 	}
 
-	subjectArray.push(subjectObject);
+	var validSubject = checkValid(subjectArray, subjectObject);
+	if( validSubject === true ){
+		subjectArray.push(subjectObject);	
+	}else{
+		alert("teka nag cconflict duns a nilagay mo dati na time and day");
+		return;
+	}
+	
 	
 	document.getElementById("may-mali").innerHTML = "Subject Added!"
 	resetForm();
+}
+
+function checkValid(subjects, subObject){
+	var valid = true;
+	for(i=0; i<subjects.length; i++){
+		for(ii=0; ii<subjects[i].days.length; ii++){
+			for(iii=0; iii<subObject.days.length; ii++){
+				if( subjects[i].days[ii] === subObject.days[iii] ){
+					if( subjects[i].timeStart === subObject.timeStart ){
+						valid = false;
+					}else{
+						return valid;
+					}
+				}else{
+					return valid;
+				}
+			}
+		}
+	}
+	return valid;
 }
 
 function resetForm(){
@@ -349,8 +376,8 @@ function saveNotes(){
 	var noteArray = [];
 	
 	if( localStorage.getItem(`${subject.split("-")[0]}`) === null ){
-		noteArray.push(noteObject); 
-		var noteJSON = JSON.stringify(noteArray);	
+		noteArray.push(noteObject);
+		var noteJSON = JSON.stringify(noteArray);
 		localStorage.setItem(`${subject.split("-")[0]}`, noteJSON);
 		alert("saved");
 	}else{
@@ -358,7 +385,7 @@ function saveNotes(){
 		noteArray.push(noteObject);
 		var noteJSON = JSON.stringify(noteArray);
 		localStorage.setItem(`${subject.split("-")[0]}`, noteJSON);
-		alert("saved"); 
+		alert("saved");
 	}
 	window.location = "notes.html";
 }
@@ -367,7 +394,7 @@ function saveNotes(){
 function notes(){
 	var subjects = JSON.parse(localStorage.getItem("subjects"));
 	var subDrop = document.getElementById("subdrop");
-	var classCodes = []
+	var classCodes = [];
 
 	for( i=0; i<subjects.length; i++){
 	    classCodes.push(subjects[i].classCode);
@@ -375,12 +402,18 @@ function notes(){
 
 	for( i=0; i<classCodes.length; i++){
 	    if( localStorage.getItem(`${classCodes[i]}`) != null ){
-			asd = JSON.parse(localStorage.getItem(`${classCodes[i]}`));
+			var asd = JSON.parse(localStorage.getItem(`${classCodes[i]}`));
 			subDrop.innerHTML += `<span class="subject">${asd[0].subject}</span>`
 			for( ii=0; ii<asd.length; ii++){
 				subDrop.innerHTML += `
 					<div class="notedrop">
-						<div data-toggle="${asd[ii].noteTitle}" class="title"> <a href="#"> ${asd[ii].noteTitle} </a></div>
+						<div data-toggle="${asd[ii].noteTitle}" class="title"> 
+							<a href="#" style="float: left"> ${asd[ii].noteTitle} 
+							</a> 
+							<button onclick="del()" style="display: inline; margin-left: 10px;">
+								X
+							</button>
+						</div>
 						<div id="${asd[ii].noteTitle}" class="hide"> <p> ${asd[ii].noteContent} </p>
 					</div>
 				`
@@ -395,10 +428,46 @@ function notes(){
 	}
 }
 
+function del(){
+	var title = localStorage.getItem("");
+}
+
 function displaySubjects(){
 	var subjects = JSON.parse(localStorage.getItem("subjects"));
 	var writeTo = document.getElementById("subject");
 	for( i=0; i<subjects.length; i++ ) {
 		writeTo.innerHTML += `<option>${subjects[i].classCode}-${subjects[i].courseDescription}</option>`;
+	}
+}
+
+
+// NEW REMINDERS
+
+function saveRem(){
+	var subject = document.getElementById("subject").value;
+	var title = document.getElementById("title").value;
+	var reminder = document.getElementById("reminder").value;
+	var timeDue = document.getElementById("timeDue").value;
+
+	var reminderObject = {
+		"subject" : subject,
+		"title" : title,
+		"reminder" : reminder,
+		"timeDue" : timeDue
+	}
+	
+	var reminderArray = [];
+	
+	if( localStorage.getItem(`${subject.split("-")[0]}reminders`) === null ){
+		reminderArray.push(reminderObject);
+		var reminderJSON = JSON.stringify(reminderArray);
+		localStorage.setItem(`${subject.split("-")[0]}reminders`, reminderJSON);
+		alert("saved");
+	}else{
+		reminderArray = JSON.parse(localStorage.getItem(`${subject.split("-")[0]}`));
+		reminderArray.push(reminderObject);
+		var reminderJSON = JSON.stringify(reminderArray);
+		localStorage.setItem(`${subject.split("-")[0]}reminders`, reminderJSON);
+		alert("saved");
 	}
 }

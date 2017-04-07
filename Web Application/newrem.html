@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="scripts/scripts.js"></script>
 	</head>
-	<body>
+	<body onload="displaySubjects()">
 		<div class="main-container">
 			<div class="topthing">
 				<header>
@@ -17,18 +17,11 @@
 			</header>
 			<div class="creation">
 				<form id="reminders">
-					<p>Name: <input type="text" id="reminder-name" name="name"></p>
-					<p>Description: <input type="text" id="reminder-desc" name="name"></p>
-					<p>subj:
-						<select name="subjects" id="subj-select">
-							<option>sub1</option>
-							<option>sub2</option>
-							<option>sub3</option>
-							<option>sub4</option>
-						</select>
-					</p>
-					<p>Date: <input type="datetime-local" name="bdaytime"></p>
-					<input type="submit" name="" onclick="success()">
+					<p>Subject: <select name="subject" id="subject"></select></p>
+					<p>Title: <input type="text" id="title"></p>
+					<p>Reminder: <textarea id="reminder" cols="30" rows="10"></textarea></p>
+					<p>Time Due: <input type="datetime-local" id="timeDue"></p>
+					<input type="submit" name="" onclick="saveRem()">
 				</form>
 			</div>
 		</div>

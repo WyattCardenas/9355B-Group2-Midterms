@@ -4,12 +4,27 @@ w = 0;
 // y = 0;
 // z = 0;
 
-if(JSON.parse(localStorage.getItem("nOQuizes")) != 0){
-    var num = JSON.parse(localStorage.getItem("nOQuizes"));
-    var element = document.getElementById("quiz-container");
-    
-    for(var  i = 1; i < num + 1; i++){    
-        element.innerHTML += `<button onclick="loadQuiz()" id="quiz${i}" class="button"><a href="#takeQuiz">Quiz ${i}</a></button><br>`;
+function quizes(){
+    var subjects = JSON.parse(localStorage.getItem("subjects"));
+    var subDrop = document.getElementById("subdrop");
+    var classCodes = [];
+
+    for( i=0; i<subjects.length; i++){
+        classCodes.push(subjects[i].classCode);
+    }
+
+    for( i=0; i<classCodes.length; i++){
+        if( localStorage.getItem(`${classCodes[i]}`) != null ){
+            var asd = JSON.parse(localStorage.getItem(`${classCodes[i]}`));
+            subDrop.innerHTML += `<span class="subject">${asd[0].subject}</span>`
+            for( ii=0; ii<asd.length; ii++){
+                subDrop.innerHTML += `
+                    <div class="notedrop">
+                        <div data-toggle="${asd[ii].subject}" class="title"> <button class="button" onclick="loadQuiz()"> ${asd[ii].title} </button></div>
+                    </div>
+                `
+            }
+        }
     }
 }
 
@@ -64,49 +79,85 @@ function generateMCQuiz() {
 //     //document.getElementById("reviewer").submit();
 // }
 
+function displaySubjects(){
+    var subjects = JSON.parse(localStorage.getItem("subjects"));
+    var writeTo = document.getElementById("subject");
+    for( i=0; i<subjects.length; i++ ) {
+        writeTo.innerHTML += `<option>${subjects[i].classCode}-${subjects[i].courseDescription}</option>`;
+    }
+}
+
 function saveQuiz(){
     alert("Quiz Saved");
-    var num = JSON.parse(localStorage.getItem("nOQuizes")) + 1;
-    localStorage.setItem("nOQuizes", num);
-    var a = localStorage.getItem("a");
-    //localStorage.clear();
+    
+    var subject = document.getElementById("subject").value;
+    var title = document.getElementById("title").value;
+    choices = [];
+    questions = [];
+    answers = [];
+    quizArray = [];
 
-    var questions = [];
-    var choices = [];
-
+    var a = JSON.parse(localStorage.getItem("a"));
+    var w = a*4;
     for(var x = 0; x < a; x++){
-        question = document.getElementById(`mcQ${x}`).value;
-        answerToQuestion = document.getElementById(`answer${x}`).value;
+        questions.push(document.getElementById(`mcQ${x}`).value);
     }
 
-    for(y = 0; y < 4; y++){
+    for(var y = 0; y < w; y++){
         choices.push(document.getElementById(`mC${y}`).value);
     }
 
-    for(var z = 0; z < a; z ++){
-        questions.push(new Question(a, question, choices, answerToQuestion));
+    for(var z = 0; z < a; z++){
+        answers.push(document.getElementById(`answer${z}`).value);
     }
 
-    quiz = new Quiz(questions);
-
-    quizObject = JSON.stringify(quiz);
-
-    localStorage.setItem(`quiz${num}`, quizObject);
-
-    //populate();
+    var noteObject = {
+        "subject" : subject,
+        "title" : title,
+        "questions" : questions,
+        "choices" : choices,
+        "answers" : answers 
+    }
+    
+    var quizArray = [];
+    
+    if( localStorage.getItem(`${subject.split("-")[0]}`) === null ){
+        quizArray.push(noteObject); 
+        var quizJSON = JSON.stringify(quizArray);   
+        localStorage.setItem(`${subject.split("-")[0]}`, quizJSON);
+        alert("saved");
+    }else{
+        quizArray = JSON.parse(localStorage.getItem(`${subject.split("-")[0]}`));
+        quizArray.push(noteObject); 
+        var quizJSON = JSON.stringify(quizArray);   
+        localStorage.setItem(`${subject.split("-")[0]}`, quizJSON);
+        alert("saved"); 
+    }
 
     window.location = "review.html";
 }
 
 function loadQuiz(){
-    var questions = []
-    var num = JSON.parse(localStorage.getItem("nOQuizes"));
-    var quizzz = JSON.parse(localStorage.getItem(`quiz${num}`));
-    var a = localStorage.getItem("a");
-    
-    var a = localStorage.getItem("a");
-    for(var z = 0; z < a; z ++){
-        questions.push(new Question(a, quizzz.questions[0].question, quizzz.questions[0].choices, quizzz.questions[0].answer));
+    var subjects = JSON.parse(localStorage.getItem("subjects"));
+    var questions = [];
+    var a = 0;
+    var classCodes = [];
+
+    for( i=0; i<subjects.length; i++){
+        classCodes.push(subjects[i].classCode);
+    }
+
+    //var num = JSON.parse(localStorage.getItem("nOQuizes"));
+    // var quizzz = JSON.parse(localStorage.getItem(`quiz${num}`));
+    for( i=0; i<classCodes.length; i++){
+        if( localStorage.getItem(`${classCodes[i]}`) != null ){
+            var asd = JSON.parse(localStorage.getItem(`${classCodes[i]}`));
+            a = asd[i].questions.length;
+        }
+    }
+
+    for(var z = 0; z < a; z++){
+        questions.push(new Question(asd[z].questions, asd[z].choices, asd[z].answers));
     }
 
     quiz = new Quiz(questions);
@@ -182,8 +233,7 @@ function showScore(){
     element.innerHTML = endHTML;
 }   
 
-function Question(nOQuestions, question, choices, answer){
-    this. nOQuestions = nOQuestions;
+function Question(question, choices, answer){
     this.question = question;
     this.choices = choices;
     this.answer = answer;

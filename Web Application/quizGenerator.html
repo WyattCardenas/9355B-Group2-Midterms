@@ -12,7 +12,15 @@
     <script async type="text/javascript" src="scripts/speechToText.js"></script>
   </head>
   
-  <body>
+  <body onload="displaySubjects()">
+
+    Subject: <select name="subject" id="subject"></select>
+    
+    <div>
+      <h1>Quiz Title</h1>
+      <input id="title"></input>
+    </div>
+
     <div class="choices">
         <button onclick="generateMCQuiz()" id="multipleChoice">Multiple Choice</button>
         <!-- <button onclick="generateIQuiz()" id="identification">Identification</button> -->

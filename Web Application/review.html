@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="styles/quiz.css">
 		<script async src="scripts/quiz.js"></script>
 	</head>
-	<body>
+	<body onload="quizes()">
 		<div id="content">
 			<div class="main-container">
 				<div class="topthing">
@@ -20,29 +20,7 @@
 				</div>
 				<div id="notes" class="notes">
 					<h3>Quizzes</h3>
-					<div class="subdrop">
-						<span>Subject 1</span>
-						<div class="notedrop" id="quiz-container">
-							<!-- <button onclick="loadQuiz()"><a href="#takeQuiz">Quiz 1</a></button> -->
-							<!-- <a href="">Quiz 2</a>
-							<a href="">Quiz 3</a> -->
-						</div>
-					</div>
-					<div class="subdrop">
-						<span>Subject 2</span>
-						<div class="notedrop">
-							<!-- <a href="">Quiz 1</a>
-							<a href="">Quiz 2</a>
-							<a href="">Quiz 3</a> -->
-						</div>
-					</div>
-					<div class="subdrop">
-						<span>Subject 3</span>
-						<div class="notedrop">
-							<!-- <a href="">Quiz 1</a>
-							<a href="">Quiz 2</a>
-							<a href="">Quiz 3</a> -->
-						</div>
+					<div id="subdrop" class="subdrop">
 					</div>
 				</div>
 			</div>
