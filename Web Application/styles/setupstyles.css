@@ -21,7 +21,7 @@ body{
 	margin: 0;
 	height: 100%;
 	width: 100%;
-	background-color: #4484CE;
+	background-color: #EFEFEF;
 	
 }
 
@@ -39,6 +39,7 @@ body>div.container{
 
 #header{
 	font-family: FeatherScript;
+	color: #696969;
 }
 
 .first-position{
@@ -62,7 +63,7 @@ body>div.container{
 #get-started{
 	border: none;
 	color: #F3F3F3;
-	background-color: #F19F4D;
+	background-color: #FF3B3F;
 	padding: 15px 20px;
 	transition: all .3s ease;
 	border-radius: 50px;
@@ -74,7 +75,7 @@ body>div.container{
 
 #get-started:hover{
 	background-color: #F3F3F3;
-	color: #F19F4D;
+	color: #FF3B3F;
 	border-radius: 50px;
 }
 
@@ -90,17 +91,22 @@ body>div.container{
 	font-family: chewedpen;
 	font-size: 22px;
 	padding: 3px;
+	color: #696969
 }
 
 #day{
 	font-family: chewedpen;
 	font-size: 22px;
 	padding: 3px;
+	color: #696969
 }
+
+
 
 #start-end{
 	font-family: fourhand;
 	font-size: 25px;
+	color: #696969;
 }
 
 /*
@@ -115,7 +121,7 @@ body>div.container{
 .button{
 	border: none;
 	color: #F3F3F3;
-	background-color: #F19F4D;
+	background-color: #FF3B3F;
 	padding: 5px 15px;
 	transition: all .3s ease;
 	border-radius: 50px;
@@ -126,7 +132,7 @@ body>div.container{
 
 .button:hover{
 	background-color: #F3F3F3;
-	color: #F19F4D;
+	color: #FF3B3F;
 	border-radius: 50px;
 }
 
@@ -142,6 +148,7 @@ body>div.container{
 .days-container{
 	font-family: fourhand;
 	font-size: 17px;
+	color: #696969;
 }
 
 #may-mali{
@@ -156,14 +163,14 @@ body>div.container{
 }
 
 select, input[type="text"]{
-	background-color: #28737c;
-	color: #f5f3f0;
+	background-color: #FFFFFF;
+	color: #696969;
 	outline: none;
 	border-radius: 5px;
 }
 
 select>option{
-	background-color: #39848D;
+	background-color: #FFFFFF;
 }
 
 select>option#day{
@@ -174,11 +181,17 @@ select>option#day{
 	#suject-form .text{
 		display: inline-block;
 		float: left;
+		color: #4484CE;
 	}
 	
 	#subject-form input{
 		width: initial;
 		height: 20px;
 		padding-left: 7px;
+		background-color: #CAEBF2;
+	}
+
+	.text{
+		color: #696969;
 	}
 }
