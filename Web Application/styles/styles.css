@@ -87,48 +87,6 @@ html, body{
 	width: 23px;
 }
 
-/* HAMBURGER MENU */
-
-.hamburger-menu{
-	height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0;
-    left: 0;
-    background-color: #111; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-}
-
-.hamburger-menu > ul{
-	list-style-type: none;
-}
-
-.hamburger > ul > li{
-	display: block;
-}
-
-.hamburger a{
-	padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s	
-}
-
-
-.container{
-	left: 0;
-	transiton: left 0.2s ease;
-}
-
-.open{
-	left: 250px;
-}
-
 /* GENERAL LAYOUT */
 
 .topthing{
@@ -156,6 +114,54 @@ html, body{
 	color: #696969;
 }
 
+/* SIDENAV */
+
+.plus{
+	position: absolute;
+	right: 10px;
+	padding: 5px;
+	padding-left: 13px;
+	padding-right: 13px;
+	border: 1px solid black;
+	border-radius: 30px;
+	background-color: #FF3B3F;
+	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.2);
+	color: #EFEFEF;
+}
+
+.sidenav {
+	display: static;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 60%;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    margin: 0;
+    margin-left: 50px;
+}
 
 /* INDEX.HTML */
 .today{
