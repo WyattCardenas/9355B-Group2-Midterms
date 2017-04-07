@@ -471,3 +471,15 @@ function saveRem(){
 		alert("saved");
 	}
 }
+
+	function openNav() {
+	    document.getElementById("mySidenav").style.width = "250px";
+	    document.getElementById("+").className = "hide";
+
+	}
+	function closeNav() {
+	    document.getElementById("mySidenav").style.width = "0";
+	      document.getElementById("+").className = "plus";
+
+
+	}

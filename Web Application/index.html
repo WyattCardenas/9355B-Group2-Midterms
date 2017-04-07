@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="styles/styles.css">
 	<script src="scripts/scripts.js"></script>
+
 </head>
 <body onload="today()">
 	<div class="main-container">
@@ -29,30 +30,15 @@
 		</div>
 	</div>
 
-	<!-- <div id="plusbutton" class="navbutt">
-		<a href="newnotes.html" class="plus">+</a>
-	</div>-->
 
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<a href="#">New Note</a>
+		<a href="newnotes.html">New Note</a>
 		<a href="#">New Reminder</a>
-		<a href="#">New Reviewer</a>
+		<a href="quizGenerator.html">New Reviewer</a>
 	</div>
 
-	<span class="plus" style="font-size:30px;cursor:pointer" onclick="openNav()">+</span>
-
-	<script>
-		function openNav() {
-		    document.getElementById("mySidenav").style.width = "250px";
-		    if (document.getElementById("mySidenav").style.display == "block") {
-		    	document.getElementById("mySidenav").style.display = "none";
-		    }
-		}
-		function closeNav() {
-		    document.getElementById("mySidenav").style.width = "0";
-		}
-	</script>
+	<span id="+" class="plus" style="font-size:30px;cursor:pointer" onclick="openNav()">+</span>
 
 	<nav class="bottomnavthing">
 		<ul>
