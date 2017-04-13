@@ -1,8 +1,5 @@
 a = 0;
 w = 0;
-// x = 0;
-// y = 0;
-// z = 0;
 
 function quizes(){
     var subjects = JSON.parse(localStorage.getItem("subjects"));
@@ -20,7 +17,7 @@ function quizes(){
             for( ii=0; ii<asd.length; ii++){
                 subDrop.innerHTML += `
                     <div class="notedrop">
-                        <div data-toggle="${asd[ii].subject}" class="title"> <button class="button" onclick="loadQuiz()"> ${asd[ii].title} </button></div>
+                        <div data-toggle="${asd[ii].subject}" class="title"> <button class="button" id="${asd[ii].title}" onclick="loadQuiz(this.id)">${asd[ii].title}</button></div>
                     </div>
                 `
             }
@@ -43,41 +40,8 @@ function generateMCQuiz() {
     a = a + 1; 
 
     localStorage.setItem("a", a);
+    localStorage.setItem("w", w);
 }
-
-// function generateIQuiz() {
-// 	x = x + 1;
-//     document.getElementById("identificationForm").innerHTML += `<input id=iQ${x} class="Questions" value="Question ${x}"></input>
-//     <h2>Answer: </h2> 
-//     <input id=mCA${x} value="Answer"></input>` + "<br>";
-// }
-
-// function generateMTQuiz() {
-// 	y = y + 1;
-//     document.getElementById("matchingTypeForm").innerHTML += `<input id=mT${y} value=MatchingType: ></input>`;
-// }
-
-// function generateFIBQuiz() {
-// 	z = z + 1
-//     document.getElementById("fillInTheBlanksForm").innerHTML += `<input id=mC${z} value=FillInTheBlanks: ></input>`;
-// }
-
-// function saveValue(){
-//     question = document.getElementById(`mcQ${a}`).value;
-//     choice1 = document.getElementById(`mC${w}`).value;
-//     choice2 = document.getElementById(`mC${w}`).value;
-//     choice3 = document.getElementById(`mC${w}`).value;
-//     choice4 = document.getElementById(`mC${w}`).value;
-//     answer = document.getElementById('answer${a}').value;
-
-//     // saveMCQuiz(question, choice1, choice2, choice3, choice4, answer);    
-
-//     // alert(`${question} is saved!`);
-// }
-
-// function saveMCQuiz(question, choice1, choice2, choice3, choice4, answer) {
-//     //document.getElementById("reviewer").submit();
-// }
 
 function displaySubjects(){
     var subjects = JSON.parse(localStorage.getItem("subjects"));
@@ -92,44 +56,35 @@ function saveQuiz(){
     
     var subject = document.getElementById("subject").value;
     var title = document.getElementById("title").value;
-    choices = [];
-    questions = [];
-    answers = [];
-    quizArray = [];
+    var choices = [];
+    var question = "";
+    var answers = "";
+    var questions = [];
+    quiz = [];
 
     var a = JSON.parse(localStorage.getItem("a"));
-    var w = a*4;
+    var w = JSON.parse(localStorage.getItem("w"));
+
     for(var x = 0; x < a; x++){
-        questions.push(document.getElementById(`mcQ${x}`).value);
-    }
+        question = document.getElementById(`mcQ${x}`).value;
+        answer = document.getElementById(`answer${x}`).value;
 
-    for(var y = 0; y < w; y++){
-        choices.push(document.getElementById(`mC${y}`).value);
-    }
+        for(var y = 0; y < w; y++){
+            choices.push(document.getElementById(`mC${y}`).value);
+        }
 
-    for(var z = 0; z < a; z++){
-        answers.push(document.getElementById(`answer${z}`).value);
+        questions.push(new Question(question, choices, answer));
     }
-
-    var noteObject = {
-        "subject" : subject,
-        "title" : title,
-        "questions" : questions,
-        "choices" : choices,
-        "answers" : answers 
-    }
-    
-    var quizArray = [];
     
     if( localStorage.getItem(`${subject.split("-")[0]}`) === null ){
-        quizArray.push(noteObject); 
-        var quizJSON = JSON.stringify(quizArray);   
+        quiz.push(new Quiz(subject, title, questions)); 
+        var quizJSON = JSON.stringify(quiz);   
         localStorage.setItem(`${subject.split("-")[0]}`, quizJSON);
         alert("saved");
     }else{
         quizArray = JSON.parse(localStorage.getItem(`${subject.split("-")[0]}`));
-        quizArray.push(noteObject); 
-        var quizJSON = JSON.stringify(quizArray);   
+        quiz.push(new Quiz(subject, title, questions)); 
+        var quizJSON = JSON.stringify(quiz);   
         localStorage.setItem(`${subject.split("-")[0]}`, quizJSON);
         alert("saved"); 
     }
@@ -137,30 +92,36 @@ function saveQuiz(){
     window.location = "review.html";
 }
 
-function loadQuiz(){
+function loadQuiz(clickedButton){
+    var b = localStorage.length;
+    var buttons = document.querySelectorAll('button');
+    var index = 0;
+
     var subjects = JSON.parse(localStorage.getItem("subjects"));
     var questions = [];
-    var a = 0;
+    var a = document.getElementsByClassName("button").length;
     var classCodes = [];
+    var asd = "";
 
     for( i=0; i<subjects.length; i++){
         classCodes.push(subjects[i].classCode);
     }
 
-    //var num = JSON.parse(localStorage.getItem("nOQuizes"));
-    // var quizzz = JSON.parse(localStorage.getItem(`quiz${num}`));
-    for( i=0; i<classCodes.length; i++){
-        if( localStorage.getItem(`${classCodes[i]}`) != null ){
-            var asd = JSON.parse(localStorage.getItem(`${classCodes[i]}`));
-            a = asd[i].questions.length;
+    for(var x = 0; x < a; x++){
+        asd = JSON.parse(localStorage.getItem(`${classCodes[x]}`));
+        index = x;
+
+        for(var y = 0; y<buttons.length; y++){
+            if(asd[0].title === clickedButton){   
+                for(var z = 0; z < asd[0].questions.length; z++){
+                    questions.push(new Question(asd[0].questions[z].question, asd[0].questions[z].choices, asd[0].questions[z].answer));
+                }
+                break;
+            }   
         }
     }
 
-    for(var z = 0; z < a; z++){
-        questions.push(new Question(asd[z].questions, asd[z].choices, asd[z].answers));
-    }
-
-    quiz = new Quiz(questions);
+    quiz = new Quiz("", "", questions);
 
     populate();
 
@@ -191,6 +152,8 @@ Quiz.prototype.guess = function(answer){
 }
 
 function populate(){
+    var w = JSON.parse(localStorage.getItem("w"));
+
     if(quiz.isEnded()){
         showScore();
     }else{
@@ -198,7 +161,7 @@ function populate(){
         element.innerHTML = quiz.getQuestionIndex().question;
 
         var choices = quiz.getQuestionIndex().choices;
-        for(var  i = 0; i < choices.length; i++){
+        for(var  i = 0; i < 4; i++){
             var element = document.getElementById(`choice${i}`);
             element.innerHTML = choices[i];
 
@@ -239,7 +202,9 @@ function Question(question, choices, answer){
     this.answer = answer;
 }
 
-function Quiz(questions){
+function Quiz(subject, title, questions){
+    this.subject = subject;
+    this.title = title;
     this.score = 0;
     this.questions = questions;
     this.questionIndex = 0;
