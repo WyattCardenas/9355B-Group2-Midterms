@@ -510,6 +510,24 @@ function newNotes(){
 	text.addEventListener("input",up);
 	var sub = document.getElementById("subject");
 	sub.addEventListener("change",up)
+	var d = new Date();
+	var dayToday = ["sun","mon","tue","wed","thu","fri","sat"][d.getDay()];
+	var hourNow = d.getHours();
+	var minNow = d.getMinutes();
+	var timeNow = `${hourNow}:${minNow}`
+ 	var subjects = JSON.parse(localStorage.getItem('subjects'));
+	for (i=0; i<subjects.length; i++ ){
+		for(ii=0; ii<subjects[i].days.length; ii++){
+			if (dayToday === subject[i].days[ii]) {
+				if(timeNow >= subject[i].timeStart && timeNow <= subject[i].timeEnd){
+					sub.value = `${subject[i].classCode}-${subjects[i].courseDescription}`;
+
+				}
+
+			}
+		}
+	}
+	
 	if(sessionStorage.getItem(`${title.id}`) != null){
 		title.value = sessionStorage.getItem(`${title.id}`);
 	}
