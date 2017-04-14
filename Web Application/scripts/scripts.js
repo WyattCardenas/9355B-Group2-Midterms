@@ -421,6 +421,7 @@ function resetForm(){
 
 function saveSubjects(){
 	var c = confirm("Do you want to finish setup?");
+	var saveButton = document.getElementById("save-subjects");
 	if(c === true){
    	localStorage.setItem("hasData","true");
     sessionStorage.clear();
@@ -701,4 +702,28 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("+").className = "plus";
+}
+
+/* newSubjects */
+
+function newSubject(){
+	var subject = document.getElementById("subject-form");
+	for(var i=0; i<subject.elements.length; i++){
+		if(subject.elements[i].type === "text" || subject.elements[i].type === "time"){
+			subject.elements[i].addEventListener("input",update);
+		}else if(subject.elements[i].type === "checkbox"){
+			subject.elements[i].addEventListener("click",update);
+		}
+	}
+
+	for(var i=0; i<subject.elements.length; i++){
+		if(sessionStorage.getItem(`${subject.elements[i].name}`) != null){
+	    	if(subject.elements[i].type === "text" || subject.elements[i].type === "time"){
+	    		subject.elements[i].value = sessionStorage.getItem(`${subject.elements[i].name}`)
+	    	}else if(subject.elements[i].type === "checkbox"){
+	    		subject.elements[i].checked = true;
+	    	}
+	    }
+	}
+	
 }
