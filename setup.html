@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>iReview</title>
+		<link rel="stylesheet" href="styles/setupstyles.css">
+	</head>
+
+
+	<body>
+		<div class="container">
+			
+			<h1 id="header" class="first-position">iReview</h1>
+
+			<div class="get-started-wrapper">
+				<button id="get-started" class="button" onclick="firstTime()">Get Started!</button>
+			</div>
+
+
+			<div class="hide" id="start-end">
+					<p>When does the semester start?</p>
+					<div id="start">
+						<select name="month" id="month" onfocus="">
+							<option value="">Month</option>
+							<option value="">---------------</option>
+							<option value="January">January</option>
+							<option value="February">February</option>
+							<option value="March">March</option>
+							<option value="April">April</option>
+							<option value="March">March</option>
+							<option value="June">June</option>
+							<option value="July">July</option>
+							<option value="August">August</option>
+							<option value="September">September</option>
+							<option value="October">October</option>
+							<option value="November">November</option>
+							<option value="December">December</option>
+						</select>
+						<select name="day" id="day">
+							<option value="">Day</option>
+							<option value="">---------------</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+						</select>
+					</div>
+					<p>When does the semester end?</p>
+					<div id="end">
+						<select name="month" id="month">
+							<option value="">Month</option>
+							<option value="">---------------</option>
+							<option value="January">January</option>
+							<option value="February">February</option>
+							<option value="March">March</option>
+							<option value="April">April</option>
+							<option value="March">March</option>
+							<option value="June">June</option>
+							<option value="July">July</option>
+							<option value="August">August</option>
+							<option value="September">September</option>
+							<option value="October">October</option>
+							<option value="November">November</option>
+							<option value="December">December</option>
+						</select>
+						<select name="day" id="day">
+							<option value="">Day</option>
+							<option value="">---------------</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+						</select>
+					</div>
+					<div class="button-wrapper">
+						<input type="submit" id="submit-button" class="button" onclick="recordSemester()"/>
+					</div>
+				
+				<p id="warning"></p>
+			</div>
+	
+			<div id="subject-addition" class="hide">
+				<p id="may-mali"></p>
+				<form id="subject-form">
+					<p><span class="text">Course Number:</span><input id="cno" type='text'/></p>
+					<p><span class="text">Course Description:</span><input id="cdesc" type='text'/></p>
+					<p><span class="text">Time Start:</span><input type="time" id="time-start"/></p>
+					<p><span class="text">Time End:</span><input type="time" id="time-end"/></p>
+					<p>
+						<span class="text">Days:</span>
+						<span class="days-container"><input type="checkbox" value="mon" class="day">Monday</span>
+						<span class="days-container"><input type="checkbox" value="tue" class="day">Tuesday</span>
+						<span class="days-container"><input type="checkbox" value="wed" class="day">Wednesday</span>
+						<span class="days-container"><input type="checkbox" value="thu" class="day">Thursday</span>
+						<span class="days-container"><input type="checkbox" value="fri" class="day">Friday</span>
+						<span class="days-container"><input type="checkbox" value="sat" class="day">Saturday</span>
+						<span class="days-container"><input type="checkbox" value="sun" class="day">Sunday</span>
+					</p>
+				</form>
+				<div class="button-wrapper">
+					<button id="add-subject" class="button" onclick="recordSubjects()">Add Subject</button>
+					<input id="save-subjects" type="submit" class="button" value="Save" onclick="saveSubjects()">
+				</div>
+				
+				
+				
+				<div id="recorded-subs">
+					<div id="mon" class="hide">
+						<h2>Monday</h2>
+					</div>
+					<div id="tue" class="hide">
+						<h2>Tuesday</h2>
+					</div>
+					<div id="wed" class="hide">
+						<h2>Wednesday</h2>
+					</div>
+					<div id="thu" class="hide">
+						<h2>Thursday</h2>
+					</div>
+					<div id="fri" class="hide">
+						<h2>Friday</h2>
+					</div>
+					<div id="sat" class="hide">
+						<h2>Saturday</h2>
+					</div>
+					<div id="sun" class="hide">
+						<h2>Sunday</h2>
+					</div>
+				</div>
+			</div>
+		</div>	
+
+		<script src="scripts/setupScripts.js"></script>
+	</body>
+</html>
