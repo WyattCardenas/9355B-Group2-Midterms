@@ -2,8 +2,10 @@
 <html>
 <head>
 	<title>New Subject</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script async src="scripts/scripts.js"></script>
 </head>
-<body>
+<body onload="newSubject()">
 	<div id="subject-addition" class="hide">
 		<p id="may-mali"></p>
 		<form id="subject-form">
@@ -34,6 +36,30 @@
 			<button id="add-subject" class="button" onclick="recordSubjects()">Add Subject</button>
 			<input id="save-subjects" type="submit" class="button" value="Save" onclick="saveSubjects()">
 		</div>
+
+		<div id="recorded-subs">
+					<div id="mon" class="hide">
+						<h2>Monday</h2>
+					</div>
+					<div id="tue" class="hide">
+						<h2>Tuesday</h2>
+					</div>
+					<div id="wed" class="hide">
+						<h2>Wednesday</h2>
+					</div>
+					<div id="thu" class="hide">
+						<h2>Thursday</h2>
+					</div>
+					<div id="fri" class="hide">
+						<h2>Friday</h2>
+					</div>
+					<div id="sat" class="hide">
+						<h2>Saturday</h2>
+					</div>
+					<div id="sun" class="hide">
+						<h2>Sunday</h2>
+					</div>
+				</div>
 				
 </body>
 </html>

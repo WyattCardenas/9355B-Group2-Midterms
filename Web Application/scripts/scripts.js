@@ -421,6 +421,7 @@ function resetForm(){
 
 function saveSubjects(){
 	var c = confirm("Do you want to finish setup?");
+	var saveButton = document.getElementById("save-subjects");
 	if(c === true){
    	localStorage.setItem("hasData","true");
     sessionStorage.clear();
@@ -515,6 +516,24 @@ function newNotes(){
 	text.addEventListener("input",up);
 	var sub = document.getElementById("subject");
 	sub.addEventListener("change",up)
+	var d = new Date();
+	var dayToday = ["sun","mon","tue","wed","thu","fri","sat"][d.getDay()];
+	var hourNow = d.getHours();
+	var minNow = d.getMinutes();
+	var timeNow = `${hourNow}:${minNow}`
+ 	var subjects = JSON.parse(localStorage.getItem('subjects'));
+	for (i=0; i<subjects.length; i++ ){
+		for(ii=0; ii<subjects[i].days.length; ii++){
+			if (dayToday === subject[i].days[ii]) {
+				if(timeNow >= subject[i].timeStart && timeNow <= subject[i].timeEnd){
+					sub.value = `${subject[i].classCode}-${subjects[i].courseDescription}`;
+
+				}
+
+			}
+		}
+	}
+	
 	if(sessionStorage.getItem(`${title.id}`) != null){
 		title.value = sessionStorage.getItem(`${title.id}`);
 	}
@@ -708,4 +727,28 @@ function openNav(){
 function closeNav(){
 	document.getElementById("plusnav-content").style.display = "none";
 	document.getElementById("plusbutton").attributes.onclick = "openNav()";
+}
+
+/* newSubjects */
+
+function newSubject(){
+	var subject = document.getElementById("subject-form");
+	for(var i=0; i<subject.elements.length; i++){
+		if(subject.elements[i].type === "text" || subject.elements[i].type === "time"){
+			subject.elements[i].addEventListener("input",update);
+		}else if(subject.elements[i].type === "checkbox"){
+			subject.elements[i].addEventListener("click",update);
+		}
+	}
+
+	for(var i=0; i<subject.elements.length; i++){
+		if(sessionStorage.getItem(`${subject.elements[i].name}`) != null){
+	    	if(subject.elements[i].type === "text" || subject.elements[i].type === "time"){
+	    		subject.elements[i].value = sessionStorage.getItem(`${subject.elements[i].name}`)
+	    	}else if(subject.elements[i].type === "checkbox"){
+	    		subject.elements[i].checked = true;
+	    	}
+	    }
+	}
+	
 }
