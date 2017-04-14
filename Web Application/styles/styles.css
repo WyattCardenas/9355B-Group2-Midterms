@@ -386,7 +386,7 @@ h3{
 }
 
 @media only screen and (max-width: 380px){
-	.page-name a{
+	.page-name{
 		display: none;
 	}
 
@@ -416,4 +416,54 @@ h3{
 		margin-left: 0px;
 		width: 20%;
 	}
+}
+
+
+
+
+
+.plusnav {
+    bottom: 80px;
+    position: fixed;
+    right: 20px;
+    width: 100px;
+}
+
+.plusbutton {
+    background-color: lightblue;
+    border-radius: 50px;
+    color: black;
+    padding: 13px 17px;
+    font-size: 16px;
+    cursor: pointer;
+    float: right;
+}
+
+.plusnav-content{
+	display: none;
+	width: 100%;
+	background-color: blue;
+	border-radius: 10px 10px 0px 10px;
+    z-index: 1;
+    position: absolute;
+    margin: 15px;
+    padding: 20px 10px;
+    bottom: 40px;
+    right: 10px;
+}
+
+.plusnav-content a{
+	display: block;
+}
+
+.plusnav-content a:hover {
+	background-color: #f1f1f1;
+}
+
+.plusnav:hover .plusnav-content {
+    display: block;
+}
+
+.plusnav:hover .plusbutton {
+    background-color: #3e8e41;
 }

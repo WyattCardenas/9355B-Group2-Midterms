@@ -478,7 +478,13 @@ function generateSchedule(){
  ********************/
 function saveNotes(){
 	var subject = document.getElementById("subject").value;
+	if(subject === ""){
+		alert("walang subject");
+	}
 	var noteTitle=document.getElementById("titleForm").value;
+	if(noteTitle === ""){
+		alert("walang title");
+	}
 	var noteContent=document.getElementById("textForm").value;
 
 	var noteObject = {
@@ -693,12 +699,13 @@ function saveRem(){
 	window.location = "index.html"
 }
 
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("+").className = "hide";
+
+function openNav(){
+	document.getElementById("plusnav-content").style.display = "block";
+	document.getElementById("plusbutton").attributes.onclick = "closeNav()";
 }
 
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("+").className = "plus";
+function closeNav(){
+	document.getElementById("plusnav-content").style.display = "none";
+	document.getElementById("plusbutton").attributes.onclick = "openNav()";
 }
