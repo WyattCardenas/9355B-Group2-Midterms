@@ -8,10 +8,12 @@ function today(){
 	if(localStorage.getItem("hasData") === null){
 		window.location = "setup.html"
 	}else{
+		checkRem();
 		var d = new Date();
 		var dayToday = ["sun","mon","tue","wed","thu","fri","sat"][d.getDay()];
 		var dayString = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d.getDay()];
 		var date = d.toString().split(' ').splice(1,3).join(' ');
+
 		document.getElementById("day").innerHTML = dayString;
 		document.getElementById("date").innerHTML = date;
 
@@ -19,14 +21,85 @@ function today(){
 		var d = new Date();
 		
 		var classesToday = document.getElementById("classes");
-		for( i=0; i<subjects.length; i++){
-			for( ii=0; ii<subjects[i].days.length; ii++){
+		for(var i=0; i<subjects.length; i++){
+			for(var ii=0; ii<subjects[i].days.length; ii++){
 				if( subjects[i].days[ii] === dayToday){
 					if( subjects[i].courseNumber === "" ){
 						classesToday.innerHTML += `${subjects[i].classCode}, ${subjects[i].courseDescription} <br> Time start: ${subjects[i].timeStart} <br> Time end: ${subjects[i].timeEnd} <br> Room: ${subjects[i].room} <br><br>`;
 					}else{
 						classesToday.innerHTML += `${subjects[i].classCode}, ${subjects[i].courseNumber} <br>${subjects[i].courseDescription} <br>${subjects[i].timeStart} - ${subjects[i].timeEnd} <br> ${subjects[i].room} <br><br>`;
 					}
+				}
+			}
+		}
+
+		if(localStorage.getItem("reminders") != null){
+			var reminders = JSON.parse(localStorage.getItem('reminders'));
+			var rem = document.getElementById("rem");
+			for(var i=0;i<reminders.length; i++){
+				if( document.getElementById(`${reminders[i].subject.split("-")[0]}`) === null){
+					rem.innerHTML += `<span class="reminderTitle">${reminders[i].subject}</span>`
+					if(reminders[i].reminder != ""){
+						rem.innerHTML += `
+							<div id=${reminders[i].subject.split("-")[0]}>
+								<p>Title: ${reminders[i].title}<br><span id="${reminders[i].subject.split("-")[0]}-timeDue">Due: ${reminders[i].timeDue}</span><br>Additional Notes: ${reminders[i].reminder}</p>	
+							</div>	
+						`
+					}else{
+						rem.innerHTML += `
+							<div id=${reminders[i].subject.split("-")[0]}>
+								<p>Title: ${reminders[i].title}<br><span id="${reminders[i].subject.split("-")[0]}-timeDue">Due: ${reminders[i].timeDue}</span></p>	
+							</div>	
+						`
+					}
+				}else{
+					var writeTo = document.getElementById(`${reminders[i].subject.split("-")[0]}`);
+					if(reminders[i].reminder != ""){
+						writeTo.innerHTML += `
+							<p>Title: ${reminders[i].title}<br><span id="${reminders[i].subject.split("-")[0]}-timeDue">Due: ${reminders[i].timeDue}</span><br>Additional Notes: ${reminders[i].reminder}</p>	
+						`
+					}else{
+						writeTo.innerHTML += `
+							<p>Title: ${reminders[i].title}<br><span id="${reminders[i].subject.split("-")[0]}-timeDue">Due: ${reminders[i].timeDue}</span></p>	
+						`
+					}
+				}
+			}
+		}
+	}
+}
+
+function checkRem(){
+	if(localStorage.getItem("reminders") != null){
+		var reminders = JSON.parse(localStorage.getItem('reminders'));
+		for(var i=0; i<reminders.length; i++){
+			var timeDue = reminders[i].timeDue;
+			var date = timeDue.split(" ")[0];
+			var year = date.split("-")[0];
+			var month = date.split("-")[1];
+			var day = date.split("-")[2];
+			var time = timeDue.split(" ")[1];
+
+			var d = new Date();
+			var yearNow = d.getFullYear();
+			var monthNow = d.getMonth()+1;
+			if( monthNow < 10 ){
+				monthNow = `0${monthNow}`;
+			}
+			var dayNow = d.getDate();
+			if( dayNow < 10 ){
+				dayNow = `0${dayNow}`;
+			}
+
+			var timeNow = `${d.getHours()%12}:${d.getMinutes()}`
+
+			if(year == yearNow && month === monthNow && day-dayNow < 0 && timeDue < timeNow){
+				reminders.splice(i,1);
+				var a = JSON.stringify(reminders);
+				if ( reminders.length === 0){
+					localStorage.removeItem("reminders");
+				}else{
+					localStorage.setItem("reminders",a);
 				}
 			}
 		}
@@ -38,6 +111,95 @@ function today(){
 	SETUP.HTML
 
  ********************/
+function setup(){
+	var semester = document.getElementById("start-end-form");
+	var subject = document.getElementById("subject-form");
+
+	var startYearSelect = semester.elements["syear"];
+	startYearSelect.innerHTML += `
+		<option value="${new Date().getFullYear()-1}">${new Date().getFullYear()-1}</option>
+		<option value="${new Date().getFullYear()}">${new Date().getFullYear()}</option>
+		<option value="${new Date().getFullYear()+1}">${new Date().getFullYear()+1}</option>
+	`;
+
+	var asd = document.getElementsByTagName("select");
+	for(var i=0; i<asd.length; i++){
+	    asd[i].addEventListener("input", updateEndYear);
+	}
+
+	for(var i=0; i<subject.elements.length; i++){
+		if(subject.elements[i].type === "text" || subject.elements[i].type === "time"){
+			subject.elements[i].addEventListener("input",update);
+		}else if(subject.elements[i].type === "checkbox"){
+			subject.elements[i].addEventListener("click",update);
+		}
+	}
+	
+
+	if(sessionStorage.length>0){
+		for(var i=0; i<semester.elements.length; i++){
+		    if(sessionStorage.getItem(`${semester.elements[i].name}`) != null){
+		    	semester.elements[i].value = sessionStorage.getItem(`${semester.elements[i].name}`);
+		    	updateEndYear();
+		    }
+
+		}
+		for(var i=0; i<subject.elements.length; i++){
+			if(sessionStorage.getItem(`${subject.elements[i].name}`) != null){
+		    	if(subject.elements[i].type === "text" || subject.elements[i].type === "time"){
+		    		subject.elements[i].value = sessionStorage.getItem(`${subject.elements[i].name}`)
+		    	}else if(subject.elements[i].type === "checkbox"){
+		    		subject.elements[i].checked = true;
+		    	}
+		    }
+		}
+	}
+}
+
+/**
+
+	AN IDEA FOR AUTOSAVING
+
+**/
+function autoSave(){
+
+	setTimeout(autosave(), 10000);
+}
+
+function update(){
+	if(this.type === "text" || this.type === "time"){
+		sessionStorage.setItem(`${this.name}`, this.value);
+	}else if(this.type === "checkbox"){
+		if(this.checked){
+			sessionStorage.setItem(`${this.name}`, this.value);
+		}
+	}else{
+		sessionStorage.setItem(`${this.id}`, this.value);
+	}
+}
+
+function updateEndYear(){
+	var d = new Date();
+	var semester = document.getElementById("start-end-form");
+	if( semester.elements["syear"].value != "" && semester.elements["smonth"].value != ""){
+		var x = monthToNumber(semester.elements["smonth"].value);
+		var eYearContent = document.getElementById("eyear-content");
+		if(x>=1 && x<=6){
+			eYearContent.setAttribute("value", semester.elements["syear"].value);
+			eYearContent.innerText = `${semester.elements["syear"].value}`
+		}else{
+			eYearContent.setAttribute("value", parseFloat(semester.elements["syear"].value)+1);
+			eYearContent.innerText = `${parseFloat(semester.elements["syear"].value)+1}`
+		}
+	}
+
+	if(this.name === ""){
+		return;
+	}else{
+		sessionStorage.setItem(`${this.name}`,this.value);	
+	}
+}
+
 function firstTime () {
 	var startEnd = document.getElementById("start-end");
 	var header = document.getElementById("header");
@@ -50,15 +212,32 @@ function firstTime () {
 }
 
 function recordSemester(){
+	var d = new Date();
 	var startEnd = document.getElementById("start-end");
 	var subjectAddition = document.getElementById("subject-addition");
-	var startItems = document.getElementById("start");
-	var endItems = document.getElementById("end");
-	var startMonth = startItems.querySelector("#month").value;
-	var startDay = startItems.querySelector("#day").value;
-	var endMonth = endItems.querySelector("#month").value;
-	var endDay = endItems.querySelector("#day").value;
-	var valid = checkMonths(startMonth,endMonth);
+
+	var semester = document.getElementById("start-end-form");
+	var startMonth = semester.elements["smonth"].value;
+	var startDay = semester.elements["sday"].value;
+	var startYear = semester.elements["syear"].value;
+	var endMonth = semester.elements["emonth"].value;
+	var endDay = semester.elements["eday"].value;
+	var endYear = semester.elements["eyear"].value;
+	var x = monthToNumber(startMonth);
+	var y = monthToNumber(endMonth);
+	var valid = "";
+	if(y-x < 0){
+		if(endYear > startYear){
+			valid = true;
+		}else{
+			valid = "false";	
+		}
+	}else if(y-x == 0){
+		valid = "same"
+	}else{
+		valid = "true";
+	}
+
 	if(startMonth == "" || endMonth == ""){
 		document.getElementById("warning").innerHTML = "Please pick a month."; 
   	}else if(startDay == "" || endDay == ""){
@@ -69,9 +248,11 @@ function recordSemester(){
 		document.getElementById("warning").innerHTML = "The semester hasn't started yet and it has already ended?";
   	}else if(valid === "same"){
 		document.getElementById("warning").innerHTML = "The semester only has " + (endDay - startDay) +" days?";
+  	}else if(valid === ""){
+  		return;
   	}else{
-  		var start = [startDay,startMonth];
-  		var end = [endDay, endMonth];
+  		var start = [startDay,startMonth,startYear];
+  		var end = [endDay, endMonth, endYear];
   		localStorage.setItem("start",start);
   		localStorage.setItem("end",end);
 		if(subjectAddition.className === "hide"){
@@ -81,98 +262,62 @@ function recordSemester(){
 	}
 }
 
-function checkMonths(sMonth,eMonth){
+function monthToNumber(month){
 	var x = 0;
-	var y = 0;
-	switch (sMonth) {
+	switch (month) {
+		case "Jan":
 		case "January":
 			x = 1;
 			break;
+		case "Feb":
 		case "February":
 			x = 2;
 			break;
+		case "Mar":
 		case "March":
 			x = 3;
 			break;
+		case "Apr":
 		case "April":
 			x = 4;
 			break;
 		case "May":
 			x = 5;
 			break;
+		case "Jun":
 		case "June":
 			x = 6;
 			break;
+		case "Jul":
 		case "July":
 			x = 7;
 			break;
+		case "Aug":
 		case "August":
 			x = 8;
 			break;
+		case "Sep":
 		case "September":
 			x = 9;
 			break;
+		case "Oct":
 		case "October":
 			x = 10;
 			break;
+		case "Nov":
 		case "November":
 			x = 11;
 			break;
+		case "Dec":
 		case "December":
 			x = 12;
 			break;
-    default:
+    	default:
 			x = 0
 			break;
-  }
-  switch (eMonth) {
-		case "January":
-			y = 1;
-			break;
-		case "February":
-			y = 2;
-			break;
-		case "March":
-			y = 3;
-			break;
-		case "April":
-			y = 4;
-			break;
-		case "May":
-			y = 5;
-			break;
-		case "June":
-			y = 6;
-			break;
-		case "July":
-			y = 7;
-			break;
-		case "August":
-			y = 8;
-			break;
-		case "September":
-			y = 9;
-			break;
-		case "October":
-			y = 10;
-			break;
-		case "November":
-			y = 11;
-			break;
-		case "December":
-			y = 12;
-			break;
-		default:
-			y = 0
-			break;
-	}
-	if(y-x < 0){
-		return "false";
-	}else if(y-x == 0){
-		return "same"
-	}else{
-		return "true";
-	}
+  	}
+
+  	return x;
 }
 
 
@@ -250,7 +395,10 @@ function recordSubjects(){
 		"room": room
 	}
 
-	subjectArray.push(subjectObject);		
+	subjectArray.push(subjectObject);	
+	var subJson = JSON.stringify(subjectArray);
+	localStorage.setItem(`subjects`, subJson);
+	sessionStorage.clear();
 	
 	document.getElementById("may-mali").innerHTML = "Subject Added!"
 	resetForm();
@@ -272,15 +420,10 @@ function resetForm(){
 }
 
 function saveSubjects(){
-	var saveButton = document.getElementById("save-subjects");
-	var subJson = JSON.stringify(subjectArray);
-	localStorage.setItem(`subjects`, subJson);
-	if(saveButton.value = "Save"){
-		alert("saved");  
-	}
 	var c = confirm("Do you want to finish setup?");
 	if(c === true){
-    	localStorage.setItem("hasData","true");
+   	localStorage.setItem("hasData","true");
+    sessionStorage.clear();
 		window.location = "index.html";
 	}else{
    		saveButton.value = "Finish";
@@ -346,50 +489,84 @@ function saveNotes(){
 	
 	var noteArray = [];
 	
-	if( localStorage.getItem(`${subject.split("-")[0]}notes`) === null ){
-		noteArray.push(noteObject);
-		var noteJSON = JSON.stringify(noteArray);
-		localStorage.setItem(`${subject.split("-")[0]}notes`, noteJSON);
-		alert("saved");
-	}else{
-		noteArray = JSON.parse(localStorage.getItem(`${subject.split("-")[0]}notes`));
-		noteArray.push(noteObject);
-		var noteJSON = JSON.stringify(noteArray);
-		localStorage.setItem(`${subject.split("-")[0]}notes`, noteJSON);
-		alert("saved");
+	if( localStorage.getItem(`notes`) != null ){
+		noteArray = JSON.parse(localStorage.getItem(`notes`));
 	}
+	noteArray.push(noteObject);
+	var noteJSON = JSON.stringify(noteArray);
+	localStorage.setItem(`notes`, noteJSON);
+	sessionStorage.clear();
+	alert("saved");
+
 	window.location = "notes.html";
+}
+
+function newNotes(){
+	displaySubjects();
+	var title = document.getElementById("titleForm");
+	title.addEventListener("input",up);
+	var text = document.getElementById("textForm");
+	text.addEventListener("input",up);
+	var sub = document.getElementById("subject");
+	sub.addEventListener("change",up)
+	if(sessionStorage.getItem(`${title.id}`) != null){
+		title.value = sessionStorage.getItem(`${title.id}`);
+	}
+	if(sessionStorage.getItem(`${title.id}`) != null){
+		text.value = sessionStorage.getItem(`${text.id}`);
+	}
+	if(sessionStorage.getItem(`${title.id}`) != null){
+		sub.value = sessionStorage.getItem(`${sub.id}`);
+	}
+}
+
+function up(){
+	sessionStorage.setItem(`${this.id}`, this.value);
 }
 
 
 function notes(){
-	var subjects = JSON.parse(localStorage.getItem("subjects"));
-	var subDrop = document.getElementById("subdrop");
-	var classCodes = [];
+  	
+  	if( localStorage.getItem('notes') != null ){
+  		var subDrop = document.getElementById("subdrop");
+   	 	var asd = JSON.parse(localStorage.getItem('notes'));
 
-	for( i=0; i<subjects.length; i++){
-	    classCodes.push(subjects[i].classCode);
-	}
-
-	for( i=0; i<classCodes.length; i++){
-	    if( localStorage.getItem(`${classCodes[i]}notes`) != null ){
-			var asd = JSON.parse(localStorage.getItem(`${classCodes[i]}notes`));
-			subDrop.innerHTML += `<span class="subject">${asd[0].subject}</span>`
-			for( ii=0; ii<asd.length; ii++){
+		for( i=0; i<asd.length; i++){
+			if(document.getElementById(`${asd[i].subject.split("-")[0]}`) === null){
+				subDrop.innerHTML += `<span class="subject">${asd[i].subject}</span>`;
 				subDrop.innerHTML += `
-					<div class="notedrop">
-						<div> 
-							<a href="#" style="float: left" data-toggle="${asd[ii].noteTitle}" class="title"> ${asd[ii].noteTitle} 
+					<div id="${asd[i].subject.split("-")[0]}"> 
+						<div class="notedrop">
+							<a href="#" style="float: left" data-toggle="${asd[i].noteTitle}" class="title"> ${asd[i].noteTitle} 
 							</a> 
-							<button onclick="del(${ii}, '${classCodes[i]}')" style="display: inline; margin-left: 10px;">
-								X
-							</button>
+							
+							<div id="${asd[i].noteTitle}" class="hide"> 
+								<p> 
+									${asd[i].noteContent} 
+								</p> 
+								<button onclick="del(${i}, 'notes')" style="display: inline; margin-left: 10px;">
+									X
+								</button>
+							</div>
 						</div>
-						<div id="${asd[ii].noteTitle}" class="hide"> <p> ${asd[ii].noteContent} </p>
 					</div>
 				`
+			}else{
+				var writeTo = document.getElementById(`${asd[i].subject.split("-")[0]}`);
+				writeTo.innerHTML += `
+					<div class="notedrop">
+						<a href="#" style="float: left" data-toggle="${asd[i].noteTitle}" class="title"> ${asd[i].noteTitle} 
+						</a> 
+						<button onclick="del(${i}, 'notes')" style="display: inline; margin-left: 10px;">
+							X
+						</button>
+						<div id="${asd[i].noteTitle}" class="hide"> <p> ${asd[i].noteContent} </p> </div>
+					</div>`
 			}
-	    }
+		}
+	}else{
+		var nonotes = document.getElementById("nonotes");
+		nonotes.innerHTML += "You have no notes yet!";
 	}
 
 	var titles = document.getElementsByClassName("title");
@@ -399,14 +576,15 @@ function notes(){
 	}
 }
 
-function del(index, subject){
-	var asd = JSON.parse(localStorage.getItem(`${subject}notes`));
+function del(index, key){
+	console.log(key)
+	var asd = JSON.parse(localStorage.getItem(`${key}`));
 	asd.splice(index, 1);
 	var asdString = JSON.stringify(asd);
 	if ( asd.length === 0){
-		localStorage.removeItem(`${subject}notes`);
+		localStorage.removeItem(`${key}`);
 	}else{
-		localStorage.setItem(`${subject}notes`,asdString);
+		localStorage.setItem(`${key}`,asdString);
 	}
 
 	window.location = "notes.html"
@@ -425,39 +603,102 @@ function displaySubjects(){
 
 function saveRem(){
 	var subject = document.getElementById("subject").value;
+	if(subject === ""){
+		console.log("Walang subject");
+		return;
+	}
 	var title = document.getElementById("title").value;
+	if(title === ""){
+		console.log("walang title");
+		return;
+	}
 	var reminder = document.getElementById("reminder").value;
 	var timeDue = document.getElementById("timeDue").value;
+	if(timeDue === ""){
+		console.log("no time");
+		return;
+	}
+	var date = timeDue.split("T")[0];
+	var year = date.split("-")[0];
+	var month = date.split("-")[1];
+	var day = date.split("-")[2];
+	var time = timeDue.split("T")[1];
+	var hour = time.split(":")[0];
+	var min = time.split(":")[1];
+
+	var d = new Date();
+	var yearNow = d.getFullYear();
+	var monthNow = d.getMonth()+1;
+	if( monthNow < 10 ){
+		monthNow = `0${monthNow}`;
+	}
+	var dayNow = d.getDate();
+	if( dayNow < 10 ){
+		dayNow = `0${dayNow}`;
+	}
+
+	var hourNow = d.getHours();
+	var minNow = d.getMinutes();
+	var timeNow = `${hourNow}:${minNow}`
+
+	if( year < yearNow){
+		console.log("INTENSE REMINDER THING");
+		return;
+	}else if( year == yearNow && month < monthNow){
+		console.log("NOT THAT INTENSE");
+		return;
+	}else if( year == yearNow && month === monthNow && day-dayNow < 0){
+		console.log("Asdasd");
+		return;
+	}else if( year == yearNow && month === monthNow && day-dayNow === 0 && time < timeNow){
+		console.log("asdafgaag");
+		return;
+	}else if( year == yearNow && month === monthNow && day-dayNow === 0 && time === timeNow){
+		console.log("aljlfasdf");
+		return;
+	}else if( year == yearNow && month === monthNow && day-dayNow === 0 && hour == hourNow && min < minNow){
+		console.log("algbljabsjflabjlfabljf");
+		return;
+	}else if( year == yearNow && month === monthNow && day-dayNow === 0 && hour == hourNow && min < 60){
+		console.log("algbljabsjflabjlfabljf");
+		return;
+	}
+	
+
+	var convertedTime = `${timeDue.split("T")[0]} ${timeDue.split("T")[1].split(":")[0]%12}:${timeDue.split("T")[1].split(":")[1]}`;
+
+	var reminderArray = [];
+	if( localStorage.getItem('reminders') != null ){
+		console.log("may reminders")
+		reminderArray = JSON.parse(localStorage.getItem('reminders'));
+		for(var i=0; i<reminderArray.length;i++){
+			if(reminderArray[i].title === title && reminderArray[i].subject === subject && reminderArray[i].timeDue === convertedTime){
+				console.log("Reminder already exists");
+				return;
+			}
+		}
+	}
 
 	var reminderObject = {
 		"subject" : subject,
 		"title" : title,
 		"reminder" : reminder,
-		"timeDue" : timeDue
+		"timeDue" : convertedTime
 	}
-	
-	var reminderArray = [];
-	
-	if( localStorage.getItem(`${subject.split("-")[0]}reminders`) === null ){
-		reminderArray.push(reminderObject);
-		var reminderJSON = JSON.stringify(reminderArray);
-		localStorage.setItem(`${subject.split("-")[0]}reminders`, reminderJSON);
-		alert("saved");
-	}else{
-		reminderArray = JSON.parse(localStorage.getItem(`${subject.split("-")[0]}`));
-		reminderArray.push(reminderObject);
-		var reminderJSON = JSON.stringify(reminderArray);
-		localStorage.setItem(`${subject.split("-")[0]}reminders`, reminderJSON);
-		alert("saved");
-	}
+
+	reminderArray.push(reminderObject);
+	var reminderString = JSON.stringify(reminderArray);
+	localStorage.setItem('reminders', reminderString);
+	alert("saved");
+	window.location = "index.html"
 }
 
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("+").className = "hide";
-
 }
+
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
-     document.getElementById("+").className = "plus";
+    document.getElementById("+").className = "plus";
 }

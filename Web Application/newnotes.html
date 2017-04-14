@@ -1,40 +1,53 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>iReview</title>
-		<link rel="stylesheet" type="text/css" href="styles/style.css">
-		<script src="scripts/notes.js"></script>
-	</head>
-	<body onload="displaySubjects()">
-		<div class="main-container">
-			<div class="topthing">
-				<header>
-					<h2>Notes</h2>
-				</header>
-			</div>
-		</div>
-			<div class="creation">
-				<header>
-					<h3>New Note</h3>
-				</header>
-				<form>
-					Subject: <select name="subject" id="subject"></select>
-					<input type="text" id="titleForm" name="noteTitle" class="textbox" value="Title" onFocus="this.value=''">
-					<textarea id="textForm" name="noteArea" class="textbox" onFocus="this.value=''">Notes Here </textarea>
-				</form>
-			</div>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>iReview</title>
+	<link rel="stylesheet" type="text/css" href="styles/styles.css">
+	<script src="scripts/scripts.js"></script>
+</head>
+<body onload="newNotes()">
+	<div class="main-container">
+		<header class="topthing">
+			<h2>Notes</h2>
+		</header>
+	</div>
+		<div class="creation">
+		<header>
+			<h3>New Note</h3>
+		</header>
+		<form>
+			Subject: <select name="subject" id="subject">
+				<option value=""  hidden>Subject</option>
+			</select>
+			<input type="text" id="titleForm" name="noteTitle" class="textbox" placeholder="Title">
+			<textarea id="textForm" name="noteArea" class="textbox" placeholder="Notes Here..."></textarea>
+		</form>
+	</div>
 
-			<div class="icons">
-				<button type="button" id="save-notes" onclick="saveNotes()">save</button>
-				<button type="button" id="draw-button">-drawicon-</button>
-			</div>
-		</div>
+	<div class="icons">
+		<button type="button" id="save-notes" onclick="saveNotes()">save</button>
+	</div>
 
-		<div id="titleOutput"></div>
-		<div id="textOutput"></div>
-
-
-		<script src="scripts/scripts.js"></script>
-	</body>
+	<nav class="bottomnavthing">
+		<ul>
+			<a href="index.html"><li class="navblock">
+				<span class="icon"><img src="images/home.png" alt=" Home icon"></span>
+				<span class="page-name">Home</span>
+			</li></a>
+			<a href="notes.html"><li class="navblock">
+				<span class="icon"><img src="images/notes.png" alt="Notes icon"></span>
+				<span class="page-name">Notes</span>
+			</li></a>
+			<a href="review.html"><li class="navblock">
+				<span class="icon"><img src="images/review.png" alt="Review icon"></span>
+				<span class="page-name">Review</span>
+			</li></a>
+			<a href="schedule.html"><li class="navblock">
+				<span class="icon"><img src="images/sched.png" alt="Schedule icon"></span>
+				<span class="page-name">Schedule</span>
+			</li></a>
+		</ul>
+	</nav>
+</body>
 </html>

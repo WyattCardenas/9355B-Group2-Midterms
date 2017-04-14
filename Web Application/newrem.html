@@ -1,30 +1,54 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="styles/styles.css">
-		<script src="scripts/scripts.js"></script>
-	</head>
-	<body onload="displaySubjects()">
-		<div class="main-container">
-			<div class="topthing">
-				<header>
-					<h2>Reminders</h2>
-				</header>
-			</div>
+<head>
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="styles/styles.css">
+	<script src="scripts/scripts.js"></script>
+</head>
+<body onload="displaySubjects()">
+	<div class="main-container">
+		<div class="topthing">
 			<header>
-				<h3>New Reminder</h3>
+				<h2>Reminders</h2>
 			</header>
-			<div class="creation">
-				<form id="reminders">
-					<p>Subject: <select name="subject" id="subject"></select></p>
-					<p>Title: <input type="text" id="title"></p>
-					<p>Reminder: <textarea id="reminder" cols="30" rows="10"></textarea></p>
-					<p>Time Due: <input type="datetime-local" id="timeDue"></p>
-					<input type="submit" id="subbutton" name="" onclick="saveRem()">
-				</form>
-			</div>
 		</div>
-	</body>
+		<header>
+			<h3>New Reminder</h3>
+		</header>
+		<div class="creation">
+			<form id="reminders">
+				<p>Subject: <select name="subject" id="subject">
+					<option value="" hidden> Subject</option>
+				</select></p>
+				<p>Title: <input type="text" id="title"></p>
+				<p>Reminder: <textarea id="reminder" cols="30" rows="10"></textarea></p>
+				<p>Time Due: <input type="datetime-local" id="timeDue"></p>
+			</form>
+			<input type="submit" id="subbutton" name="" onclick="saveRem()">
+
+		</div>
+	</div>
+
+	<nav class="bottomnavthing">
+		<ul>
+			<a href="index.html"><li class="navblock">
+				<span class="icon"><img src="images/home.png" alt=" Home icon"></span>
+				<span class="page-name">Home</span>
+			</li></a>
+			<a href="notes.html"><li class="navblock">
+				<span class="icon"><img src="images/notes.png" alt="Notes icon"></span>
+				<span class="page-name">Notes</span>
+			</li></a>
+			<a href="review.html"><li class="navblock">
+				<span class="icon"><img src="images/review.png" alt="Review icon"></span>
+				<span class="page-name">Review</span>
+			</li></a>
+			<a href="schedule.html"><li class="navblock">
+				<span class="icon"><img src="images/sched.png" alt="Schedule icon"></span>
+				<span class="page-name">Schedule</span>
+			</li></a>
+		</ul>
+	</nav>
+</body>
 </html>

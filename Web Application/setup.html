@@ -4,11 +4,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>iReview</title>
 		<link rel="stylesheet" href="styles/setupstyles.css">
-		<script src="scripts/scripts.js"></script>
+		<script async src="scripts/scripts.js"></script>
 	</head>
 
 
-	<body>
+	<body onload="setup()">
 		<div class="container">
 			
 			<h1 id="header" class="first-position">iReview</h1>
@@ -19,10 +19,11 @@
 
 
 			<div class="hide" id="start-end">
+				<form id="start-end-form">
 					<p>When does the semester start?</p>
 					<div id="start">
-						<select name="month" id="month" onfocus="">
-							<option value="">Month</option>
+						<select name="smonth">
+							<option value="" hidden>Month</option>
 							<option value="January">January</option>
 							<option value="February">February</option>
 							<option value="March">March</option>
@@ -36,8 +37,8 @@
 							<option value="November">November</option>
 							<option value="December">December</option>
 						</select>
-						<select name="day" id="day">
-							<option value="">Day</option>
+						<select name="sday">
+							<option value="" hidden>Day</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -69,13 +70,17 @@
 							<option value="29">29</option>
 							<option value="30">30</option>
 							<option value="31">31</option>
+						</select>
+						<select name="syear">
+							<option value="" hidden>Year</option>
+
 						</select>
 					</div>
 
 					<p>When does the semester end?</p>
 					<div id="end">
-						<select name="month" id="month">
-							<option value="">Month</option>
+						<select name="emonth">
+							<option value="" hidden>Month</option>
 							<option value="January">January</option>
 							<option value="February">February</option>
 							<option value="March">March</option>
@@ -89,8 +94,8 @@
 							<option value="November">November</option>
 							<option value="December">December</option>
 						</select>
-						<select name="day" id="day">
-							<option value="">Day</option>
+						<select name="eday">
+							<option value="" hidden>Day</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -123,9 +128,16 @@
 							<option value="30">30</option>
 							<option value="31">31</option>
 						</select>
+						<select name="eyear">
+							<option value="" hidden>Year</option>
+							<option id="eyear-content"></option>
+						</select>
+
 					</div>
+				</form>
 					<div class="button-wrapper">
-						<input type="submit" id="submit-button" class="button" onclick="recordSemester()"/>
+						<button id="submit-button" class="button" onclick="recordSemester()"/>
+						Submit</button>
 					</div>
 				
 				<p id="warning"></p>
@@ -135,34 +147,32 @@
 				<p id="may-mali"></p>
 				<form id="subject-form">
 					<p><span class="text">Class Code:</span><br/>
-					<input type="text" id="cCode"></p>
+					<input type="text" name="cCode" id="cCode"></p>
 					<p><span class="text">Course Number (optional):</span><br/>
-					<input id="cno" type='text'/></p>
+					<input type='text' name="cno" id="cno" /></p>
 					<p><span class="text">Course Description:</span><br/>
-					<input id="cdesc" type='text'/></p>
+					<input type='text' name="cdesc" id="cdesc" /></p>
 					<p><span class="text">Time Start:</span>
-					<input type="time" id="time-start"/></p>
+					<input type="time" name="time-start" id="time-start"/></p>
 					<p><span class="text">Time End:</span>
-					<input type="time" id="time-end"/></p>
+					<input type="time" name="time-end" id="time-end"/></p>
 					<p><span class="text">Class Room</span><br/>
-					<input type="text" id="room"></p>
+					<input type="text" name="room" id="room"></p>
 					<p>
 						<span class="text">Days:</span><br/>
-						<span class="days-container"><input type="checkbox" value="mon" class="day">Monday</span>
-						<span class="days-container"><input type="checkbox" value="tue" class="day">Tuesday</span>
-						<span class="days-container"><input type="checkbox" value="wed" class="day">Wednesday</span>
-						<span class="days-container"><input type="checkbox" value="thu" class="day">Thursday</span>
-						<span class="days-container"><input type="checkbox" value="fri" class="day">Friday</span>
-						<span class="days-container"><input type="checkbox" value="sat" class="day">Saturday</span>
-						<span class="days-container"><input type="checkbox" value="sun" class="day">Sunday</span>
+						<span class="days-container"><input type="checkbox" value="mon" name="mon" class="day">Monday</span>
+						<span class="days-container"><input type="checkbox" value="tue" name="tue" class="day">Tuesday</span>
+						<span class="days-container"><input type="checkbox" value="wed" name="wed" class="day">Wednesday</span>
+						<span class="days-container"><input type="checkbox" value="thu" name="thu" class="day">Thursday</span>
+						<span class="days-container"><input type="checkbox" value="fri" name="fri" class="day">Friday</span>
+						<span class="days-container"><input type="checkbox" value="sat" name="sat" class="day">Saturday</span>
+						<span class="days-container"><input type="checkbox" value="sun" name="sun" class="day">Sunday</span>
 					</p>
 				</form>
 				<div class="button-wrapper">
 					<button id="add-subject" class="button" onclick="recordSubjects()">Add Subject</button>
-					<input id="save-subjects" type="submit" class="button" value="Save" onclick="saveSubjects()">
+					<button id="save-subjects" class="button" value="Finish" onclick="saveSubjects()">Finish</button>
 				</div>
-				
-				
 				
 				<div id="recorded-subs">
 					<div id="mon" class="hide">
@@ -189,7 +199,5 @@
 				</div>
 			</div>
 		</div>	
-
-		
 	</body>
 </html>

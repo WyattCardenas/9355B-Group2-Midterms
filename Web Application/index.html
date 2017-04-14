@@ -4,7 +4,7 @@
 	<title>iReview</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="styles/styles.css">
-	<script src="scripts/scripts.js"></script>
+	<script async src="scripts/scripts.js"></script>
 
 </head>
 <body onload="today()">
@@ -12,6 +12,7 @@
 		<header class="topthing">
 			<h1>Home</h1>	
 		</header>
+
 		
 		<div class="today" >
 			<p>
@@ -25,8 +26,10 @@
 		</div>
 	
 		<div class="reminders">
+			<p>Reminders: </p>
+			<p id="rem" class="remcontent"></p>
 			<p>Classes Today:</p>
-			<p id="classes" onload="subjectsToday()"></p>
+			<p id="classes" class="remcontent"></p>
 		</div>
 	</div>
 
@@ -38,26 +41,26 @@
 		<a href="quizGenerator.html">New Reviewer</a>
 	</div>
 
-	<span id="+" class="plus" style="font-size:30px;cursor:pointer;" onclick="openNav()">+</span>
+	<span id="+" class="plus" style="font-size:30px;cursor:pointer;border-left: " onclick="openNav()">+</span>
 
 	<nav class="bottomnavthing">
 		<ul>
-			<li class="navblock">
-				<span class="icon"><a href="index.html"><img src="images/home.png" alt=" Home icon"></a></span>
-				<span class="page-name"><a href="index.html">Home</a></span>
-			</li>
-			<li class="navblock">
-				<span class="icon"><a <a href="notes.html"><img src="images/notes.png" alt="Notes icon"></a></span>
-				<span class="page-name"><a href="notes.html">Notes</a></span>
-			</li>
-			<li class="navblock">
-				<span class="icon"><a href="review.html"><img src="images/review.png" alt="Review icon"></a></span>
-				<span class="page-name"><a href="review.html">Review</a></span>
-			</li>
-			<li class="navblock">
-				<span class="icon"><a href="schedule.html"><img src="images/sched.png" alt="Schedule icon"></a></span>
-				<span class="page-name"><a href="schedule.html">Schedule</a></span>
-			</li>
+			<a href="index.html"><li class="navblock">
+				<span class="icon"><img src="images/home.png" alt=" Home icon"></span>
+				<span class="page-name">Home</span>
+			</li></a>
+			<a href="notes.html"><li class="navblock">
+				<span class="icon"><img src="images/notes.png" alt="Notes icon"></span>
+				<span class="page-name">Notes</span>
+			</li></a>
+			<a href="review.html"><li class="navblock">
+				<span class="icon"><img src="images/review.png" alt="Review icon"></span>
+				<span class="page-name">Review</span>
+			</li></a>
+			<a href="schedule.html"><li class="navblock">
+				<span class="icon"><img src="images/sched.png" alt="Schedule icon"></span>
+				<span class="page-name">Schedule</span>
+			</li></a>
 		</ul>
 	</nav>
 	
