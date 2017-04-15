@@ -4,11 +4,11 @@
 	<title>iReview</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="styles/styles.css">
-	<script async src="scripts/scripts.js"></script>
+	<script defer src="scripts/scripts.js"></script>
 
 </head>
 <body onload="today()">
-	<div class="main-container">
+	<div id="main-container" class="main-container">
 		<header class="topthing">
 			<h1>Home</h1>	
 		</header>
@@ -40,41 +40,42 @@
 	</div>
 	
 	<div class="plusnav">
-		<div class="plusnav-content">
+		<div class="hide" id="plusnav-content">
 			<a href="newnotes.html">New Note</a>
 			<a href="newrem.html">New Reminder</a>
 			<a href="quizGenerator.html">New Reviewer</a>
+			<a href="newsubject.html">New Subject</a>
 		</div>
-		<button class="plusbutton">+</button>
+		<button id="plusnavbutton" data-toggle="plusnav-content" class="plusbutton">+</button>
+	</div>
+
+	<div id="alert" class="hide">
+		<div class="alertcont">
+			<p id="message"></p>
+			<button id="ok">Okay</button>
+		</div>
 	</div>
 
 	
-	<div class="navi-container">
-		<div class="inner-nav-container">
-			<header>
-				<h1>iReview</h1>
-			</header>
-			<nav class="bottomnavthing">
-				<ul>
-					<a href="index.html"><li class="navblock">
-						<span class="icon"><img src="images/home.png" alt=" Home icon"></span>
-						<span class="page-name">Home</span>
-					</li></a>
-					<a href="notes.html"><li class="navblock">
-						<span class="icon"><img src="images/notes.png" alt="Notes icon"></span>
-						<span class="page-name">Notes</span>
-					</li></a>
-					<a href="review.html"><li class="navblock">
-						<span class="icon"><img src="images/review.png" alt="Review icon"></span>
-						<span class="page-name">Review</span>
-					</li></a>
-					<a href="schedule.html"><li class="navblock">
-						<span class="icon"><img src="images/sched.png" alt="Schedule icon"></span>
-						<span class="page-name">Schedule</span>
-					</li></a>
-				</ul>
-			</nav>
-		</div>
-	</div>
+	<nav class="bottomnavthing">
+		<ul>
+			<a href="index.html"><li class="navblock">
+				<span class="icon"><img src="images/home.png" alt=" Home icon"></span>
+				<span class="page-name">Home</span>
+			</li></a>
+			<a href="notes.html"><li class="navblock">
+				<span class="icon"><img src="images/notes.png" alt="Notes icon"></span>
+				<span class="page-name">Notes</span>
+			</li></a>
+			<a href="review.html"><li class="navblock">
+				<span class="icon"><img src="images/review.png" alt="Review icon"></span>
+				<span class="page-name">Review</span>
+			</li></a>
+			<a href="schedule.html"><li class="navblock">
+				<span class="icon"><img src="images/sched.png" alt="Schedule icon"></span>
+				<span class="page-name">Schedule</span>
+			</li></a>
+		</ul>
+	</nav>
 </body>
 </html>

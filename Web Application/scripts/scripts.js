@@ -3,7 +3,6 @@
 	INDEX.HTML
 
  ********************/
-
 function today(){
 	if(localStorage.getItem("hasData") === null){
 		window.location = "setup.html"
@@ -12,10 +11,13 @@ function today(){
 		var d = new Date();
 		var dayToday = ["sun","mon","tue","wed","thu","fri","sat"][d.getDay()];
 		var dayString = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d.getDay()];
-		var date = d.toString().split(' ').splice(1,3).join(' ');
+		var monthString = ["January","February","March","April","May","June","July","August","September","October","November","December"][d.getMonth()];
+		var year = d.getFullYear();
+		var date = d.getDate();
+		var fullDate = d.toString().split(' ').splice(1,3).join(' ');
 
 		document.getElementById("day").innerHTML = dayString;
-		document.getElementById("date").innerHTML = date;
+		document.getElementById("date").innerHTML = fullDate;
 
 		var subjects = JSON.parse(localStorage.getItem("subjects"));
 		var d = new Date();
@@ -33,38 +35,17 @@ function today(){
 			}
 		}
 
-		if(localStorage.getItem("reminders") != null){
-			var reminders = JSON.parse(localStorage.getItem('reminders'));
-			var rem = document.getElementById("rem");
-			for(var i=0;i<reminders.length; i++){
-				if( document.getElementById(`${reminders[i].subject.split("-")[0]}`) === null){
-					rem.innerHTML += `<span class="reminderTitle">${reminders[i].subject}</span>`
-					if(reminders[i].reminder != ""){
-						rem.innerHTML += `
-							<div id=${reminders[i].subject.split("-")[0]}>
-								<p>Title: ${reminders[i].title}<br><span id="${reminders[i].subject.split("-")[0]}-timeDue">Due: ${reminders[i].timeDue}</span><br>Additional Notes: ${reminders[i].reminder}</p>	
-							</div>	
-						`
-					}else{
-						rem.innerHTML += `
-							<div id=${reminders[i].subject.split("-")[0]}>
-								<p>Title: ${reminders[i].title}<br><span id="${reminders[i].subject.split("-")[0]}-timeDue">Due: ${reminders[i].timeDue}</span></p>	
-							</div>	
-						`
-					}
-				}else{
-					var writeTo = document.getElementById(`${reminders[i].subject.split("-")[0]}`);
-					if(reminders[i].reminder != ""){
-						writeTo.innerHTML += `
-							<p>Title: ${reminders[i].title}<br><span id="${reminders[i].subject.split("-")[0]}-timeDue">Due: ${reminders[i].timeDue}</span><br>Additional Notes: ${reminders[i].reminder}</p>	
-						`
-					}else{
-						writeTo.innerHTML += `
-							<p>Title: ${reminders[i].title}<br><span id="${reminders[i].subject.split("-")[0]}-timeDue">Due: ${reminders[i].timeDue}</span></p>	
-						`
-					}
-				}
-			}
+		
+
+		var alert = document.getElementById("alert");
+		var alertMessage = document.getElementById("message");
+		var end = JSON.parse(localStorage.getItem("end"));
+		if( monthString === end.month && date == end.day && year == end.year){
+			alert.className = "alert";
+			var alertOk = document.getElementById("ok").addEventListener("click", function(){
+				alert.className = "hide";
+			})
+			alertMessage.innerText = "Tapos na semester lmao";
 		}
 	}
 }
@@ -124,7 +105,7 @@ function setup(){
 
 	var asd = document.getElementsByTagName("select");
 	for(var i=0; i<asd.length; i++){
-	    asd[i].addEventListener("input", updateEndYear);
+		asd[i].addEventListener("input", updateEndYear);
 	}
 
 	for(var i=0; i<subject.elements.length; i++){
@@ -138,20 +119,19 @@ function setup(){
 
 	if(sessionStorage.length>0){
 		for(var i=0; i<semester.elements.length; i++){
-		    if(sessionStorage.getItem(`${semester.elements[i].name}`) != null){
-		    	semester.elements[i].value = sessionStorage.getItem(`${semester.elements[i].name}`);
-		    	updateEndYear();
-		    }
-
+			if(sessionStorage.getItem(`${semester.elements[i].name}`) != null){
+				semester.elements[i].value = sessionStorage.getItem(`${semester.elements[i].name}`);
+				updateEndYear();
+			}
 		}
 		for(var i=0; i<subject.elements.length; i++){
 			if(sessionStorage.getItem(`${subject.elements[i].name}`) != null){
-		    	if(subject.elements[i].type === "text" || subject.elements[i].type === "time"){
-		    		subject.elements[i].value = sessionStorage.getItem(`${subject.elements[i].name}`)
-		    	}else if(subject.elements[i].type === "checkbox"){
-		    		subject.elements[i].checked = true;
-		    	}
-		    }
+				if(subject.elements[i].type === "text" || subject.elements[i].type === "time"){
+					subject.elements[i].value = sessionStorage.getItem(`${subject.elements[i].name}`)
+				}else if(subject.elements[i].type === "checkbox"){
+					subject.elements[i].checked = true;
+				}
+   }
 		}
 	}
 }
@@ -251,10 +231,18 @@ function recordSemester(){
   	}else if(valid === ""){
   		return;
   	}else{
-  		var start = [startDay,startMonth,startYear];
-  		var end = [endDay, endMonth, endYear];
-  		localStorage.setItem("start",start);
-  		localStorage.setItem("end",end);
+  		var start = {
+  			'day':startDay,
+  			'month':startMonth,
+  			'year':startYear
+  		};
+  		var end = {
+  			'day':endDay,
+  			'month':endMonth,
+  			'year':endYear
+  		};
+  		localStorage.setItem("start", JSON.stringify(start));
+  		localStorage.setItem("end", JSON.stringify(end));
 		if(subjectAddition.className === "hide"){
 			subjectAddition.className = "";
 			startEnd.className = "hide";
@@ -439,12 +427,12 @@ function saveSubjects(){
 function schedule(){
 	var days = document.getElementsByClassName("day");
 	for( i=0;i<days.length;i++ ){
-		days[i].addEventListener("click",showDay);
+		days[i].addEventListener("click",show);
 	}
 	generateSchedule();
 }
 
-function showDay() {
+function show() {
 	var toggle = this.attributes["data-toggle"].value;
 	var thing = document.getElementById(toggle);
 	if(thing.className === "hide"){
@@ -524,12 +512,10 @@ function newNotes(){
  	var subjects = JSON.parse(localStorage.getItem('subjects'));
 	for (i=0; i<subjects.length; i++ ){
 		for(ii=0; ii<subjects[i].days.length; ii++){
-			if (dayToday === subject[i].days[ii]) {
-				if(timeNow >= subject[i].timeStart && timeNow <= subject[i].timeEnd){
-					sub.value = `${subject[i].classCode}-${subjects[i].courseDescription}`;
-
+			if (dayToday === subjects[i].days[ii]) {
+				if(timeNow >= subjects[i].timeStart && timeNow <= subjects[i].timeEnd){
+					sub.value = `${subjects[i].classCode}-${subjects[i].courseDescription}`;
 				}
-
 			}
 		}
 	}
@@ -551,9 +537,8 @@ function up(){
 
 
 function notes(){
-  	
+	var subDrop = document.getElementById("subdrop");
   	if( localStorage.getItem('notes') != null ){
-  		var subDrop = document.getElementById("subdrop");
    	 	var asd = JSON.parse(localStorage.getItem('notes'));
 
 		for( i=0; i<asd.length; i++){
@@ -562,15 +547,18 @@ function notes(){
 				subDrop.innerHTML += `
 					<div id="${asd[i].subject.split("-")[0]}"> 
 						<div class="notedrop">
-							<a href="#" style="float: left" data-toggle="${asd[i].noteTitle}" class="title"> ${asd[i].noteTitle} 
+							<a href="#" data-toggle="${asd[i].noteTitle}" class="title"> ${asd[i].noteTitle} 
 							</a> 
 							
 							<div id="${asd[i].noteTitle}" class="hide"> 
 								<p> 
 									${asd[i].noteContent} 
-								</p> 
+								</p>
+								<button onclick="editNotes(this, ${i}, 'notes')" style="display: inline; margin-left: 10px;">
+									Edit
+								</button>
 								<button onclick="del(${i}, 'notes')" style="display: inline; margin-left: 10px;">
-									X
+									Delete
 								</button>
 							</div>
 						</div>
@@ -580,24 +568,131 @@ function notes(){
 				var writeTo = document.getElementById(`${asd[i].subject.split("-")[0]}`);
 				writeTo.innerHTML += `
 					<div class="notedrop">
-						<a href="#" style="float: left" data-toggle="${asd[i].noteTitle}" class="title"> ${asd[i].noteTitle} 
+						<a href="#" data-toggle="${asd[i].noteTitle}" class="title"> ${asd[i].noteTitle} 
 						</a> 
-						<button onclick="del(${i}, 'notes')" style="display: inline; margin-left: 10px;">
-							X
-						</button>
-						<div id="${asd[i].noteTitle}" class="hide"> <p> ${asd[i].noteContent} </p> </div>
+						
+						<div id="${asd[i].noteTitle}" class="hide">
+							<p> ${asd[i].noteContent} </p>
+							<button onclick="editNotes(this, ${i}, 'notes')" style="display: inline; margin-left: 10px;">
+								Edit
+							</button>
+							<button onclick="del(${i}, 'notes')" style="display: inline; margin-left: 10px;">
+								X
+							</button>
+						</div>
 					</div>`
 			}
 		}
 	}else{
-		var nonotes = document.getElementById("nonotes");
-		nonotes.innerHTML += "You have no notes yet!";
+		subDrop.innerHTML += "You have no notes yet!";
 	}
 
 	var titles = document.getElementsByClassName("title");
 	var notes = document.getElementsByClassName("hide");
 	for( i=0; i<titles.length; i++){
-		titles[i].addEventListener("click", showDay);
+		titles[i].addEventListener("click", show);
+	}
+
+	var rem = document.getElementById("rems");
+	if(localStorage.getItem("reminders") != null){
+		var reminders = JSON.parse(localStorage.getItem('reminders'));
+		
+		for(var i=0;i<reminders.length; i++){
+			if(reminders[i].subject != undefined){
+				if(document.getElementById(`${reminders[i].subject.split("-")[0]}`) === null){
+					rem.innerHTML += `<span class="reminderTitle">${reminders[i].subject}</span>`
+					if(reminders[i].additionalNotes != undefined){
+						rem.innerHTML += `
+							<div id=${reminders[i].subject.split("-")[0]}>
+								<p>Title: ${reminders[i].title}<br><span id="${reminders[i].subject.split("-")[0]}-timeDue">Due: ${reminders[i].timeDue}</span><br>Additional Notes: ${reminders[i].additionalNotes}</p>
+							</div>	
+						`
+					}else{
+						rem.innerHTML += `
+							<div id=${reminders[i].subject.split("-")[0]}>
+								<p>Title: ${reminders[i].title}<br><span id="${reminders[i].subject.split("-")[0]}-timeDue">Due: ${reminders[i].timeDue}</span></p>
+							</div>	
+						`
+					}
+				}else{
+					var writeTo = document.getElementById(`${reminders[i].subject.split("-")[0]}`);
+					if(reminders[i].additionalNotes != undefined){
+						writeTo.innerHTML += `
+							<p>Title: ${reminders[i].title}<br><span id="${reminders[i].subject.split("-")[0]}-timeDue">Due: ${reminders[i].timeDue}</span><br>Additional Notes: ${reminders[i].additionalNotes}</p>	
+						`
+					}else{
+						writeTo.innerHTML += `
+							<p>Title: ${reminders[i].title}<br><span id="${reminders[i].subject.split("-")[0]}-timeDue">Due: ${reminders[i].timeDue}</span></p>	
+						`
+					}
+				}
+			}else{
+				if(document.getElementById("non-subject-reminders") === null){
+					rem.innerHTML += "<span class=reminderTitle>Non Subject Reminders</span>"
+					if(reminders[i].additionalNotes != undefined){
+						rem.innerHTML +=`
+							<div id="non-subject-reminders">
+								<p>Title: ${reminders[i].title}<br>Due: ${reminders[i].timeDue}<br>Additional Notes: ${reminders[i].additionalNotes}</p>
+							</div>
+						`
+					}else{
+						rem.innerHTML +=`
+							<div id="non-subject-reminders">
+								<p>Title: ${reminders[i].title}<br>Due: ${reminders[i].timeDue}</p>
+							</div>
+						`
+					}
+				}else{
+					var writeTo = document.getElementById("non-subject-reminders");
+					if(reminders[i].additionalNotes != undefined){
+						writeTo.innerHTML +=`
+							<p>Title: ${reminders[i].title}<br>Due: ${reminders[i].timeDue}<br>Additional Notes: ${reminders[i].additionalNotes}</p>
+						`
+					}else{
+						writeTo.innerHTML +=`
+							<p>Title: ${reminders[i].title}<br>Due: ${reminders[i].timeDue}</p>
+						`
+					}
+				}
+			}
+		}
+	}else{
+		rem.innerHTML = "<p> No reminders! </p>"
+	}
+
+}
+
+function editNotes(el, index, key){
+	var asd = JSON.parse(localStorage.getItem(`${key}`));
+	var currentNotes = el.previousElementSibling.innerText;
+	el.previousElementSibling.outerHTML = `<textarea rows="5" cols="40">${currentNotes}</textarea>`
+	el.setAttribute("onclick", `saveEditedNotes(this, ${index},'${key}')`)
+	el.innerText = "Save";
+	el.parentNode.innerHTML += `
+			<button onclick="cancelEdit()">Cancel</button>
+	`
+}
+
+function cancelEdit(){
+	window.location = "notes.html";
+}
+
+function saveEditedNotes(el, index, key){
+	var asd = JSON.parse(localStorage.getItem(`${key}`));
+	var currentNotes = asd[index].noteContent;
+	console.log(el.previousElementSibling);
+	var newNotes = el.previousElementSibling.value;
+	var c = confirm("Are you sure you want to edit?");
+	if(c === true){
+		asd[index].noteContent = newNotes;
+		localStorage.setItem(`${key}`, JSON.stringify(asd));
+		el.previousElementSibling.outerHTML = `
+			<p> ${asd[index].noteContent} </p>
+		`
+		el.setAttribute("onclick", `editNotes(this, ${i}, 'notes')`);
+		el.innerText = "Edit";
+	}else{
+		return;
 	}
 }
 
@@ -627,22 +722,38 @@ function displaySubjects(){
 // NEW REMINDERS
 
 function saveRem(){
+	var alert = document.getElementById("alert");
+	var alertMessage = document.getElementById("message");
+
 	var subject = document.getElementById("subject").value;
-	if(subject === ""){
-		console.log("Walang subject");
-		return;
-	}
 	var title = document.getElementById("title").value;
-	if(title === ""){
-		console.log("walang title");
-		return;
-	}
-	var reminder = document.getElementById("reminder").value;
 	var timeDue = document.getElementById("timeDue").value;
-	if(timeDue === ""){
-		console.log("no time");
+	var additionalNotes = document.getElementById("additionalNotes").value;
+	var remindTimeSelect = document.getElementsByClassName("everyTime");
+	var remindTimes = [];
+
+	if(title === ""){
+		alert.className = "alert"
+		alertMessage.innerText = "walang title";
+		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
 	}
+
+	if(timeDue === ""){
+		alert.className = "alert"
+		alertMessage.innerText = "no time";
+		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
+		return;
+	}
+
+	for(var i=0; i<remindTimeSelect.length; i++){
+		remindTimes.push(remindTimeSelect[i].value);
+	}
+
 	var date = timeDue.split("T")[0];
 	var year = date.split("-")[0];
 	var month = date.split("-")[1];
@@ -694,39 +805,92 @@ function saveRem(){
 
 	var reminderArray = [];
 	if( localStorage.getItem('reminders') != null ){
-		console.log("may reminders")
 		reminderArray = JSON.parse(localStorage.getItem('reminders'));
 		for(var i=0; i<reminderArray.length;i++){
-			if(reminderArray[i].title === title && reminderArray[i].subject === subject && reminderArray[i].timeDue === convertedTime){
-				console.log("Reminder already exists");
-				return;
+			if(subject === ""){
+				if(reminderArray[i].title === title && reminderArray[i].timeDue === convertedTime){
+					console.log("Reminder already exists");
+					return;
+				}
+			}else{
+				if(reminderArray[i].title === title && reminderArray[i].subject === subject && reminderArray[i].timeDue === convertedTime){
+					console.log("Reminder already exists");
+					return;
+				}
 			}
 		}
 	}
 
-	var reminderObject = {
-		"subject" : subject,
-		"title" : title,
-		"reminder" : reminder,
-		"timeDue" : convertedTime
+	var reminderObject;
+	if(remindTimes.length == 0 && remindTimes[0] === ""){
+		if(subject != "" && additionalNotes != ""){
+			reminderObject = {
+				"subject" : subject,
+				"title" : title,
+				"additionalNotes" : additionalNotes,
+				"timeDue" : convertedTime
+			}
+		}else if(subject != "" && additionalNotes === ""){
+			reminderObject = {
+				"subject" : subject,
+				"title" : title,
+				"timeDue" : convertedTime
+			}
+		}else if(subject === "" && additionalNotes != ""){
+			reminderObject = {
+				"title" : title,
+				"additionalNotes" : additionalNotes,
+				"timeDue" : convertedTime
+			}
+		}else{
+			reminderObject = {
+				"additionalNotes" : additionalNotes,
+				"timeDue" : convertedTime
+			}
+		}
+	}else{
+		if(subject != "" && additionalNotes != ""){
+			reminderObject = {
+				"subject" : subject,
+				"title" : title,
+				"additionalNotes" : additionalNotes,
+				"timeDue" : convertedTime,
+				"alarms" : remindTimes
+			}
+		}else if(subject != "" && additionalNotes === ""){
+			reminderObject = {
+				"subject" : subject,
+				"title" : title,
+				"timeDue" : convertedTime,
+				"alarms" : remindTimes
+			}
+		}else if(subject === "" && additionalNotes != ""){
+			reminderObject = {
+				"title" : title,
+				"additionalNotes" : additionalNotes,
+				"timeDue" : convertedTime,
+				"alarms" : remindTimes
+			}
+		}else{
+			reminderObject = {
+				"title" : title,
+				"timeDue" : convertedTime,
+				"alarms" : remindTimes
+			}
+		}
 	}
+	
 
 	reminderArray.push(reminderObject);
 	var reminderString = JSON.stringify(reminderArray);
 	localStorage.setItem('reminders', reminderString);
-	alert("saved");
-	window.location = "index.html"
-}
-
-
-function openNav(){
-	document.getElementById("plusnav-content").style.display = "block";
-	document.getElementById("plusbutton").attributes.onclick = "closeNav()";
-}
-
-function closeNav(){
-	document.getElementById("plusnav-content").style.display = "none";
-	document.getElementById("plusbutton").attributes.onclick = "openNav()";
+	alert.className = "alert"
+	alertMessage.innerText = "Saved!";
+	var alertOk = document.getElementById("ok").addEventListener("click", function(){
+		alarmCounter = 0;
+		alert.className = "hide";
+		window.location = "index.html"
+	});
 }
 
 /* newSubjects */
@@ -750,5 +914,58 @@ function newSubject(){
 	    	}
 	    }
 	}
-	
 }
+
+function toggleNav(){
+	if( document.getElementById(this.attributes["data-toggle"].value).className === "hide"){
+		document.getElementById(this.attributes["data-toggle"].value).className = "plusnav-content";
+	}else{
+		document.getElementById(this.attributes["data-toggle"].value).className = "hide";
+	}
+}
+
+var alarmCounter=0;
+function addAlarm(el){
+	alarmCounter++;
+	var writeTo = document.getElementById("remind");
+	var value = el.value;
+	writeTo.innerHTML += `
+		<div>
+			<select name="time" class="everyTime">
+				<option value="ontime">On time</option>
+				<option value="10">10 mins before</option>
+				<option value="30">30 mins before</option>
+				<option value="1h">1 hour before</option>
+				<option value="3h">3 hours before</option>
+				<option value="6h">6 hours before</option>
+				<option value="1d">1 day before</option>
+			</select>
+			<button id="del${parseFloat(el.id)+1}" onclick="delAlarm(this)">-</button>
+		</div>
+	`
+	
+	if(alarmCounter == 6){
+		document.getElementById(el.id).outerHTML = "";
+	}
+}
+
+function delAlarm(el){
+	alarmCounter--;
+	var asd = el.parentNode;
+	asd.outerHTML = "";
+	if(alarmCounter < 6){
+		document.getElementById("a").innerHTML = `<button id="1" class="addAlarm" onclick="addAlarm(this)">+</button>`;
+	}
+}
+
+
+if(document.getElementById("plusnavbutton") != null){
+	document.getElementById("plusnavbutton").addEventListener("click", toggleNav);
+	document.getElementsByClassName("main-container")[0].addEventListener("click", function(){
+		if(document.getElementById('plusnav-content').className === "plusnav-content"){
+			document.getElementById('plusnav-content').className = "hide"
+		}
+	});	
+}
+
+
