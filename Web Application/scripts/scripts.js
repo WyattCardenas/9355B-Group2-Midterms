@@ -227,7 +227,11 @@ function recordSemester(){
   	}else if(valid === "false"){
 		document.getElementById("warning").innerHTML = "The semester hasn't started yet and it has already ended?";
   	}else if(valid === "same"){
-		document.getElementById("warning").innerHTML = "The semester only has " + (endDay - startDay) +" days?";
+  		if(endDay-startDay == 1){
+  			document.getElementById("warning").innerHTML = "The semester only has " + (endDay - startDay) +" day?";
+  		}else{
+			document.getElementById("warning").innerHTML = "The semester only has " + (endDay - startDay) +" days?";
+  		}
   	}else if(valid === ""){
   		return;
   	}else{
@@ -337,6 +341,16 @@ function recordSubjects(){
 	}else if( timeStart >= "20:00" || timeStart <= "07:30" || timeEnd >= "20:00" || timeEnd <= "07:30"){
 		document.getElementById("may-mali").innerHTML = "You cannot have classes from 8:00 pm - 7:30pm";
 		return;
+	}else if( validTime === true && (timeEnd.split(":")[0]==timeStart.split(":")[0])  && (timeEnd.split(":")[1] - timeStart.split(":")[1]) != 0 ){
+		if((timeEnd.split(":")[1] - timeStart.split(":")[1]) == 1){
+			document.getElementById("may-mali").innerHTML = "Your class cant last for only " + (timeEnd.split(":")[1] - timeStart.split(":")[1]) + " min";	
+		}else{
+			document.getElementById("may-mali").innerHTML = "Your class cant last for only " + (timeEnd.split(":")[1] - timeStart.split(":")[1]) + " mins";	
+		}
+		return;
+	}else if(validTime === true && (timeEnd.split(":")[0] - timeStart.split(":")[0]) == 1 && (parseFloat(timeEnd.split(":")[1]) + parseFloat(timeStart.split(":")[1])) != 0 && (parseFloat(timeEnd.split(":")[1]) + parseFloat(timeStart.split(":")[1])) < 60){
+		document.getElementById("may-mali").innerHTML = "Your class cant last for only " + (parseFloat(timeEnd.split(":")[1]) + parseFloat(timeStart.split(":")[1])) + " mins";	
+		return;
 	}else{
 		document.getElementById("may-mali").innerHTML = "";
 	}
@@ -361,9 +375,17 @@ function recordSubjects(){
 		var pNode = document.createElement("p");
 	    var textNode;
 	    if ( cno === ""){
-			textNode = document.createTextNode(`${cCode}, ${cdesc}, ${timeStart} - ${timeEnd}`);  
+	    	if(timeStart.split(":")[0]%12 == 0){
+	    		textNode = document.createTextNode(`${cCode}, ${cdesc}, 12:${timeStart.split(":")[1]} - ${timeEnd.split(":")[0]%12}:${timeEnd.split(":")[1]}`);  	
+	    	}else if(timeEnd.split(":")[0]%12 == 0){
+	    		textNode = document.createTextNode(`${cCode}, ${cdesc}, ${timeStart.split(":")[0]%12}:${timeStart.split(":")[1]} - 12:${timeEnd.split(":")[1]}`);  
+	    	}
 	    }else{
-			textNode = document.createTextNode(`${cCode}, ${cno}, ${cdesc}, ${timeStart} - ${timeEnd}`);  
+	    	if(timeStart.split(":")[0]%12 == 0){
+				textNode = document.createTextNode(`${cCode}, ${cno}, ${cdesc}, 12:${timeStart.split(":")[1]} - ${timeEnd.split(":")[0]%12}:${timeEnd.split(":")[1]}`);  
+	    	}else if(timeEnd.split(":")[0]%12 == 0){
+	    		textNode = document.createTextNode(`${cCode}, ${cno}, ${cdesc}, ${timeStart.split(":")[0]%12}:${timeStart.split(":")[1]} - 12:${timeEnd.split(":")[1]}`);  
+	    	}
 	    }
 		pNode.appendChild(textNode);
 		document.getElementById(dummy).appendChild(pNode);
@@ -386,7 +408,13 @@ function recordSubjects(){
 	subjectArray.push(subjectObject);	
 	var subJson = JSON.stringify(subjectArray);
 	localStorage.setItem(`subjects`, subJson);
-	sessionStorage.clear();
+	sessionStorage.removeItem("cCode");
+	sessionStorage.removeItem("cno");
+	sessionStorage.removeItem("cdesc");
+	sessionStorage.removeItem("timeStart");
+	sessionStorage.removeItem("timeEnd");
+	sessionStorage.removeItem("days");
+	sessionStorage.removeItem("room");
 	
 	document.getElementById("may-mali").innerHTML = "Subject Added!"
 	resetForm();
@@ -469,12 +497,18 @@ function saveNotes(){
 	var subject = document.getElementById("subject").value;
 	if(subject === ""){
 		alert("walang subject");
+		return;
 	}
 	var noteTitle=document.getElementById("titleForm").value;
 	if(noteTitle === ""){
 		alert("walang title");
+		return;
 	}
 	var noteContent=document.getElementById("textForm").value;
+	if(noteContent === ""){
+		alert("walang title");
+		return;
+	}
 
 	var noteObject = {
 		"subject" : subject,
@@ -778,25 +812,53 @@ function saveRem(){
 	var timeNow = `${hourNow}:${minNow}`
 
 	if( year < yearNow){
-		console.log("INTENSE REMINDER THING");
+		alert.className = "alert"
+		alertMessage.innerText = "Year < year right now";
+		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
 	}else if( year == yearNow && month < monthNow){
-		console.log("NOT THAT INTENSE");
+		alert.className = "alert"
+		alertMessage.innerText = "month < monthNow";
+		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
-	}else if( year == yearNow && month === monthNow && day-dayNow < 0){
-		console.log("Asdasd");
+	}else if( year == yearNow && month === monthNow && day<dayNow){
+		alert.className = "alert"
+		alertMessage.innerText = "day < dayNow";
+		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
-	}else if( year == yearNow && month === monthNow && day-dayNow === 0 && time < timeNow){
-		console.log("asdafgaag");
+	}else if( year == yearNow && month === monthNow && day === dayNow && time < timeNow){
+		alert.className = "alert"
+		alertMessage.innerText = "time < timeNow";
+		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
-	}else if( year == yearNow && month === monthNow && day-dayNow === 0 && time === timeNow){
-		console.log("aljlfasdf");
+	}else if( year == yearNow && month === monthNow && day === dayNow && time === timeNow){
+		alert.className = "alert"
+		alertMessage.innerText = "time == timeNow";
+		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
-	}else if( year == yearNow && month === monthNow && day-dayNow === 0 && hour == hourNow && min < minNow){
-		console.log("algbljabsjflabjlfabljf");
+	}else if( year == yearNow && month === monthNow && day === dayNow && hour == hourNow && min < minNow){
+		alert.className = "alert"
+		alertMessage.innerText = "time < timeNow";
+		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
-	}else if( year == yearNow && month === monthNow && day-dayNow === 0 && hour == hourNow && min < 60){
-		console.log("algbljabsjflabjlfabljf");
+	}else if( year == yearNow && month === monthNow && day === dayNow && hour == hourNow && minNow < min && min < 60){
+		alert.className = "alert"
+		alertMessage.innerText = "due date is so near why would you need a reminder :v";
+		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
 	}
 	
@@ -944,7 +1006,7 @@ function addAlarm(el){
 		</div>
 	`
 	
-	if(alarmCounter == 6){
+	if(alarmCounter == 5){
 		document.getElementById(el.id).outerHTML = "";
 	}
 }
@@ -953,7 +1015,7 @@ function delAlarm(el){
 	alarmCounter--;
 	var asd = el.parentNode;
 	asd.outerHTML = "";
-	if(alarmCounter < 6){
+	if(alarmCounter < 5){
 		document.getElementById("a").innerHTML = `<button id="1" class="addAlarm" onclick="addAlarm(this)">+</button>`;
 	}
 }
@@ -967,5 +1029,3 @@ if(document.getElementById("plusnavbutton") != null){
 		}
 	});	
 }
-
-
