@@ -4,38 +4,44 @@
 	<title>iReview</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="styles/styles.css">
-	<script src="scripts/scripts.js"></script>
+	<script defer src="scripts/scripts.js"></script>
 </head>
 <body onload="notes()">
 
-	<div class="main-container" style="color: black">
+	<div id="main-container" class="main-container" style="color: black">
 		<div class="topthing">
 			<a href="" id="hamburger">
 				<span class="bar"></span>
 				<span class="bar"></span>
 				<span class="bar"></span>
 			</a>
-			<h1>Notes</h1>
+			<h1>Notes and Reminders</h1>
 		</div>
 		
-		<div id="notes" class="notes">
-			<h2>Subjects</h2>
+		<div id="notes" class="reminders">
+			<h2>Notes</h2>
 			<div id="subdrop">
 				
 			</div>
 		</div>
 
-		<div id="nonotes"></div>
+		<div id="reminders" class="reminders">
+			<h2>Reminders</h2>
+			<div id="rems">
+				
+			</div>
+		</div>
 	</div>
 
 
 	<div class="plusnav">
-		<div class="plusnav-content" id="plusnav-content">>
+		<div class="hide" id="plusnav-content">
 			<a href="newnotes.html">New Note</a>
 			<a href="newrem.html">New Reminder</a>
 			<a href="quizGenerator.html">New Reviewer</a>
+			<a href="newsubject.html">New Subject</a>
 		</div>
-		<button class="plusbutton" id="plusbutton">+</button>
+		<button id="plusnavbutton" data-toggle="plusnav-content" class="plusbutton">+</button>
 	</div>
 
 	<nav class="bottomnavthing">

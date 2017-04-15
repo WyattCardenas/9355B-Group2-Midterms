@@ -3,7 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="styles/styles.css">
-	<script src="scripts/scripts.js"></script>
+	<script defer src="scripts/scripts.js"></script>
 	<style>	
 		td{
 			border: 1px solid black;
@@ -11,7 +11,7 @@
 	</style>
 </head>
 <body onload="schedule()">
-	<div class="main-container">
+	<div id="main-container" class="main-container">
 		<header class="topthing">
 			<h1>Schedule</h1>	
 		</header>
@@ -83,12 +83,13 @@
 	</div>
 
 	<div class="plusnav">
-		<div class="plusnav-content">
+		<div class="hide" id="plusnav-content">
 			<a href="newnotes.html">New Note</a>
 			<a href="newrem.html">New Reminder</a>
 			<a href="quizGenerator.html">New Reviewer</a>
+			<a href="newsubject.html">New Subject</a>
 		</div>
-		<button class="plusbutton">+</button>
+		<button id="plusnavbutton" data-toggle="plusnav-content" class="plusbutton">+</button>
 	</div>
 
 	<nav class="bottomnavthing">

@@ -34,9 +34,8 @@ html, body{
 	display: none;
 }
 
-
 .main-container{
-	color: #F3F3F3;
+	color: #696969;
 	margin-bottom: 70px;
 }
 
@@ -129,55 +128,6 @@ html, body{
 	padding-left: 15px;
 	font-family: chewedpen;
 	color: #696969;
-}
-
-/* SIDENAV */
-
-.plus{
-	position: absolute;
-	right: 10px;
-	padding: 5px;
-	padding-left: 13px;
-	padding-right: 13px;
-	border: 1px solid black;
-	border-radius: 30px;
-	background-color: #FF3B3F;
-	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.2);
-	color: #EFEFEF;
-}
-
-.sidenav {
-	display: static;
-    height: 100%;
-    width: 0;
-    position: fixed;
-    top: 60%;
-    right: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    margin: 0;
-    margin-left: 50px;
 }
 
 /* INDEX.HTML */
@@ -436,7 +386,7 @@ h3{
 }
 
 .plusnav-content{
-	display: none;
+	display: block;
 	width: 100%;
 	background-color: blue;
 	border-radius: 10px 10px 0px 10px;
@@ -444,7 +394,7 @@ h3{
     position: absolute;
     margin: 15px;
     padding: 20px 10px;
-    bottom: 40px;
+    bottom: 35px;
     right: 10px;
 }
 
@@ -456,10 +406,49 @@ h3{
 	background-color: #f1f1f1;
 }
 
-.plusnav:hover .plusnav-content {
-    display: block;
+.alert{
+	top: 50%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	transform: translateY(-50%);
+	position: fixed;
+	width: 200px;
+	height: 100px;
+	z-index: 50;
+	transition: .5s;
 }
 
-.plusnav:hover .plusbutton {
-    background-color: #3e8e41;
+.alertcont{
+	border-radius: 7px;
+	height: 100%;
+	max-width: 100%;
+	background-color: lightblue;
+	text-align: center;
+	position: relative;
+}
+
+.alertcont button{
+	background-color: lightblue;
+	border: none;
+	border-top: 1px solid black;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 6px 0;
+	border-radius: 0 0 7px 7px;
+}
+
+.notesAlertThing{
+	position: fixed;
+	top: 50%;
+	left: 0;
+	right: 0;
+	height: 80%;
+	margin: 0 auto;
+	transform: translateY(-50%);
+	width: 80%;
+	background-color: lightblue;
+	text-align: center;
 }
