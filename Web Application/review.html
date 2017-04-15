@@ -1,80 +1,88 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>iReview</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="styles/styles.css">
-	<link rel="stylesheet" href="styles/quiz.css">
-	<script async src="scripts/quiz.js"></script>
-</head>
-<body onload="quizes()">
-	<div id="content">
-		<div class="main-container">
-			<div class="topthing">
-				<a href="" data-toggle=".container" id="sidebar-toggle"> 
-					<span class="bar"></span> 
-					<span class="bar"></span> 
-					<span class="bar"></span> 
-				</a>
-				<h1>Reviewers</h1>
-			</div>
-			<div id="notes" class="notes">
-				<h2>Quizzes</h2>
-				<div id="subdrop" class="subdrop">
+	<head>
+		<title>iReview</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="styles/styles.css">
+		<link rel="stylesheet" href="styles/quiz.css">
+		<script async src="scripts/quiz.js"></script>
+		<script async src="scripts/scripts.js"></script>
+	</head>
+	<body onload="quizes()">
+		<div id="content">
+			<div class="main-container">
+				<div class="topthing">
+					<a href="" data-toggle=".container" id="sidebar-toggle"> 
+						<span class="bar"></span> 
+						<span class="bar"></span> 
+						<span class="bar"></span> 
+					</a>
+					<h1>Reviewers</h1>
+				</div>
+				<div id="notes" class="notes">
+					<h2>Quizzes</h2>
+					<div id="subdrop" class="subdrop">
+					</div>
 				</div>
 			</div>
+
+			<div id="mySidenav" class="sidenav">
+				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+				<a href="newnotes.html">New Note</a>
+				<a href="newrem.html">New Reminder</a>
+				<a href="quizGenerator.html">New Reviewer</a>
+			</div>
+
+			<div id="mySidenav2" class="sidenav2">
+				<a href="javascript:void(0)" class="closebtn" onclick="closeOption()">&times;</a>
+				<a onclick="loadQuiz(window.title)">Take Quiz</a>
+				<a href="editQuiz.html">Edit Quiz</a>
+				<a onclick="deleteQuiz(window.title)">Delete Quiz</a>
+			</div>
+
+			<span id="+" class="plus" style="font-size:30px;cursor:pointer" onclick="openNav()">+</span>
+
+		<nav class="bottomnavthing">
+			<ul>
+				<li class="navblock">
+					<span class="icon"><a href="index.html"><img src="images/home.png" alt=" Home icon"></a></span>
+					<span class="page-name"><a href="index.html">Home</a></span>
+				</li>
+				<li class="navblock">
+					<span class="icon"><a <a href="notes.html"><img src="images/notes.png" alt="Notes icon"></a></span>
+					<span class="page-name"><a href="notes.html">Notes</a></span>
+				</li>
+				<li class="navblock">
+					<span class="icon"><a href="review.html"><img src="images/review.png" alt="Review icon"></a></span>
+					<span class="page-name"><a href="review.html">Review</a></span>
+				</li>
+				<li class="navblock">
+					<span class="icon"><a href="schedule.html"><img src="images/sched.png" alt="Schedule icon"></a></span>
+					<span class="page-name"><a href="schedule.html">Schedule</a></span>
+				</li>
+			</ul>
+		</nav>
+
 		</div>
+		<div id="takeQuiz" class="hide">
+			<div class="grid">
+		      <div id="quiz">
+		        <h1>Quiz</h1>
 
-	<div class="plusnav">
-		<div class="plusnav-content">
-			<a href="newnotes.html">New Note</a>
-			<a href="newrem.html">New Reminder</a>
-			<a href="quizGenerator.html">New Reviewer</a>
+		        <p id="question"></p>
+
+		        <div class="buttons">
+		          <button id="btn0"><span id="choice0"></span></button>
+		          <button id="btn1"><span id="choice1"></span></button>
+		          <button id="btn2"><span id="choice2"></span></button>
+		          <button id="btn3"><span id="choice3"></span></button>
+		        </div> 
+
+		        <footer>
+		        <p id="progress"></p>
+		        </footer>
+		      </div>
+		    </div>
 		</div>
-		<button class="plusbutton">+</button>
-	</div>
-
-	<nav class="bottomnavthing">
-		<ul>
-			<a href="index.html"><li class="navblock">
-				<span class="icon"><img src="images/home.png" alt=" Home icon"></span>
-				<span class="page-name">Home</span>
-			</li></a>
-			<a href="notes.html"><li class="navblock">
-				<span class="icon"><img src="images/notes.png" alt="Notes icon"></span>
-				<span class="page-name">Notes</span>
-			</li></a>
-			<a href="review.html"><li class="navblock">
-				<span class="icon"><img src="images/review.png" alt="Review icon"></span>
-				<span class="page-name">Review</span>
-			</li></a>
-			<a href="schedule.html"><li class="navblock">
-				<span class="icon"><img src="images/sched.png" alt="Schedule icon"></span>
-				<span class="page-name">Schedule</span>
-			</li></a>
-		</ul>
-	</nav>
-
-	</div>
-	<div id="takeQuiz" class="hide">
-		<div class="grid">
-	      <div id="quiz">
-	        <h1>Quiz</h1>
-
-	        <p id="question"></p>
-
-	        <div class="buttons">
-	          <button id="btn0"><span id="choice0"></span></button>
-	          <button id="btn1"><span id="choice1"></span></button>
-	          <button id="btn2"><span id="choice2"></span></button>
-	          <button id="btn3"><span id="choice3"></span></button>
-	        </div> 
-
-	        <footer>
-	        <p id="progress"></p>
-	        </footer>
-	      </div>
-	    </div>
-	</div>
-</body>
+	</body>
 </html>

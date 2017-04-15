@@ -4,68 +4,45 @@ body{
   margin-right: 1px;
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
 }
 
-.choices{
-  float: left;
-  width:20%;
-  border-right: 1px solid black;
-  height: 525px;
+.buttons{
+  text-align: center;
+  margin-top: 30px;
 }
 
-.layout{
-  float: left;
-  width: 79%;
-  height: 100%;
-}
-
-#multipleChoice{
-  display: block;
-  margin: 10px auto;
-  margin-top: 25%; 
-}
-
-#identification{
-  display: block;
-  margin: 10px auto;
-  margin-top: 25%;
-}
-
-#matchingType{
-  display: block;
-  margin: 10px auto;
-  margin-top: 25%;
-}
-
-#fillInTheBlanks{
-  display: block;
-  margin: 10px auto;
-  margin-top: 25%;
-}
-
-#multipleChoiceForm{
-  display: block;
-  margin: 10px auto;
-}
-
-#identificationForm{
-  display: block;
-  margin: 10px auto;
-}
-
-#matchingTypeForm{
-  display: block;
-  margin: 10px auto;
-}
-
-#fillInTheBlanksForm{
-  display: block;
-  margin: 10px auto;
+#backButton{
+  border-radius: 50px;
+  background-color: #778897;
+  font-size: 20px;
+  color: white;
+  border: 1px solid #136c6a;
+  border-radius: 50px;
+  padding: 10px 10px;
 }
 
 #saveButton{
-  padding-left: 90%;
+  border-radius: 50px;
+  background-color: #778897;
+  font-size: 20px;
+  color: white;
+  border: 1px solid #136c6a;
+  border-radius: 50px;
+  padding: 10px 10px;
+}
+
+#createButton{
+  border-radius: 50px;
+  background-color: #778897;
+  font-size: 20px;
+  color: white;
+  border: 1px solid #136c6a;
+  border-radius: 50px;
+  padding: 10px 10px;
+}
+
+.dropDown{
+  text-align: center;
 }
 
 input{
