@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>iReview - New Reminders</title>
+	<title></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="styles/styles.css">
 	<script src="scripts/scripts.js"></script>
@@ -17,25 +17,16 @@
 			<h3>New Reminder</h3>
 		</header>
 		<div class="creation">
-			<p>Subject: <select name="subject" id="subject">
-				<option value="" hidden></option>
-				<option value="">Not related to a subject</option>
-			</select></p>
-			<p>Title: <input type="text" id="title"></p>
-			<p>Time Due: <input type="datetime-local" id="timeDue"></p>
-			<p id="remind">Remind Me:
-				<span id="a"><button id="1" class="addAlarm" onclick="addAlarm(this)">+</button></span>
-			</p>
-			<p>Additional Notes: <textarea id="additionalNotes" cols="30" rows="5"></textarea></p>
+			<form id="reminders">
+				<p>Subject: <select name="subject" id="subject">
+					<option value="" hidden> Subject</option>
+				</select></p>
+				<p>Title: <input type="text" id="title"></p>
+				<p>Reminder: <textarea id="reminder" cols="30" rows="10"></textarea></p>
+				<p>Time Due: <input type="datetime-local" id="timeDue"></p>
+			</form>
+			<input type="submit" id="subbutton" name="" onclick="saveRem()">
 
-			<button id="subbutton" onclick="saveRem()">Save </button>
-		</div>
-	</div>
-
-	<div id="alert" class="hide">
-		<div class="alertcont">
-			<p id="message"></p>
-			<button id="ok">Okay</button>
 		</div>
 	</div>
 
