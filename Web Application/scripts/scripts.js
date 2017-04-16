@@ -477,15 +477,8 @@ function recordSubjects(){
 		});
 		return;
 	}else if(validTime === true && (timeEnd.split(":")[0] - timeStart.split(":")[0]) > 3){
-		var c
-		alert.className = "conf"
-		alertMessage.innerText = "Are you sure your class lasts for" + (timeEnd.split(":")[0] - timeStart.split(":")[0]) + "hours?";
-		document.getElementById("cancel").addEventListener("click", function(){
-			alert.className = "hide";
-			c = false;
-		});
-		document.getElementById("ok").addEventListener("click", c = true);
-		if ( c === false){
+		var c = confirm("Are you sure your class lasts for" + (timeEnd.split(":")[0] - timeStart.split(":")[0]) + "hours?");
+		if(c === false){
 			return;
 		}
 	}else if( timeStart < "07:30" || timeEnd <= "07:30"){
@@ -1289,15 +1282,8 @@ function addNewSubject(){
 		});
 		return;
 	}else if(validTime === true && (timeEnd.split(":")[0] - timeStart.split(":")[0]) > 3){
-		var c
-		alert.className = "conf"
-		alertMessage.innerText = "Are you sure your class lasts for" + (timeEnd.split(":")[0] - timeStart.split(":")[0]) + "hours?";
-		document.getElementById("cancel").addEventListener("click", function(){
-			alert.className = "hide";
-			c = false;
-		});
-		document.getElementById("ok").addEventListener("click", c = true);
-		if ( c === false){
+		var c = confirm("Are you sure your class lasts for" + (timeEnd.split(":")[0] - timeStart.split(":")[0]) + "hours?");
+		if(c === false){
 			return;
 		}
 	}else if( timeStart < "07:30" || timeEnd <= "07:30"){
