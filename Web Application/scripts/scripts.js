@@ -1221,7 +1221,7 @@ function addAlarm(el){
 				<option value="6h">6 hours before</option>
 				<option value="1d">1 day before</option>
 			</select>
-			<button id="del${parseFloat(el.id)+1}" onclick="delAlarm(this)">-</button>
+			<button id="del${parseFloat(el.id)+1}" class="deleteRem" onclick="delAlarm(this)">-</button>
 		</div>
 	`
 	
