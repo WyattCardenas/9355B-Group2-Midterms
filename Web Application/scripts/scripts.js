@@ -1239,6 +1239,122 @@ function delAlarm(el){
 	}
 }
 
+function addNewSubject(){
+	var cCode = document.getElementById("cCode").value;
+	var cno = document.getElementById("cno").value;
+	var cdesc = document.getElementById("cdesc").value;
+	var timeStart = document.getElementById("time-start").value;
+	var timeEnd = document.getElementById("time-end").value;
+	var room = document.getElementById("room").value;
+
+
+	if( cCode === "" || cdesc === "" || timeStart === "" || timeEnd === "" || room === ""){
+		alert.className = "alert"
+		alertMessage.innerText = "Please fill up all fields.";
+		document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
+		return;
+	}
+
+	var validTime = timeStart < timeEnd;
+	if(validTime === false){
+		alert.className = "alert"
+		alertMessage.innerText = "Time end is earlier than time start.";
+		document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
+		return;
+	}else if(validTime === true && (timeEnd.split(":")[0] - timeStart.split(":")[0]) > 10){
+		alert.className = "alert"
+		alertMessage.innerText = "Classes are limited to 10 hours max.";
+		document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
+		return;
+	}else if(validTime === true && (timeEnd.split(":")[0] - timeStart.split(":")[0]) > 3){
+		var c
+		alert.className = "conf"
+		alertMessage.innerText = "Are you sure your class lasts for" + (timeEnd.split(":")[0] - timeStart.split(":")[0]) + "hours?";
+		document.getElementById("cancel").addEventListener("click", function(){
+			alert.className = "hide";
+			c = false;
+		});
+		document.getElementById("ok").addEventListener("click", c = true);
+		if ( c === false){
+			return;
+		}
+	}else if( timeStart < "07:30" || timeEnd <= "07:30"){
+		alert.className = "alert"
+		alertMessage.innerText = "You cannot have classes from 12:00 am - 7:30 am.";
+		document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
+		return;
+	}else if( validTime === true && (timeEnd.split(":")[0]==timeStart.split(":")[0])  && (timeEnd.split(":")[1] - timeStart.split(":")[1]) != 0 ){
+		if((timeEnd.split(":")[1] - timeStart.split(":")[1]) == 1){
+			alert.className = "alert"
+			alertMessage.innerText = "Your class cant last for only " + (timeEnd.split(":")[1] - timeStart.split(":")[1]) + " min";
+			document.getElementById("ok").addEventListener("click", function(){
+				alert.className = "hide";
+			});
+		}else{
+			alert.className = "alert"
+			alertMessage.innerText = "Your class cant last for only " + (timeEnd.split(":")[1] - timeStart.split(":")[1]) + " mins";
+			document.getElementById("ok").addEventListener("click", function(){
+				alert.className = "hide";
+			});
+		}
+		return;
+	}else{
+		document.getElementById("may-mali").innerHTML = "";
+	}
+
+	var counter = 0;
+	days = document.getElementsByClassName("day");
+	var classDays = [];
+	for( i=0; i<days.length; i++){
+		if(days[i].checked){
+			classDays[counter] = days[i].value;
+			counter++;
+		}
+	}
+	
+	if( counter === 0 ){
+		alert.className = "alert"
+		alertMessage.innerText = "No days picked!";
+		document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
+		return;
+	}
+
+	var subjectObject = {
+		"classCode": cCode,
+		"courseNumber": cno,
+		"courseDescription": cdesc,
+		"timeStart": timeStart.split(":")[0]%12 + ":" + timeStart.split(":")[1],
+		"timeEnd": timeEnd.split(":")[0]%12 + ":" + timeEnd.split(":")[1],
+		"days": classDays,
+		"room": room
+	}
+
+	var currentSubjects = JSON.parse(localStorage.getItem("subjects"));
+	currentSubjects.push(subjectObject);	
+	var subJson = JSON.stringify(currentSubjects);
+	localStorage.setItem(`subjects`, subJson);
+	sessionStorage.removeItem("cCode");
+	sessionStorage.removeItem("cno");
+	sessionStorage.removeItem("cdesc");
+	sessionStorage.removeItem("timeStart");
+	sessionStorage.removeItem("timeEnd");
+	sessionStorage.removeItem("days");
+	sessionStorage.removeItem("room");
+	
+	document.getElementById("may-mali").innerHTML = "Subject Added!"
+	window.location = "schedule.html"
+}
+
 
 if(document.getElementById("plusnavbutton") != null){
 	document.getElementById("plusnavbutton").addEventListener("click", toggleNav);
