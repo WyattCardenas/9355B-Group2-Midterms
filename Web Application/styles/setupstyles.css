@@ -224,42 +224,23 @@ select>option#day{
 	color: #696969;
 }
 
-@media only screen and (min-width: 376px){
-	#suject-form .text{
-		display: inline-block;
-		float: left;
-		color: #4484CE;
-	}
-	
-	#subject-form input{
-		width: initial;
-		height: 20px;
-		padding-left: 7px;
-		background-color: #CAEBF2;
-	}
-
-	.text{
-		color: #696969;
-	}
-}
-
-@media only screen and (min-width: 768px){
+@media only screen and (min-width: 320px){
 	.container h1{
-		margin-top: 60px;
-		margin-bottom: 0px;
-		font-size: 90px;
-	}
-
-	#get-started{
-		font-size: 35px;
-	}
-
-	#start-end-form p{
+		margin-top: 20px;
+		margin-bottom: 28px;
 		font-size: 40px;
 	}
 
+	#get-started{
+		font-size: 18px;
+	}
+
+	#start-end-form p{
+		font-size: 20px;
+	}
+
 	#start select{
-		font-size: 30px;
+		font-size: 16px;
 	}
 
 	#start option{
@@ -267,7 +248,7 @@ select>option#day{
 	}
 
 	#end select{
-		font-size: 30px;
+		font-size: 16px;
 	}
 
 	#end option{
@@ -275,15 +256,118 @@ select>option#day{
 	}
 
 	.button-wrapper button{
-		font-size: 35px;
+		font-size: 20px;
 	}
 
 	#warning{
-		font-size: 40px;
+		font-size: 20px;
 	}
 
 	.text{
-		font-size: 35px;
+		font-size: 18px;
+	}
+
+	#may-mali{
+		font-size: 16px;
+	}
+
+	#subject-form #cCode{
+		width: 60%;
+		height: 18px;
+		font-size: 15px;
+	}
+
+	#subject-form #cno{
+		width: 60%;
+		height: 18px;
+		font-size: 15px;
+	}
+
+	#subject-form #cdesc{
+		width: 60%;
+		height: 18px;
+		font-size: 15px;
+	}
+
+	#subject-form #time-start{
+		width: 85px;
+		height: 20px;
+		font-size: 13px;
+	}
+
+	#subject-form #time-end{
+		width: 85px;
+		height: 20px;
+		font-size: 13px;
+	}
+
+	#subject-form #room{
+		width: 60%;
+		height: 18px;
+		font-size: 15px;
+	}
+
+	#recorded-subs{
+		font-size: 15px;
+	}
+
+@media only screen and (min-width: 360px){
+	.container h1{
+		margin-top: 20px;
+		margin-bottom: 45px;
+		font-size: 50px;
+	}
+}
+
+@media only screen and (min-width: 375px){
+	.container h1{
+		margin-top: 20px;
+		margin-bottom: 50px;
+		font-size: 50px;
+	}
+}
+
+@media only screen and (min-width: 768px){
+	.container h1{
+		margin-top: 60px;
+		margin-bottom: 60px;
+		font-size: 80px;
+	}
+
+	#get-started{
+		font-size: 30px;
+	}
+
+	#start-end-form p{
+		font-size: 23px;
+	}
+
+	#start select{
+		font-size: 22px;
+	}
+
+	#start option{
+		font-size: 16px;
+	}
+
+	#end select{
+		font-size: 22px;
+	}
+
+	#end option{
+		font-size: 16px;
+	}
+
+	.button-wrapper button{
+		font-size: 30px;
+	}
+
+	#warning{
+		font-size: 30px;
+	}
+
+	.text{
+		font-size: 25px;
 	}
 
 	#may-mali{
@@ -292,60 +376,120 @@ select>option#day{
 
 	#subject-form #cCode{
 		width: 55%;
-		height: 33px;
-		font-size: 25px;
+		height: 30px;
+		font-size: 20px;
 	}
 
 	#subject-form #cno{
 		width: 55%;
-		height: 33px;
-		font-size: 25px;
+		height: 30px;
+		font-size: 20px;
 	}
 
 	#subject-form #cdesc{
 		width: 55%;
-		height:33px;
-		font-size: 25px;
+		height:30px;
+		font-size: 20px;
 	}
 
 	#subject-form #time-start{
-		width: 30%;
-		height: 33px;
-		font-size: 25px;
+		width: 115px;
+		height: 30px;
+		font-size: 18px;
 	}
 
 	#subject-form #time-end{
-		width: 32%;
-		height: 33px;
-		font-size: 25px;
+		width: 115px;
+		height: 30px;
+		font-size: 18px;
 	}
 
 	#subject-form #room{
 		width: 55%;
-		height: 33px;
-		font-size: 25px;
+		height: 30px;
+		font-size: 20px;
 	}
 
 	#subject-form .day{
-		width: 30px;
+		width: 20px;
+		height: 20px;
 	}
 
 	#subject-form .days-container{
-		font-size: 28px;
-	}
-
-	#recorded-subs{
 		font-size: 25px;
 	}
 }
 
 @media only screen and (min-width: 1024px){
+	.container h1{
+		margin-top: 80px;
+		margin-bottom: 0px;
+		font-size: 60px;
+	}
+
+	#get-started{
+		font-size: 25px;
+	}
+
 	#subject-form .day{
-		width: 30px;
+		width: 25px;
 	}
 
 	#subject-form .days-container{
-		font-size: 28px;
+		font-size: 25px;
+	}
+
+	.button-wrapper button{
+		font-size: 25px;
+		margin-bottom: 30px;
+	}
+
+	.text{
+		font-size: 25px;
+	}
+
+	#may-mali{
+		font-size: 25px;
+	}
+
+	#subject-form #cCode{
+		width: 55%;
+		height: 30px;
+		font-size: 20px;
+	}
+
+	#subject-form #cno{
+		width: 55%;
+		height: 30px;
+		font-size: 20px;
+	}
+
+	#subject-form #cdesc{
+		width: 55%;
+		height:30px;
+		font-size: 20px;
+	}
+
+	#subject-form #time-start{
+		width: 12%;
+		height: 30px;
+		font-size: 20px;
+	}
+
+	#subject-form #time-end{
+		width: 12%;
+		height: 30px;
+		font-size: 20px;
+	}
+
+	#subject-form #room{
+		width: 55%;
+		height: 30px;
+		font-size: 20px;
+	}
+
+	#recorded-subs{
+		font-size: 22px;
 	}
 }
 
