@@ -13,33 +13,42 @@
   
   <body onload="displaySubjects()">
       <div class="main-container">
-  <div class="dropDown">
-      Subject: <select name="subject" id="subject"></select>
-  </div>  
+          <div class="topthing">
+            <header>
+              <h1>Quiz</h1>
+            </header>
+          </div>
+      </div>
+          <header>
+            <h2>New Quiz</h2>
+          </header>
 
+          <div class="dropDown">
+            Subject: <select name="subject" id="subject"></select>
+          </div>  
+          
     <div>
-      <h1>Quiz Title</h1>
-      <input id="title"></input>
+      <h3>Quiz Title</h3>
+      <input id="title">
     </div>
 
     <div id="createQuiz" class="hide">
       <div class="grid">
           <div id="quiz">
 
-            <h2 id="q">Question 1</h2>
-            <input id="question" placeholder="question"></input>
+            <h3 id="q">Question 1</h3>
+            <input id="question" placeholder="question">
 
-            <h2>Choices</h2>
+            <h3>Choices</h3>
             <div class="inputs">
-              <input id="choice0" placeholder="choice1"></input>
-              <input id="choice1" placeholder="choice2"></input>
-              <input id="choice2" placeholder="choice3"></input>
-              <input id="choice3" placeholder="choice4"></input>
-            </div> 
+              <input id="choice0" placeholder="choice1">
+              <input id="choice1" placeholder="choice2">
+              <input id="choice2" placeholder="choice3">
+              <input id="choice3" placeholder="choice4">
+            </div>
 
-            <h2>Answer</h2>
-            <input id="answer"></input>
-
+            <h3>Answer</h3>
+            <input id="answer">
             <div class="buttons">
               <button id="backButton" onclick="previousQuestion()">Back</button>
               <button id="createButton" onclick="createQuiz()">Done</button>
@@ -47,7 +56,7 @@
             </div>
 
             <div>
-              <h1 id="titleError"></h1>
+              <p id="titleError"></p>
             </div>
 
             <footer>
@@ -57,77 +66,99 @@
         </div>
     </div>
 
+
     <div id = "text_to_speech"> 
-      <h1 class="center" id="headline">
-        Is it hard to type? Try speaking
-      </h1>
+        <h1 class="center" id="headline">
+          Is it hard to type? Try speaking
+        </h1>
 
-      <div id="info">
-        <p id="info_start">Click on the microphone icon and begin speaking.</p>
-        <p id="info_speak_now">Speak now.</p>
-        <p id="info_no_speech">No speech was detected. You may need to adjust your
-          <a href="//support.google.com/chrome/bin/answer.py?hl=en;answer=1407892">
-            microphone settings
-          </a>.
-        </p>
+        <div id="info">
+          <p id="info_start">Click on the microphone icon and begin speaking.</p>
+          <p id="info_speak_now">Speak now.</p>
+          <p id="info_no_speech">No speech was detected. You may need to adjust your
+            <a href="//support.google.com/chrome/bin/answer.py?hl=en;answer=1407892">
+              microphone settings
+            </a>.
+          </p>
 
-        <p id="info_no_microphone">
-          No microphone was found. Ensure that a microphone is installed and that
-          <a href="//support.google.com/chrome/bin/answer.py?hl=en;answer=1407892">
-            microphone settings
-          </a> are configured correctly.
-        </p>
-        
-        <p id="info_allow">Click the "Allow" button above to enable your microphone.</p>
-        <p id="info_denied">Permission to use microphone was denied.</p>
-        <p id="info_blocked">Permission to use microphone is blocked. To change, 
-          go to chrome://settings/contentExceptions#media-stream
-        </p>
-        
-        <p id="info_upgrade">Web Speech API is not supported by this browser.
-           Upgrade to <a href="//www.google.com/chrome">Chrome</a>
-           version 25 or later.
-        </p>     
-      </div>
-
-      <div class="right">
-        <button id="start_button" onclick="startButton(event)">
-          <img id="start_img" src="images/mic.gif" alt="Start"></button>
-      </div>
-      
-      <div id="results">
-        <span id="final_span" class="final"></span>
-        <span id="interim_span" class="interim"></span>
-      </div>
-
-      <div class="center">
-        <div class="sidebyside">
-          <button id="copy_button" class="button" onclick="copyButton()">
-            Copy and Paste
-          </button>
+          <p id="info_no_microphone">
+            No microphone was found. Ensure that a microphone is installed and that
+            <a href="//support.google.com/chrome/bin/answer.py?hl=en;answer=1407892">
+              microphone settings
+            </a> are configured correctly.
+          </p>
           
-          <div id="copy_info" class="info">
-            Press Control-C to copy text.<br>(Command-C on Mac.)
+          <p id="info_allow">Click the "Allow" button above to enable your microphone.</p>
+          <p id="info_denied">Permission to use microphone was denied.</p>
+          <p id="info_blocked">Permission to use microphone is blocked. To change, 
+            go to chrome://settings/contentExceptions#media-stream
+          </p>
+          
+          <p id="info_upgrade">Web Speech API is not supported by this browser.
+             Upgrade to <a href="//www.google.com/chrome">Chrome</a>
+             version 25 or later.
+          </p>     
+        </div>
+
+        <div class="right">
+          <button id="start_button" onclick="startButton(event)">
+            <img id="start_img" src="images/mic.gif" alt="Start"></button>
+        </div>
+        
+        <div id="results">
+          <span id="final_span" class="final"></span>
+          <span id="interim_span" class="interim"></span>
+        </div>
+
+        <div class="center">
+          <div class="sidebyside">
+            <button id="copy_button" class="button" onclick="copyButton()">
+              Copy and Paste
+            </button>
+            
+            <div id="copy_info" class="info">
+              Press Control-C to copy text.<br>(Command-C on Mac.)
+            </div>
+          </div>
+          
+          <div class="sidebyside">
+            <button id="email_button" class="button" onclick="emailButton()">
+              Create Email
+            </button>
+            
+            <div id="email_info" class="info">
+              Text sent to default email application.<br>
+              (See chrome://settings/handlers to change.)
+            </div>
+          </div>
+          
+          <div id="div_language">
+            <select id="select_language" onchange="updateCountry()"></select>
+            <select id="select_dialect"></select>
           </div>
         </div>
-        
-        <div class="sidebyside">
-          <button id="email_button" class="button" onclick="emailButton()">
-            Create Email
-          </button>
-          
-          <div id="email_info" class="info">
-            Text sent to default email application.<br>
-            (See chrome://settings/handlers to change.)
-          </div>
-        </div>
-        
-        <div id="div_language">
-          <select id="select_language" onchange="updateCountry()"></select>
-          <select id="select_dialect"></select>
-        </div>
       </div>
-    </div>
-    </div>
-  </body>
+
+
+        <nav class="bottomnavthing">
+		<ul>
+			<a href="index.html"><li class="navblock">
+				<span class="icon"><img src="images/home.png" alt=" Home icon"></span>
+				<span class="page-name">Home</span>
+			</li></a>
+			<a href="notes.html"><li class="navblock">
+				<span class="icon"><img src="images/notes.png" alt="Notes icon"></span>
+				<span class="page-name">Notes</span>
+			</li></a>
+			<a href="review.html"><li class="navblock">
+				<span class="icon"><img src="images/review.png" alt="Review icon"></span>
+				<span class="page-name">Review</span>
+			</li></a>
+			<a href="schedule.html"><li class="navblock">
+				<span class="icon"><img src="images/sched.png" alt="Schedule icon"></span>
+				<span class="page-name">Schedule</span>
+			</li></a>
+		</ul>
+	</nav>
+</body>
 </html>
