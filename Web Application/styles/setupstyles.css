@@ -3,18 +3,22 @@
 */
 
 @font-face {
-	font-family: 'FeatherScript';
-	src: url(../fonts/FeatherScript.otf);
+	font-family: 'simplicity';
+	src: url(../fonts/Simplicity.ttf);
 }
 
 @font-face {
-	font-family: 'fourhand';
-	src: url(../fonts/fourhand.otf);
+	font-family: 'lemonsun';
+	src: url(../fonts/DKLemonYellowSun.otf);
 }
 
 @font-face {
 	font-family: 'chewedpen';
 	src: url(../fonts/chewedpenbb.otf);
+}
+@font-face {
+	font-family: 'hellolori';
+	src: url(../fonts/hellolori.ttf);
 }
 
 body{
@@ -38,7 +42,7 @@ body>div.container{
 */
 
 #header{
-	font-family: FeatherScript;
+	font-family:chewedpen;
 	color: #696969;
 }
 
@@ -49,7 +53,7 @@ body>div.container{
 	transform: translateY(-10%);
 	transform: translateX(-50%);
 	font-size: 80px;	
-	font-family: FeatherScript;
+
 }
 
 .get-started-wrapper{
@@ -69,7 +73,7 @@ body>div.container{
 	border-radius: 50px;
 	text-decoration: none;
 	font-size: 25px;
-	font-family: fourhand;
+	font-family: simplicity;
 	margin: auto;
 }
 
@@ -87,24 +91,51 @@ body>div.container{
 	MONTH/DAYS
 */
 
-#month{
-	font-family: chewedpen;
-	font-size: 22px;
+.smonth{
+	font-family: hellolori;
+	font-size: 14px;
+	padding: 3px;
+	color: #696969;
+}
+
+.sday{
+	font-family: hellolori;
+	font-size: 14px;
 	padding: 3px;
 	color: #696969
 }
 
-#day{
-	font-family: chewedpen;
-	font-size: 22px;
+.syear{
+	font-family: hellolori;
+	font-size: 14px;
 	padding: 3px;
 	color: #696969
 }
 
+.emonth{
+	font-family: hellolori;
+	font-size: 14px;
+	padding: 3px;
+	color: #696969;
+}
+
+.eday{
+	font-family: hellolori;
+	font-size: 14px;
+	padding: 3px;
+	color: #696969
+}
+
+.eyear{
+	font-family: hellolori;
+	font-size: 14px;
+	padding: 3px;
+	color: #696969
+}
 
 
 #start-end{
-	font-family: fourhand;
+	font-family: simplicity;
 	font-size: 25px;
 	color: #696969;
 }
@@ -128,7 +159,7 @@ body>div.container{
 	border-radius: 50px;
 	text-decoration: none;
 	font-size: 25px;
-	font-family: fourhand;
+	font-family: Simplicity;
 }
 
 .button:hover{
@@ -143,17 +174,17 @@ body>div.container{
 
 .text{
 	font-size: 22px;
-	font-family: fourhand;
+	font-family: simplicity;
 }
 
 .days-container{
-	font-family: fourhand;
+	font-family: lemonsun;
 	font-size: 17px;
 	color: #696969;
 }
 
 #may-mali{
-	font-family: chewedpen;
+	font-family: lemonsun;
 	font-size: 20px;
 	color: #F9CF00;
 }
@@ -168,6 +199,7 @@ select, input[type="text"]{
 	color: #696969;
 	outline: none;
 	border-radius: 5px;
+	font-family: hellolori;
 }
 
 select>option{
