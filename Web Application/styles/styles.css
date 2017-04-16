@@ -271,6 +271,24 @@ h2{
     font-family: helloLori;
     display: block;
 }
+.addAlarm{
+    border: none;
+	color: #F3F3F3;
+	background-color: #F9CF00;
+	padding: 8px 15px;
+	transition: all .3s ease;
+	border-radius: 25px;
+	text-decoration: none;
+	font-size: 22px;
+	margin: auto;
+    
+}
+
+.addAlarm:hover{
+    background-color: #F3F3F3;
+	color: #F9CF00;
+	border-radius: 50px;
+}
 
 .remsave{
     top: 75%;
@@ -279,8 +297,9 @@ h2{
 	transform: translateY(-50%);
 	transform: translateX(-50%);
 }
+
 #subbutton{
-   border: none;
+    border: none;
 	color: #F3F3F3;
 	background-color: #FF3B3F;
 	padding: 15px 20px;
@@ -291,7 +310,6 @@ h2{
 	font-family: simplicity;
 	margin: auto;
 }
-
 #subbutton:hover{
     background-color: #F3F3F3;
 	color: #FF3B3F;
@@ -301,7 +319,7 @@ h2{
 #message{
     font-family: lemonsun;
     font-size: 25px;
-    color: #F19F4D;
+    color: #FF3B3F;
 }
 
 .alertcont{
@@ -315,20 +333,43 @@ h2{
 #ok{
     border: none;
 	color: #F3F3F3;
-	background-color: #FF3B3F;
+	background-color: #F19F4D;
 	padding: 15px 20px;
 	transition: all .3s ease;
 	border-radius: 25px;
 	text-decoration: none;
 	font-size: 18px;
 	font-family: simplicity;
+    font-weight:600;
 	margin: auto;
 }
 
 #ok:hover{
     background-color: #F3F3F3;
-	color: #FF3B3F;
+	color: #F19F4D;
 	border-radius: 25px;
+}
+.everyTime{
+    font-family: hellolori;
+    padding-right: 25px;
+    
+}
+
+.deleteRem{
+    border: none;
+	color: #F3F3F3;
+	background-color: #F19F4D;
+	padding: 8px 17px;
+	transition: all .3s ease;
+	border-radius: 25px;
+	text-decoration: none;
+	font-size: 22px;
+	margin: auto;
+}
+.deleteRem:hover{
+    background-color: #F3F3F3;
+	color: #F19F4D;
+	border-radius: 50px;
 }
 
 /* REVIEWER */

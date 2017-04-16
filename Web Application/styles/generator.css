@@ -6,6 +6,11 @@ body{
   height: 100%;
 }
 
+.main-container{
+	color: #F3F3F3;
+	margin-bottom: 70px;
+}
+
 .buttons{
   text-align: center;
   margin-top: 30px;
