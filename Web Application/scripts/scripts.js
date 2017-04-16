@@ -51,7 +51,7 @@ function today(){
 
 		var titles = document.getElementsByClassName("title");
 		for( i=0; i<titles.length; i++){
-			titles[i].addEventListener("click", show);
+			titles[i].addEventListener("click", showA);
 		}
 
 		var reminders = JSON.parse(localStorage.getItem("reminders"));
@@ -170,6 +170,16 @@ function checkRem(){
 	}
 }
 
+function showA() {
+	var toggle = this.attributes["data-toggle"].value;
+	var thing = document.getElementById(toggle);
+	if(thing.className === "hide"){
+		thing.className = "remcontent"
+	}else{
+		thing.className = "hide";
+	}
+}
+
 /********************
 	
 	SETUP.HTML
@@ -219,16 +229,6 @@ function setup(){
    			}
 		}
 	}
-}
-
-/**
-
-	AN IDEA FOR AUTOSAVING
-
-**/
-function autoSave(){
-
-	setTimeout(autosave(), 10000);
 }
 
 function update(){
@@ -939,7 +939,7 @@ function saveEditedNotes(el, index, key){
 }
 
 function conf(f){
-	document.getElementById("alert").className = "confirm";
+	document.getElementById("alert").className = "conf";
 	document.getElementById("ok").setAttribute("onclick", `${f}`);
 	document.getElementById("message").innerText = "Are you sure you want to delete?"
 	document.getElementById("cancel").addEventListener("click",function(){

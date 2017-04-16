@@ -329,11 +329,12 @@ h2{
     border: none;
 	color: #F3F3F3;
 	background-color: #FF3B3F;
-	padding: 10px;
+	padding: 15px 20px;
 	transition: all .3s ease;
-	border-radius: 30px;
+	border-radius: 25px;
 	text-decoration: none;
-	font-size: 15px;
+	font-size: 18px;
+    font-weight:700;
 	font-family: simplicity;
 	margin: auto;
 }
@@ -373,7 +374,7 @@ h2{
     border: none;
 	color: #F3F3F3;
 	background-color: #F19F4D;
-	padding: 15px 20px;
+	padding: 15px 15px;
 	transition: all .3s ease;
 	border-radius: 25px;
 	text-decoration: none;
@@ -441,18 +442,19 @@ h3{
 
 .schedule-container {
 	color: black;
-	font-family: kingsmen;
-	font-size: 16px;
+	font-family: Simplicity;
+	font-size: 25px;
 }
 
 .day {
-	font-family: fourhand;
+	font-family: Simplicity;
 	padding: 15px;
-	font-size: 20px;
+	font-size: 25px;
+    font-weight:800;
 	border-bottom: 2px solid black;
 	margin: auto;
 	color: #696969;
-	background-color: #CAEBF2;
+	background-color: #E6BEAE;
 }
 
 #mon {
@@ -567,10 +569,38 @@ input{
 	}
 }
 
-@media only screen and (min-width: 1024px){
+@media only screen and (min-width: 768px){
 	.navblock{
 		width: 25%;
 	}
+    .today{
+        float: center;
+        width: 53%;
+        display: block;
+        margin: auto;
+    }
+
+    .classes{
+        float:left;
+        width:45%;
+        font-size: 18px;
+        border: 2px solid black;
+        border-width: auto;
+        padding-top: 15px;
+        margin-top: 15px;
+        margin-left: 15px; 
+    }
+    
+    .reminders{
+        float:right;
+        width: 47%;
+        border: 2px solid black;
+        margin: auto;
+        font-size: 20px
+        padding-top: 20px;
+        margin-top: 15px;
+        margin-right: 15px;
+    }
 }
 
 
