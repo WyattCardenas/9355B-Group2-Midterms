@@ -186,12 +186,18 @@ body>div.container{
 #may-mali{
 	font-family: lemonsun;
 	font-size: 20px;
-	color: #F9CF00;
+	color: #F19F4D;
+    font-weight: 800;
+}
+
+#warning{
+    color: #F19F4D;
+    font-weight: 900;
 }
 
 #recorded-subs{
-	font-family: chewedpen;
-	color: #F9CF00;
+	font-family: hellolori;
+	color: #4484CE;
 }
 
 select, input[type="text"]{
@@ -200,6 +206,10 @@ select, input[type="text"]{
 	outline: none;
 	border-radius: 5px;
 	font-family: hellolori;
+}
+
+select, input[type="time"]{
+    font-family: hellolori;
 }
 
 select>option{

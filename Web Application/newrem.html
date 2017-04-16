@@ -10,11 +10,11 @@
 	<div class="main-container">
 		<div class="topthing">
 			<header>
-				<h2>Reminders</h2>
+				<h1>Reminders</h1>
 			</header>
 		</div>
 		<header>
-			<h3>New Reminder</h3>
+			<h2>New Reminder</h2>
 		</header>
 		<div class="creation">
 			<p>Subject: <select name="subject" id="subject">
@@ -27,15 +27,19 @@
 				<span id="a"><button id="1" class="addAlarm" onclick="addAlarm(this)">+</button></span>
 			</p>
 			<p>Additional Notes: <textarea id="additionalNotes" cols="30" rows="5"></textarea></p>
-
-			<button id="subbutton" onclick="saveRem()">Save </button>
+            
+            <div class="remsave">
+			     <button id="subbutton" onclick="saveRem()">Save </button>
+            </div>
 		</div>
 	</div>
 
 	<div id="alert" class="hide">
 		<div class="alertcont">
 			<p id="message"></p>
-			<button id="ok">Okay</button>
+            <div class="okaybut">
+			     <button id="ok">Okay</button>
+            </div>
 		</div>
 	</div>
 

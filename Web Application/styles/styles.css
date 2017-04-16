@@ -39,18 +39,6 @@ html, body{
 	margin-bottom: 70px;
 }
 
-#subbutton{
-	border: none;
-	color: #F3F3F3;
-	background-color: #FF3B3F;
-	padding: 10px 15px;
-	transition: all .3s ease;
-	border-radius: 50px;
-	text-decoration: none;
-	font-size: 25px;
-	font-family: chewedpen;
-	margin: auto;
-}
 
 /* BOTTOM NAV THING */
 .bottomnavthing{
@@ -60,7 +48,7 @@ html, body{
 	background-color: #3A445D;
 	text-align: center;
 	z-index: 50;
-	border-top: 1px solid black;
+	border-top: 1px solid white;
 	font-family: chewedpen ;
 	font-size: 18px;
 }
@@ -74,12 +62,13 @@ html, body{
 .bottomnavthing ul li{
 	display: inline-block;
 	padding: 15px 10px;
-	border-left: 1px solid black;
+	border-left: 1px solid white;
 	color:white;
 }
 
-.bottomnavthing ul li:first-child{
-	border-left: none;
+.bottomnavthing ul li:last-child{
+	border-left: 1px solid white;
+	border-right:none; 
 }
 
 .bottomnavthing ul li:hover{
@@ -127,9 +116,9 @@ html, body{
 	color: #696969;
 }
 
-.tophead h2{
+h2{
 	padding-left: 15px;
-	font-family: chewedpen;
+	font-family:hellolori;
 	color: #696969;
 }
 
@@ -147,9 +136,17 @@ html, body{
 	font-family: hellolori;
 	font-size: 20px;
 	background-color: #E6BEAE;
-	color: #696969;
+	color: black;
 	border-top: 1px solid grey;
 	border-bottom: 2px solid black;
+}
+
+#day{
+    color: #696969;
+}
+
+#date{
+    color: #696969;
 }
 
 .reminders{
@@ -173,7 +170,7 @@ html, body{
 
 /* NOTES */
 .textbox{
-	width: 100%;
+	width: 80%;
 	height: 100%;
 	padding: 10px;
 	margin-bottom: 0.5px;
@@ -181,57 +178,157 @@ html, body{
 
 .content{
 	font-family: fourhand;
-	padding: 15px;
+	padding-right: 15px;
 	font-size: 25px;
 	margin: auto;
 	color: #F3F3F3;
 	background-color: #4484CE;
+}
+#subject{
+    display: inline-block;
+    padding: 5px;
+    font-family: simplicity;
+    font-weight: 600;
+    font-size: 22px;
+    color: #4484CE;
+}
+
+.creation{
+    top: 95%;
+	left: 80%;
+}
+#titleForm{
+    display: block;
+    padding: 15px;
+    align-self: auto;
+    font-family: hellolori;
+}
+
+#textForm{
+    display: block;
+    padding: 25px;
+    font-family: hellolori;
 }
 
 #notes {
 	border-bottom: 2px solid black;
 }
 
-.checkboxes{
-	padding: 0 30px;
+.icons{
+    top: 75%;
+	left: 80%;
+	position: absolute;
+	transform: translateY(-50%);
+	transform: translateX(-50%);
 }
 
-.checkboxes input{
-	float: left;
+#save-notes{
+    border: none;
+	color: #F3F3F3;
+	background-color: #FF3B3F;
+	padding: 15px 20px;
+	transition: all .3s ease;
+	border-radius: 30px;
+	text-decoration: none;
+	font-size: 22px;
+	font-family: simplicity;
+	margin: auto;
 }
 
-.terms {
-	display:block;
-	margin: 0 0 1em 0;
- 	height: 2em;
-  	padding: 0 0.3em;
+#save-notes:hover{
+    background-color: #F3F3F3;
+	color: #FF3B3F;
+	border-radius: 50px;
 }
 
-#prelim{
-	padding-top: -10px;
-	
+/*REMINDERS */
+
+.creation p{
+    color: #4484CE;
+    font-family: simplicity;
+    font-weight: 600;
+    font-size: 18px;
+    display: block;
+    padding-left: 25px;
+}
+.creation #subject{
+    color: black;
+}
+#title{
+    font-family: hellolori;
 }
 
-.subdrop{
-	padding-bottom: 100px;
-	padding-top: 20px;
-	color: #696969;
+#timeDue{
+    font-family: hellolori;
 }
 
-.notedrop{
-    background-color: #CAEBF2;
-    min-width: 160px;
-    box-shadow: 0px 5px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 16px;
-    z-index: 1;
+#remind{
+  font-family: simplicity;  
+    
 }
 
-.notedrop a{
-	display: block;
+#additionalNotes{
+    font-family: helloLori;
+    display: block;
 }
 
-.subdrop.notedrop{
-	display: block;
+.remsave{
+    top: 75%;
+	left: 80%;
+	position: absolute;
+	transform: translateY(-50%);
+	transform: translateX(-50%);
+}
+#subbutton{
+   border: none;
+	color: #F3F3F3;
+	background-color: #FF3B3F;
+	padding: 15px 20px;
+	transition: all .3s ease;
+	border-radius: 30px;
+	text-decoration: none;
+	font-size: 22px;
+	font-family: simplicity;
+	margin: auto;
+}
+
+#subbutton:hover{
+    background-color: #F3F3F3;
+	color: #FF3B3F;
+	border-radius: 50px;
+}
+
+#message{
+    font-family: lemonsun;
+    font-size: 25px;
+    color: #F19F4D;
+}
+
+.alertcont{
+    top: 65%;
+	left: 8%;
+	position: absolute;
+	transform: translateY(-50%);
+	transform: translateX(-50%);
+} 
+
+#ok{
+    border: none;
+	color: #F3F3F3;
+	background-color: #FF3B3F;
+	padding: 15px 20px;
+	transition: all .3s ease;
+	border-radius: 25px;
+	text-decoration: none;
+	font-size: 18px;
+	font-family: simplicity;
+	margin: auto;
+}
+
+#ok:hover{
+    background-color: #F3F3F3;
+	color: #FF3B3F;
+	border-radius: 25px;
 }
 
 /* REVIEWER */
