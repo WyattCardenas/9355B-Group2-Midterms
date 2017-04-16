@@ -171,8 +171,8 @@ function createQuiz(){
         }else{
             var element = document.getElementById("titleError");
             element.innerHTML = `You already have a quiz named "${title}"`;
-            element.innerHTML += "<h1>Please rename the title of this quiz</h1>";
-            element.innerHTML += "<h1>or edit the quiz that already has this title</h1>";
+            element.innerHTML += "<p>Please rename the title of this quiz</p>";
+            element.innerHTML += "<p>or edit the quiz that already has this title</p>";
         }
     }
 }

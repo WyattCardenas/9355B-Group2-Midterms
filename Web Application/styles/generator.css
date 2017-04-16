@@ -214,7 +214,14 @@ input{
     font-family: lemonsun;
     text-align: center;
     color: #FF3B3F;
-    font-size: 25px;
+    font-size: 30px;
+}
+
+#titleError p{
+    font-family: lemonsun;
+    text-align: center;
+    color: #F19F4D;
+    font-size: 22px;
 }
 
 /* TEXT TO SPEECH */

@@ -248,8 +248,7 @@ h2{
     font-weight: 600;
     font-size: 18px;
     display: block;
-    text-align: center;
-    
+    padding-left: 25px;
 }
 .creation #subject{
     color: black;
@@ -316,19 +315,6 @@ h2{
 	border-radius: 50px;
 }
 
-#cancel{
-    border: none;
-	color: #F3F3F3;
-	background-color: #FF3B3F;
-	padding: 15px 20px;
-	transition: all .3s ease;
-	border-radius: 30px;
-	text-decoration: none;
-	font-size: 22px;
-	font-family: simplicity;
-	margin: auto;
-}
-
 #message{
     font-family: lemonsun;
     font-size: 25px;
@@ -336,6 +322,26 @@ h2{
 }
 
 #ok{
+    border: none;
+	color: #F3F3F3;
+	background-color: #4484CE;
+	padding: 15px 20px;
+	transition: all .3s ease;
+	border-radius: 25px;
+	text-decoration: none;
+	font-size: 18px;
+	font-family: simplicity;
+    font-weight:600;
+	margin: auto;
+}
+
+#ok:hover{
+    background-color: #F3F3F3;
+	color: #4484CE;
+	border-radius: 25px;
+}
+
+#cancelbutton{
     border: none;
 	color: #F3F3F3;
 	background-color: #F19F4D;
@@ -349,11 +355,12 @@ h2{
 	margin: auto;
 }
 
-#ok:hover{
+#cancelbutton:hover{
     background-color: #F3F3F3;
 	color: #F19F4D;
 	border-radius: 25px;
 }
+
 .everyTime{
     font-family: hellolori;
     padding-right: 25px;
@@ -620,7 +627,7 @@ input{
 	border-radius: 7px;
 	height: 100%;
 	max-width: 100%;
-	background-color: lightblue;
+	background-color: lightgray;
 	text-align: center;
 	position: relative;
 }

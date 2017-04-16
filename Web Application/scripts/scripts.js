@@ -46,7 +46,7 @@ function today(){
 			document.getElementById("cancel").addEventListener("click", function(){
 				alert.className = "hide";
 			});
-			alertMessage.innerText = "Tapos na semester lmao";
+			alertMessage.innerText = "The semester has ended";
 		}
 
 		var titles = document.getElementsByClassName("title");
@@ -993,7 +993,7 @@ function saveRem(){
 
 	if(title === ""){
 		alert.className = "alert"
-		alertMessage.innerText = "walang title";
+		alertMessage.innerText = "no title";
 		document.getElementById("ok").addEventListener("click", function(){
 			alert.className = "hide";
 		});
