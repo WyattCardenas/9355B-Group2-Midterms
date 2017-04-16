@@ -3,6 +3,7 @@
 	INDEX.HTML
 
  ********************/
+
 function today(){
 	if(localStorage.getItem("hasData") === null){
 		window.location = "setup.html"
@@ -12,8 +13,8 @@ function today(){
 		var dayToday = ["sun","mon","tue","wed","thu","fri","sat"][d.getDay()];
 		var dayString = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d.getDay()];
 		var monthString = ["January","February","March","April","May","June","July","August","September","October","November","December"][d.getMonth()];
-		var year = d.getFullYear();
-		var date = d.getDate();
+		var yearNow = d.getFullYear();
+		var dateNow = d.getDate();
 		var fullDate = d.toString().split(' ').splice(1,3).join(' ');
 
 		document.getElementById("day").innerHTML = dayString;
@@ -35,17 +36,97 @@ function today(){
 			}
 		}
 
-				
-
 		var alert = document.getElementById("alert");
 		var alertMessage = document.getElementById("message");
 		var end = JSON.parse(localStorage.getItem("end"));
-		if( monthString === end.month && date == end.day && year == end.year){
-			alert.className = "alert";
-			var alertOk = document.getElementById("ok").addEventListener("click", function(){
+		if( monthString === end.month && dateNow == end.day && yearNow == end.year){
+			alert.className = "confirm";
+			document.getElementById("cancel").addEventListener("click", function(){
 				alert.className = "hide";
-			})
+			});
 			alertMessage.innerText = "Tapos na semester lmao";
+		}
+
+		var titles = document.getElementsByClassName("title");
+		for( i=0; i<titles.length; i++){
+			titles[i].addEventListener("click", show);
+		}
+
+		var reminders = JSON.parse(localStorage.getItem("reminders"));
+		for(var i=0; i<reminders.length; i++){
+			var timeDue = reminders[i].timeDue;
+			var date = timeDue.split(" ")[0];
+			var time = timeDue.split(" ")[1];
+			var year = date.split("-")[0];
+			var month = date.split("-")[1];
+			var day = date.split("-")[2];
+			var monthNowNumber;
+			if(monthToNumber(monthString) < 10){
+				monthNowNumber = `0${monthToNumber(monthString)}`;
+			}else{
+				monthNowNumber = monthToNumber(monthString);
+			}
+			if(year == yearNow && month == monthNowNumber && day-dateNow <= 3){
+				if(reminders[i].subject != undefined){
+					if(document.getElementById(`${reminders[i].subject.split("-")[0]}`) === null){
+						rem.innerHTML += `<span class="reminderTitle">${reminders[i].subject}</span>`
+						if(reminders[i].additionalNotes != undefined){
+							rem.innerHTML += `
+								<div id=${reminders[i].subject.split("-")[0]}>
+									<p>Title: ${reminders[i].title}<br><span id="${reminders[i].subject.split("-")[0]}-timeDue">Due: ${reminders[i].timeDue}</span><br>Additional Notes: ${reminders[i].additionalNotes}</p>
+								</div>	
+							`
+						}else{
+							rem.innerHTML += `
+								<div id=${reminders[i].subject.split("-")[0]}>
+									<p>Title: ${reminders[i].title}<br><span id="${reminders[i].subject.split("-")[0]}-timeDue">Due: ${reminders[i].timeDue}</span></p>
+								</div>	
+							`
+						}
+					}else{
+						var writeTo = document.getElementById(`${reminders[i].subject.split("-")[0]}`);
+						if(reminders[i].additionalNotes != undefined){
+							writeTo.innerHTML += `
+								<p>Title: ${reminders[i].title}<br><span id="${reminders[i].subject.split("-")[0]}-timeDue">Due: ${reminders[i].timeDue}</span><br>Additional Notes: ${reminders[i].additionalNotes}</p>	
+							`
+						}else{
+							writeTo.innerHTML += `
+								<p>Title: ${reminders[i].title}<br><span id="${reminders[i].subject.split("-")[0]}-timeDue">Due: ${reminders[i].timeDue}</span></p>	
+							`
+						}
+					}
+				}else{
+					if(document.getElementById("non-subject-reminders") === null){
+						rem.innerHTML += "<span class=reminderTitle>Non Subject Reminders</span>"
+						if(reminders[i].additionalNotes != undefined){
+							rem.innerHTML +=`
+								<div id="non-subject-reminders">
+									<p>Title: ${reminders[i].title}<br>Due: ${reminders[i].timeDue}<br>Additional Notes: ${reminders[i].additionalNotes}</p>
+								</div>
+							`
+						}else{
+							rem.innerHTML +=`
+								<div id="non-subject-reminders">
+									<p>Title: ${reminders[i].title}<br>Due: ${reminders[i].timeDue}</p>
+								</div>
+							`
+						}
+					}else{
+						var writeTo = document.getElementById("non-subject-reminders");
+						if(reminders[i].additionalNotes != undefined){
+							writeTo.innerHTML +=`
+								<p>Title: ${reminders[i].title}<br>Due: ${reminders[i].timeDue}<br>Additional Notes: ${reminders[i].additionalNotes}</p>
+							`
+						}else{
+							writeTo.innerHTML +=`
+								<p>Title: ${reminders[i].title}<br>Due: ${reminders[i].timeDue}</p>
+							`
+						}
+					}
+				}
+			}
+
+			
 		}
 	}
 }
@@ -131,7 +212,7 @@ function setup(){
 				}else if(subject.elements[i].type === "checkbox"){
 					subject.elements[i].checked = true;
 				}
-   }
+   			}
 		}
 	}
 }
@@ -343,14 +424,17 @@ function recordSubjects(){
 	var validTime = timeStart < timeEnd;
 	if(validTime === false){
 		document.getElementById("may-mali").innerHTML = "Time end is earlier than time start.";
-		return undefined;
-	}else if( validTime === true && (timeEnd.split(":")[0] - timeStart.split(":")[0]) > 3){
+		return;
+	}else if(validTime === true && (timeEnd.split(":")[0] - timeStart.split(":")[0]) > 10){
+		document.getElementById("may-mali").innerHTML = "classes are limited to 10 hours max";
+		return;
+	}else if(validTime === true && (timeEnd.split(":")[0] - timeStart.split(":")[0]) > 3){
 		var c = confirm("Are you sure your class lasts for" + (timeEnd.split(":")[0] - timeStart.split(":")[0]) + "hours?");
 		if ( c === false){
 			return;
 		}
-	}else if( timeStart >= "20:00" || timeStart <= "07:30" || timeEnd >= "20:00" || timeEnd <= "07:30"){
-		document.getElementById("may-mali").innerHTML = "You cannot have classes from 8:00 pm - 7:30 am";
+	}else if( timeStart < "07:30" || timeEnd <= "07:30"){
+		document.getElementById("may-mali").innerHTML = "You cannot have classes from 12:00 am - 7:30 am";
 		return;
 	}else if( validTime === true && (timeEnd.split(":")[0]==timeStart.split(":")[0])  && (timeEnd.split(":")[1] - timeStart.split(":")[1]) != 0 ){
 		if((timeEnd.split(":")[1] - timeStart.split(":")[1]) == 1){
@@ -358,9 +442,6 @@ function recordSubjects(){
 		}else{
 			document.getElementById("may-mali").innerHTML = "Your class cant last for only " + (timeEnd.split(":")[1] - timeStart.split(":")[1]) + " mins";	
 		}
-		return;
-	}else if(validTime === true && (timeEnd.split(":")[0] - timeStart.split(":")[0]) == 1 && (parseFloat(timeEnd.split(":")[1]) + parseFloat(timeStart.split(":")[1])) != 0 && (parseFloat(timeEnd.split(":")[1]) + parseFloat(timeStart.split(":")[1])) < 60){
-		document.getElementById("may-mali").innerHTML = "Your class cant last for only " + (parseFloat(timeEnd.split(":")[1]) + parseFloat(timeStart.split(":")[1])) + " mins";	
 		return;
 	}else{
 		document.getElementById("may-mali").innerHTML = "";
@@ -481,7 +562,7 @@ function show() {
 	var toggle = this.attributes["data-toggle"].value;
 	var thing = document.getElementById(toggle);
 	if(thing.className === "hide"){
-		thing.className = "";
+		thing.className = ""
 	}else{
 		thing.className = "hide";
 	}
@@ -512,26 +593,26 @@ function generateSchedule(){
  ********************/
 function saveNotes(){
 	var subject = document.getElementById("subject").value;
-	if(subject === ""){
-		alert("walang subject");
-		return;
-	}
 	var noteTitle=document.getElementById("titleForm").value;
 	if(noteTitle === ""){
 		alert("walang title");
 		return;
 	}
 	var noteContent=document.getElementById("textForm").value;
-	if(noteContent === ""){
-		alert("walang title");
-		return;
-	}
 
-	var noteObject = {
-		"subject" : subject,
-		"noteTitle" : noteTitle,
-		"noteContent" : noteContent 
+	if(subject != ""){
+		var noteObject = {
+			"subject" : subject,
+			"noteTitle" : noteTitle,
+			"noteContent" : noteContent 
+		}
+	}else{
+		var noteObject = {
+			"noteTitle" : noteTitle,
+			"noteContent" : noteContent 
+		}
 	}
+	
 	
 	var noteArray = [];
 	
@@ -591,16 +672,37 @@ function notes(){
 	var subDrop = document.getElementById("subdrop");
   	if( localStorage.getItem('notes') != null ){
    	 	var asd = JSON.parse(localStorage.getItem('notes'));
-
 		for( i=0; i<asd.length; i++){
-			if(document.getElementById(`${asd[i].subject.split("-")[0]}`) === null){
-				subDrop.innerHTML += `<span class="subject">${asd[i].subject}</span>`;
-				subDrop.innerHTML += `
-					<div id="${asd[i].subject.split("-")[0]}"> 
+			console.log(asd[i].subject)
+			if(asd[i].subject === undefined){
+				console.log("lanfglanfg");
+				if(document.getElementById("non-subject-notes") === null){
+					subDrop.innerHTML += "<span class=reminderTitle>Non Subject Reminders</span>"
+					subDrop.innerHTML +=`
+						<div id="non-subject-notes"> 
+							<div class="notedrop">
+								<a href="#" data-toggle="${asd[i].noteTitle}" class="title"> ${asd[i].noteTitle} 
+								</a> 
+								<div id="${asd[i].noteTitle}" class="hide"> 
+									<p> 
+										${asd[i].noteContent} 
+									</p>
+									<button onclick="editNotes(this, ${i}, 'notes')" style="display: inline; margin-left: 10px;">
+										Edit
+									</button>
+									<button onclick="confirm('del(${i})')" style="display: inline; margin-left: 10px;">
+										Delete
+									</button>
+								</div>
+							</div>
+						</div>
+					`
+				}else{
+					var writeTo = document.getElementById("non-subject-notes");
+					writeTo.innerHTML +=`
 						<div class="notedrop">
 							<a href="#" data-toggle="${asd[i].noteTitle}" class="title"> ${asd[i].noteTitle} 
 							</a> 
-							
 							<div id="${asd[i].noteTitle}" class="hide"> 
 								<p> 
 									${asd[i].noteContent} 
@@ -608,30 +710,56 @@ function notes(){
 								<button onclick="editNotes(this, ${i}, 'notes')" style="display: inline; margin-left: 10px;">
 									Edit
 								</button>
-								<button onclick="del(${i}, 'notes')" style="display: inline; margin-left: 10px;">
+								<button onclick="confirm('del(${i})')" style="display: inline; margin-left: 10px;">
 									Delete
 								</button>
 							</div>
 						</div>
-					</div>
-				`
+					`
+				}
+
 			}else{
-				var writeTo = document.getElementById(`${asd[i].subject.split("-")[0]}`);
-				writeTo.innerHTML += `
-					<div class="notedrop">
-						<a href="#" data-toggle="${asd[i].noteTitle}" class="title"> ${asd[i].noteTitle} 
-						</a> 
-						
-						<div id="${asd[i].noteTitle}" class="hide">
-							<p> ${asd[i].noteContent} </p>
-							<button onclick="editNotes(this, ${i}, 'notes')" style="display: inline; margin-left: 10px;">
-								Edit
-							</button>
-							<button onclick="del(${i}, 'notes')" style="display: inline; margin-left: 10px;">
-								X
-							</button>
+				console.log("Asd");
+				if(document.getElementById(`${asd[i].subject.split("-")[0]}`) === null){
+					subDrop.innerHTML += `<span class="subject">${asd[i].subject}</span>`;
+					subDrop.innerHTML += `
+						<div id="${asd[i].subject.split("-")[0]}"> 
+							<div class="notedrop">
+								<a href="#" data-toggle="${asd[i].noteTitle}" class="title"> ${asd[i].noteTitle} 
+								</a> 
+								
+								<div id="${asd[i].noteTitle}" class="hide"> 
+									<p> 
+										${asd[i].noteContent} 
+									</p>
+									<button onclick="editNotes(this, ${i}, 'notes')" style="display: inline; margin-left: 10px;">
+										Edit
+									</button>
+									<button onclick="confirm('del(${i})')" style="display: inline; margin-left: 10px;">
+										Delete
+									</button>
+								</div>
+							</div>
 						</div>
-					</div>`
+					`
+				}else{
+					var writeTo = document.getElementById(`${asd[i].subject.split("-")[0]}`);
+					writeTo.innerHTML += `
+						<div class="notedrop">
+							<a href="#" data-toggle="${asd[i].noteTitle}" class="title"> ${asd[i].noteTitle} 
+							</a> 
+							
+							<div id="${asd[i].noteTitle}" class="hide">
+								<p> ${asd[i].noteContent} </p>
+								<button onclick="editNotes(this, ${i}, 'notes')" style="display: inline; margin-left: 10px;">
+									Edit
+								</button>
+								<button onclick="confirm('del(${i})')" style="display: inline; margin-left: 10px;">
+									X
+								</button>
+							</div>
+						</div>`
+				}
 			}
 		}
 	}else{
@@ -710,7 +838,6 @@ function notes(){
 	}else{
 		rem.innerHTML = "<p> No reminders! </p>"
 	}
-
 }
 
 function editNotes(el, index, key){
@@ -731,34 +858,34 @@ function cancelEdit(){
 function saveEditedNotes(el, index, key){
 	var asd = JSON.parse(localStorage.getItem(`${key}`));
 	var currentNotes = asd[index].noteContent;
-	console.log(el.previousElementSibling);
 	var newNotes = el.previousElementSibling.value;
-	var c = confirm("Are you sure you want to edit?");
-	if(c === true){
-		asd[index].noteContent = newNotes;
-		localStorage.setItem(`${key}`, JSON.stringify(asd));
-		el.previousElementSibling.outerHTML = `
-			<p> ${asd[index].noteContent} </p>
-		`
-		el.setAttribute("onclick", `editNotes(this, ${i}, 'notes')`);
-		el.innerText = "Edit";
-	}else{
+	asd[index].noteContent = newNotes;
+	localStorage.setItem(`${key}`, JSON.stringify(asd));
+	window.location = "notes.html"
+}
+
+function confirm(f){
+	document.getElementById("alert").className = "confirm";
+	document.getElementById("ok").setAttribute("onclick", `${f}`);
+	document.getElementById("message").innerText = "Are you sure you want to delete?"
+	document.getElementById("cancel").addEventListener("click",function(){
+		document.getElementById("alert").className = "hide";
 		return;
-	}
+	});
+	
 }
 
 function del(index, key){
-	console.log(key)
-	var asd = JSON.parse(localStorage.getItem(`${key}`));
-	asd.splice(index, 1);
+	var asd = JSON.parse(localStorage.getItem("notes"));
+	asd.splice(parseFloat(index), 1);
 	var asdString = JSON.stringify(asd);
 	if ( asd.length === 0){
-		localStorage.removeItem(`${key}`);
+		localStorage.removeItem("notes");
 	}else{
-		localStorage.setItem(`${key}`,asdString);
+		localStorage.setItem("notes",asdString);
 	}
 
-	window.location = "notes.html"
+	window.location = "notes.html";
 }
 
 function displaySubjects(){

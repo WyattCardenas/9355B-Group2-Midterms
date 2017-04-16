@@ -10,7 +10,7 @@
     <script async type="text/javascript" src="scripts/speechToText.js"></script>
   </head>
   
-  <body onload="displaySubjects()">
+  <body onload="displaySubjects(), editQuiz()">
   <div class="dropDown">
       Subject: <select name="subject" id="subject"></select>
   </div>  
@@ -40,14 +40,14 @@
 
             <div class="buttons">
               <button id="backButton" onclick="previousQuestion()">Back</button>
-              <button id="createButton" onclick="createQuiz()">Done</button>
-              <button id="saveButton" onclick="saveQuestion()">Next</button>
+              <button id="createButton" onclick="overwriteQuiz()">Done</button>
+              <button id="saveButton" onclick="loadNextQuestion(window.z, window.quizClassCode, window.q)">Next</button>
             </div>
 
             <div>
               <h1 id="titleError"></h1>
             </div>
-
+            
             <footer>
               <p id="progress"></p>
             </footer>

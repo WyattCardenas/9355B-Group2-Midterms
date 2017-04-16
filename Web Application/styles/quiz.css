@@ -11,6 +11,10 @@
 	margin-right: 10px;
 }
 
+.notedrop{
+	text-align: center;
+}
+
 .grid h1{
 	background-color: #57636e;
 	font-size: 60px;
@@ -31,7 +35,7 @@
 
 .button{
 	background-color: #778897;
-    width: 100px;
+    width: 50%;
     font-size: 20px;
     color: white;
     border: 1px solid #136c6a;
@@ -68,4 +72,42 @@
 	color: #526772;
 	text-align: center;
 	font-size: 30px;
+}
+
+.sidenav2 {
+	display: block;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav2 a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav2 a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav2 .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    margin: 0;
+    margin-left: 50px;
+}
+
+#quiz{
+	text-align: center;
 }
