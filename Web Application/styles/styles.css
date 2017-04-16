@@ -151,6 +151,7 @@ h2{
 
 .reminders{
 	font-family: hellolori;
+	border: 1px solid black;
 	font-size: 16px;
 	color: #696969;
 }
@@ -163,8 +164,20 @@ h2{
 	color: black;
 	background-color: #EFEFEF;
 	padding-top: 10px;
-	border-top: 2px solid black;
-	border-bottom: 2px solid black;
+}
+
+.classes{
+	font-family: hellolori;
+	color: black;
+	border-bottom: 1px solid black;
+}
+
+.classes #classes{
+	padding-left: 20px;
+}
+
+.title{
+	padding-left: 10px;
 }
 
 
@@ -184,11 +197,10 @@ h2{
 	color: #F3F3F3;
 	background-color: #4484CE;
 }
+
 #subject{
     display: inline-block;
-    padding: 5px;
     font-family: simplicity;
-    font-weight: 600;
     font-size: 22px;
     color: #4484CE;
 }
@@ -197,6 +209,13 @@ h2{
     top: 95%;
 	left: 80%;
 }
+
+.creation form{
+	font-family: simplicity;
+	padding-left: 15px;
+	font-size: 20px;
+}
+
 #titleForm{
     display: block;
     padding: 15px;
@@ -240,6 +259,15 @@ h2{
 	color: #FF3B3F;
 	border-radius: 50px;
 }
+
+#subdrop{
+	padding-left: 10px;
+}
+
+#rems{
+	padding-left: 10px;
+}
+
 /*REMINDERS */
 
 .creation p{
@@ -262,23 +290,24 @@ h2{
 }
 
 #remind{
-  font-family: simplicity;  
-    
+  font-family: simplicity; 
+  padding: 10px; 
 }
 
 #additionalNotes{
     font-family: helloLori;
     display: inline-block;
 }
+
 .addAlarm{
     border: none;
 	color: #F3F3F3;
 	background-color: #F9CF00;
-	padding: 8px 15px;
+	padding: 10px 14px;
 	transition: all .3s ease;
-	border-radius: 25px;
+	border-radius: 20px;
 	text-decoration: none;
-	font-size: 22px;
+	font-size: 15px;
 	margin: auto;
     
 }
@@ -301,11 +330,11 @@ h2{
     border: none;
 	color: #F3F3F3;
 	background-color: #FF3B3F;
-	padding: 15px 20px;
+	padding: 10px;
 	transition: all .3s ease;
 	border-radius: 30px;
 	text-decoration: none;
-	font-size: 22px;
+	font-size: 15px;
 	font-family: simplicity;
 	margin: auto;
 }
@@ -473,6 +502,7 @@ h3{
 	border: 1px solid black;
 	font-weight: bold;
 }
+
 /* NEW SUBJECTS */
 
 .creation p{
@@ -641,7 +671,7 @@ input{
 	left: 0;
 	width: 100%;
 	padding: 6px 0;
-	border-radius: 0 0 7px 7px;
+
 }
 
 .alert .alertcont .cancel{
@@ -662,7 +692,7 @@ input{
 }
 
 .conf .alertcont{
-	border-radius: 7px;
+	
 	height: 100%;
 	max-width: 100%;
 	background-color: lightblue;
@@ -679,7 +709,7 @@ input{
 	right: 0;
 	width: 50%;
 	padding: 6px 0;
-	border-radius: 0 0 7px 7px;
+
 }
 
 .conf .alertcont .cancel{
@@ -691,5 +721,5 @@ input{
 	left: 0;
 	width: 50%;
 	padding: 6px 0;
-	border-radius: 0 0 7px 7px;
+
 }
