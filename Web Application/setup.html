@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html manifest="caching.appcache">
 	<head>
+        <meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>iReview</title>
 		<link rel="stylesheet" href="styles/setupstyles.css">
@@ -138,13 +139,13 @@
 						</select>
 						<select name="eyear">
 							<option value="" hidden>Year</option>
-							<option id="eyear-content"></option>
+							<option id="eyear-content" value="" hidden>eyear</option>
 						</select>
 
 					</div>
 				</form>
 					<div class="button-wrapper">
-						<button id="submit-button" class="button" onclick="recordSemester()"/>
+						<button id="submit-button" class="button" onclick="recordSemester()">
 						Submit</button>
 					</div>
 				

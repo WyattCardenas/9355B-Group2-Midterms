@@ -96,10 +96,9 @@ html, body{
 .topthing{
 	padding: 10px 0;
 	background-color: #3A445D;
-	font-color:#E9E8F2;
+	color:#E9E8F2;
 	border-bottom: 1px solid grey;
 	opacity: 0.8;
-	z-index: 4px;
 	box-shadow: 0px 0px 4px 0px black;
 
 }
@@ -161,7 +160,7 @@ h2{
 
 .remcontent{
 	color: black;
-	background-color: #EFEFEF;
+	background-color: lightblue;
 	padding-top: 10px;
 	border-top: 2px solid black;
 	border-bottom: 2px solid black;
