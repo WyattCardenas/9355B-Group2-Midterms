@@ -214,24 +214,35 @@ function recordSemester(){
 		}
 	}else if(y-x == 0){
 		valid = "same"
+	}else if(y-x > 6){
+		valid = "moreThan6"
 	}else{
 		valid = "true";
 	}
 
 	if(startMonth == "" || endMonth == ""){
 		document.getElementById("warning").innerHTML = "Please pick a month."; 
+		return;
   	}else if(startDay == "" || endDay == ""){
 		document.getElementById("warning").innerHTML = "Please pick a day.";
+		return;
   	}else if(startMonth == endMonth && startDay == endDay){
 		document.getElementById("warning").innerHTML = "The semester cannot start and end at the same day.";
+		return;
   	}else if(valid === "false"){
 		document.getElementById("warning").innerHTML = "The semester hasn't started yet and it has already ended?";
+		return;
   	}else if(valid === "same"){
   		if(endDay-startDay == 1){
   			document.getElementById("warning").innerHTML = "The semester only has " + (endDay - startDay) +" day?";
+  			return;
   		}else{
 			document.getElementById("warning").innerHTML = "The semester only has " + (endDay - startDay) +" days?";
+			return;
   		}
+  	}else if(valid === "moreThan6"){
+  		document.getElementById("warning").innerHTML = "Semester means 6, you dumb mother fucker.";
+  		return;
   	}else if(valid === ""){
   		return;
   	}else{
@@ -369,6 +380,8 @@ function recordSubjects(){
 		document.getElementById("may-mali").innerHTML = "No days picked!";
 		return;
 	}
+
+
 
 	for( ii = 0; ii<classDays.length; ii++){
 		var dummy = classDays[ii];
