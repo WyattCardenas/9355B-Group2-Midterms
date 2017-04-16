@@ -165,7 +165,7 @@ function createQuiz(){
         localStorage.removeItem("tempQuiz");
         window.location = "review.html";
     }else{
-        if(title === "" && document.getElementById(`question`).value === "" && document.getElementById(`answer`).value === "" && document.getElementById(`choice0`).value === "" && document.getElementById(`choice1`).value === "" && document.getElementById(`choice2`).value === "" && document.getElementById(`choice3`).value === ""){
+        if(title === "" || document.getElementById(`question`).value === "" || document.getElementById(`answer`).value === "" || document.getElementById(`choice0`).value === "" || document.getElementById(`choice1`).value || "" && document.getElementById(`choice2`).value || "" && document.getElementById(`choice3`).value === ""){
             var element = document.getElementById("titleError");
             element.innerHTML = `Don't leave any input fields blank!`;
         }else{
