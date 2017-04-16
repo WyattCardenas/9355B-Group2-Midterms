@@ -35,7 +35,7 @@ function today(){
 			}
 		}
 
-		
+				
 
 		var alert = document.getElementById("alert");
 		var alertMessage = document.getElementById("message");
@@ -350,7 +350,7 @@ function recordSubjects(){
 			return;
 		}
 	}else if( timeStart >= "20:00" || timeStart <= "07:30" || timeEnd >= "20:00" || timeEnd <= "07:30"){
-		document.getElementById("may-mali").innerHTML = "You cannot have classes from 8:00 pm - 7:30pm";
+		document.getElementById("may-mali").innerHTML = "You cannot have classes from 8:00 pm - 7:30 am";
 		return;
 	}else if( validTime === true && (timeEnd.split(":")[0]==timeStart.split(":")[0])  && (timeEnd.split(":")[1] - timeStart.split(":")[1]) != 0 ){
 		if((timeEnd.split(":")[1] - timeStart.split(":")[1]) == 1){
@@ -392,12 +392,16 @@ function recordSubjects(){
 	    		textNode = document.createTextNode(`${cCode}, ${cdesc}, 12:${timeStart.split(":")[1]} - ${timeEnd.split(":")[0]%12}:${timeEnd.split(":")[1]}`);  	
 	    	}else if(timeEnd.split(":")[0]%12 == 0){
 	    		textNode = document.createTextNode(`${cCode}, ${cdesc}, ${timeStart.split(":")[0]%12}:${timeStart.split(":")[1]} - 12:${timeEnd.split(":")[1]}`);  
+	    	}else{
+	    		textNode = document.createTextNode(`${cCode}, ${cdesc}, ${timeStart.split(":")[0]%12}:${timeStart.split(":")[1]} - ${timeEnd.split(":")[0]%12}:${timeEnd.split(":")[1]}`);  
 	    	}
 	    }else{
 	    	if(timeStart.split(":")[0]%12 == 0){
 				textNode = document.createTextNode(`${cCode}, ${cno}, ${cdesc}, 12:${timeStart.split(":")[1]} - ${timeEnd.split(":")[0]%12}:${timeEnd.split(":")[1]}`);  
 	    	}else if(timeEnd.split(":")[0]%12 == 0){
 	    		textNode = document.createTextNode(`${cCode}, ${cno}, ${cdesc}, ${timeStart.split(":")[0]%12}:${timeStart.split(":")[1]} - 12:${timeEnd.split(":")[1]}`);  
+	    	}else{
+	    		textNode = document.createTextNode(`${cCode}, ${cdesc}, ${timeStart.split(":")[0]%12}:${timeStart.split(":")[1]} - ${timeEnd.split(":")[0]%12}:${timeEnd.split(":")[1]}`);  
 	    	}
 	    }
 		pNode.appendChild(textNode);
