@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>New Subject</title>
+	<title>NewSubject</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script async src="scripts/scripts.js"></script>
+	<link rel="stylesheet" type="text/css" href="styles/styles.css">
+	<script src="scripts/scripts.js"></script>
 </head>
-<body onload="newSubject()">
-	<div id="subject-addition" class="hide">
+<body onload="displaySubjects()">
+	<div class="main-container">
+		<div class="topthing">
+			<header>
+				<h1>Subjects</h1>
+			</header>
+		</div>
+		<header>
+			<h2>New Subjects</h2>
+		</header>
+        <div class="creation">
+		<div id="subject-addition">
 		<p id="may-mali"></p>
 		<form id="subject-form">
 			<p><span class="text">Class Code:</span><br/>
@@ -68,6 +79,28 @@
 						<h2>Sunday</h2>
 					</div>
 				</div>
-				
+            </div>
+			
+
+	<nav class="bottomnavthing">
+		<ul>
+			<a href="index.html"><li class="navblock">
+				<span class="icon"><img src="images/home.png" alt=" Home icon"></span>
+				<span class="page-name">Home</span>
+			</li></a>
+			<a href="notes.html"><li class="navblock">
+				<span class="icon"><img src="images/notes.png" alt="Notes icon"></span>
+				<span class="page-name">Notes</span>
+			</li></a>
+			<a href="review.html"><li class="navblock">
+				<span class="icon"><img src="images/review.png" alt="Review icon"></span>
+				<span class="page-name">Review</span>
+			</li></a>
+			<a href="schedule.html"><li class="navblock">
+				<span class="icon"><img src="images/sched.png" alt="Schedule icon"></span>
+				<span class="page-name">Schedule</span>
+			</li></a>
+		</ul>
+	</nav>
 </body>
 </html>

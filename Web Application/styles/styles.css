@@ -460,6 +460,41 @@ h3{
 	border: 1px solid black;
 	font-weight: bold;
 }
+/* NEW SUBJECTS */
+
+.creation p{
+    text-align: center;
+}
+
+input{
+    font-family: hellolori;
+    font-size: 18px;
+}
+
+.button-wrapper{
+    text-align: center;
+	margin-top: 20px;
+	padding-bottom: 20px;
+
+}
+
+.button{
+	border: none;
+	color: #F3F3F3;
+	background-color: #FF3B3F;
+	padding: 5px 15px;
+	transition: all .3s ease;
+	border-radius: 50px;
+	text-decoration: none;
+	font-size: 25px;
+	font-family: Simplicity;
+}
+
+.button:hover{
+	background-color: #F3F3F3;
+	color: #FF3B3F;
+	border-radius: 50px;
+}
 
 /* MEDIA QUERIES */
 
