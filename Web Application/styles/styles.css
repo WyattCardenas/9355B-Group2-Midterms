@@ -248,7 +248,8 @@ h2{
     font-weight: 600;
     font-size: 18px;
     display: block;
-    padding-left: 25px;
+    text-align: center;
+    
 }
 .creation #subject{
     color: black;
@@ -268,7 +269,7 @@ h2{
 
 #additionalNotes{
     font-family: helloLori;
-    display: block;
+    display: inline-block;
 }
 .addAlarm{
     border: none;
@@ -313,6 +314,19 @@ h2{
     background-color: #F3F3F3;
 	color: #FF3B3F;
 	border-radius: 50px;
+}
+
+#cancel{
+    border: none;
+	color: #F3F3F3;
+	background-color: #FF3B3F;
+	padding: 15px 20px;
+	transition: all .3s ease;
+	border-radius: 30px;
+	text-decoration: none;
+	font-size: 22px;
+	font-family: simplicity;
+	margin: auto;
 }
 
 #message{
