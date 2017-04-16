@@ -4,43 +4,55 @@
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/generator.css">
-    <link rel="stylesheet" href="styles/quiz.css">
     <link rel="stylesheet" href="styles/text_to_speech.css">
 
     <script async type="text/javascript" src="scripts/quiz.js"></script>
-    <!-- <script async type="text/javascript" src="scripts/quiz.js"></script> -->
     <script async type="text/javascript" src="scripts/speechToText.js"></script>
   </head>
   
   <body onload="displaySubjects()">
+  <div class="dropDown">
+      Subject: <select name="subject" id="subject"></select>
+  </div>  
 
-    Subject: <select name="subject" id="subject"></select>
-    
     <div>
       <h1>Quiz Title</h1>
       <input id="title"></input>
     </div>
 
-    <div class="choices">
-        <button onclick="generateMCQuiz()" id="multipleChoice">Multiple Choice</button>
-        <!-- <button onclick="generateIQuiz()" id="identification">Identification</button> -->
-        <!-- <button onclick="generateMTQuiz()" id="matchingType">Matching Type</button>
-        <button onclick="generateFIBQuiz()" id="fillInTheBlanks">Fill in The Blanks</button> -->
-    </div>
+    <div id="createQuiz" class="hide">
+      <div class="grid">
+          <div id="quiz">
 
-    <div class="layout" id="reviewer">
-      <h1>Multiple Choice Form</h1>
-      <form id="multipleChoiceForm"></form>
-      <!-- <h1>Identifications Form</h1>
-      <form id="identificationForm"></form> -->
-      <!-- <h1>Matching Type Form</h1>
-      <form id="matchingTypeForm"></form>
-      <h1>Fill In The Blanks Form</h1>
-      <form id="fillInTheBlanksForm"></form> -->
-    
-      <div id="saveButton">
-        <input type="button" onclick="saveQuiz()" value="Save"></input>
-      </div>
+            <h2 id="q">Question 1</h2>
+            <input id="question" placeholder="question"></input>
+
+            <h2>Choices</h2>
+            <div class="inputs">
+              <input id="choice0" placeholder="choice1"></input>
+              <input id="choice1" placeholder="choice2"></input>
+              <input id="choice2" placeholder="choice3"></input>
+              <input id="choice3" placeholder="choice4"></input>
+            </div> 
+
+            <h2>Answer</h2>
+            <input id="answer"></input>
+
+            <div class="buttons">
+              <button id="backButton" onclick="previousQuestion()">Back</button>
+              <button id="createButton" onclick="createQuiz()">Done</button>
+              <button id="saveButton" onclick="saveQuestion()">Next</button>
+            </div>
+
+            <div>
+              <h1 id="titleError"></h1>
+            </div>
+
+            <footer>
+              <p id="progress"></p>
+            </footer>
+          </div>
+        </div>
     </div>
 
     <div id = "text_to_speech"> 
@@ -112,25 +124,6 @@
           <select id="select_language" onchange="updateCountry()"></select>
           <select id="select_dialect"></select>
         </div>
-      </div>
-    </div>
-
-    <div class="grid" style="display:none">
-      <div id="quiz">
-        <h1>Quiz</h1>
-
-        <p id="question"></p>
-
-        <div class="buttons">
-          <button id="btn0"><span id="choice0"></span></button>
-          <button id="btn1"><span id="choice1"></span></button>
-          <button id="btn2"><span id="choice2"></span></button>
-          <button id="btn3"><span id="choice3"></span></button>
-        </div> 
-
-        <footer>
-        <p id="progress"></p>
-        </footer>
       </div>
     </div>
   </body>
