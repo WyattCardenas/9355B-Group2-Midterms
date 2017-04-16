@@ -4,11 +4,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>iReview</title>
 		<link rel="stylesheet" href="styles/setupstyles.css">
+		<link rel="stylesheet" href="styles/styles.css">
 		<script async src="scripts/scripts.js"></script>
 	</head>
 
 
 	<body onload="setup()">
+		<div id="alert" class="hide">
+			<div class="alertcont">
+				<p id="message"></p>
+				<button id="ok" class="ok">Okay</button>
+				<button id="cancel" class="cancel">Cancel</button>
+			</div>
+		</div>
 		<div class="container">
 			
 			<h1 id="header" class="first-position">iReview</h1>
@@ -198,6 +206,6 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</body>
 </html>

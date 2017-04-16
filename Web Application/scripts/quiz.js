@@ -163,9 +163,9 @@ function createQuiz(){
 
         localStorage.removeItem("button");
         localStorage.removeItem("tempQuiz");
-        window.location = "review.html";
+        window.location = "newrem.html";
     }else{
-        if(title === "" || document.getElementById(`question`).value === "" || document.getElementById(`answer`).value === "" || document.getElementById(`choice0`).value === "" || document.getElementById(`choice1`).value === "" || document.getElementById(`choice2`).value === "" || document.getElementById(`choice3`).value === "" || document.getElementById(`answer`).value === ""){
+        if(title === "" && document.getElementById(`question`).value === "" && document.getElementById(`answer`).value === "" && document.getElementById(`choice0`).value === "" && document.getElementById(`choice1`).value === "" && document.getElementById(`choice2`).value === "" && document.getElementById(`choice3`).value === ""){
             var element = document.getElementById("titleError");
             element.innerHTML = `Don't leave any input fields blank!`;
         }else{
@@ -255,48 +255,51 @@ function overwriteQuiz(){
 
         localStorage.removeItem("button");
         localStorage.removeItem("tempQuiz");
-        window.location = "review.html";
+        window.location = "newrem.html";
     }else{
-        var answer = confirm("Are you sure you're done editing this quiz?");
-        if (answer == true) {
-            var b = localStorage.length;
-            var index = 0;
+    	if(title === "" || document.getElementById(`question`).value === "" || document.getElementById(`answer`).value === "" || document.getElementById(`choice0`).value === "" || document.getElementById(`choice1`).value === "" || document.getElementById(`choice2`).value === "" || document.getElementById(`choice3`).value === ""){
+            var element = document.getElementById("titleError");
+            element.innerHTML = `Don't leave any input fields blank!`;
+        }else{
+            var answer = confirm("Are you sure you're done editing this quiz?");
+	        if (answer == true) {
+	            var b = localStorage.length;
+	            var index = 0;
 
-            var subjects = JSON.parse(localStorage.getItem("subjects"));
-            var questions = [];
-            var classCodes = [];
-            var asd = "";
+	            var subjects = JSON.parse(localStorage.getItem("subjects"));
+	            var questions = [];
+	            var classCodes = [];
+	            var asd = "";
 
-            for( i=0; i<subjects.length; i++){
-                classCodes.push(subjects[i].classCode);
-            }
+	            for( i=0; i<subjects.length; i++){
+	                classCodes.push(subjects[i].classCode);
+	            }
 
-            var a = classCodes.length;
-            for(var x = 0; x < a; x++){
-                asd = JSON.parse(localStorage.getItem(`${classCodes[x]}`));
+	            var a = classCodes.length;
+	            for(var x = 0; x < a; x++){
+	                asd = JSON.parse(localStorage.getItem(`${classCodes[x]}`));
 
-                if(asd != null){
-                    for(var y = 0; y<asd.length; y++){
-                        if(asd[y].title === localStorage.getItem('button')){   
-                            var key = `${asd[y].subject.split("-")[0]}`;
-                            asd.splice(y, 1);
-                            var quizJSON = JSON.stringify(asd);
+	                if(asd != null){
+	                    for(var y = 0; y<asd.length; y++){
+	                        if(asd[y].title === localStorage.getItem('button')){   
+	                            var key = `${asd[y].subject.split("-")[0]}`;
+	                            asd.splice(y, 1);
+	                            var quizJSON = JSON.stringify(asd);
 
-                            localStorage.setItem(key, quizJSON);
+	                            localStorage.setItem(key, quizJSON);
 
-                            if(asd.length == 0){
-                                localStorage.removeItem(key);                    
-                            }
+	                            if(asd.length == 0){
+	                                localStorage.removeItem(key);                    
+	                            }
 
-                            createQuiz();
-                            window.location = "review.html";
-                            break;
-                        }   
-                    }
-                }
-            }
-        } else {
-            
+	                            createQuiz();
+	                            window.location = "newrem.html";
+	                            break;
+	                        }   
+	                    }
+	                }
+	            }
+	        }
         }
     }
 }
@@ -429,7 +432,7 @@ function editQuiz(){
                     }
 
                     if(asd[y].questions.length == 1){
-                        document.getElementById('saveButton').outerHTML = '<button id="saveButton" onclick="saveQuestion()">Next</button>';
+                    	document.getElementById('saveButton').outerHTML = '<button id="saveButton" onclick="saveQuestion()">Next</button>';
                     }
                 }   
             }
@@ -487,19 +490,9 @@ function loadNextQuestion(questionIndex, quizClassCode, tempQuiz){
 }
 
 title = 0;
-function toggleNav(){
-    if( document.getElementById(this.attributes["data-toggle"].value).className === "hide"){
-        document.getElementById(this.attributes["data-toggle"].value).className = "plusnav-content";
-    }else{
-        document.getElementById(this.attributes["data-toggle"].value).className = "hide";
-    }
-
-    title = button;
-    localStorage.setItem("button", title);
-}
-
 function openOption(button) {
     document.getElementById("mySidenav2").style.width = "250px";
+    document.getElementById("+").className = "hide";
 
     title = button;
     localStorage.setItem("button", title);
@@ -507,6 +500,7 @@ function openOption(button) {
 
 function closeOption() {
     document.getElementById("mySidenav2").style.width = "0";
+    document.getElementById("+").className = "plus";
 }
 
 Question.prototype.correctAnswer = function (choice){

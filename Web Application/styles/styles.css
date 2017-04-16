@@ -3,23 +3,22 @@
 */
 
 @font-face {
-	font-family: 'FeatherScript';
-	src: url(../fonts/FeatherScript.otf);
+	font-family: 'simplicity';
+	src: url(../fonts/Simplicity.ttf);
 }
 
 @font-face {
-	font-family: 'fourhand';
-	src: url(../fonts/fourhand.otf);
+	font-family: 'lemonsun';
+	src: url(../fonts/DKLemonYellowSun.otf);
 }
 
 @font-face {
 	font-family: 'chewedpen';
 	src: url(../fonts/chewedpenbb.otf);
 }
-
 @font-face {
-	font-family: 'kingsmen';
-	src: url(../fonts/Kingsmen_D.otf);
+	font-family: 'hellolori';
+	src: url(../fonts/hellolori.ttf);
 }
 
 html, body{
@@ -34,8 +33,9 @@ html, body{
 	display: none;
 }
 
+
 .main-container{
-	color: #696969;
+	color: #F3F3F3;
 	margin-bottom: 70px;
 }
 
@@ -48,7 +48,7 @@ html, body{
 	border-radius: 50px;
 	text-decoration: none;
 	font-size: 25px;
-	font-family: fourhand;
+	font-family: chewedpen;
 	margin: auto;
 }
 
@@ -57,11 +57,11 @@ html, body{
 	position: fixed;
 	width: 100%;
 	bottom: 0;
-	background-color: #4484CE;
+	background-color: #3A445D;
 	text-align: center;
 	z-index: 50;
 	border-top: 1px solid black;
-	font-family: FeatherScript;
+	font-family: chewedpen ;
 	font-size: 18px;
 }
 
@@ -75,6 +75,7 @@ html, body{
 	display: inline-block;
 	padding: 15px 10px;
 	border-left: 1px solid black;
+	color:white;
 }
 
 .bottomnavthing ul li:first-child{
@@ -83,15 +84,14 @@ html, body{
 
 .bottomnavthing ul li:hover{
 	background-color: #EFEFEF;
+
+
 }
 
 .bottomnavthing a:hover {
 	color: #FF3B3F;
 }
 
-#reminders {
-	color: #696969;
-}
 .bottomnavthing a{
 	text-decoration: none;
 	color: #696969;	
@@ -106,18 +106,21 @@ html, body{
 
 .topthing{
 	padding: 10px 0;
-	background-color: #996699;
-	color: #EFEFEF;
+	background-color: #3A445D;
+	font-color:#E9E8F2;
 	border-bottom: 1px solid grey;
 	opacity: 0.8;
+	z-index: 4px;
+	box-shadow: 0px 0px 4px 0px black;
+
 }
 
 .topthing h1{
 	margin: 0;
 	display: inline;
 	padding-left: 15px;
-	font-family: FeatherScript;
-	color: black;
+	font-family: chewedpen;
+	color: white;
 }
 
 .notes h3{
@@ -141,16 +144,16 @@ html, body{
 }
 
 .today{
-	font-family: kingsmen;
+	font-family: hellolori;
 	font-size: 20px;
-	background-color: #CAEBF2;
+	background-color: #E6BEAE;
 	color: #696969;
 	border-top: 1px solid grey;
 	border-bottom: 2px solid black;
 }
 
 .reminders{
-	font-family: kingsmen;
+	font-family: hellolori;
 	font-size: 16px;
 	color: #696969;
 }
@@ -368,42 +371,57 @@ h3{
 	}
 }
 
+/* Plus Button */
+
 .plusnav {
     bottom: 80px;
     position: fixed;
     right: 20px;
     width: 100px;
+
 }
 
 .plusbutton {
-    background-color: lightblue;
+    background-color: #EF455C;
     border-radius: 50px;
     color: black;
     padding: 13px 17px;
     font-size: 16px;
     cursor: pointer;
     float: right;
+    box-shadow: 4px 3px 5px 0px rgba(0,0,0,0.2);
+}
+
+.plusbutton:hover{
+	background-color: #D39CAB;
 }
 
 .plusnav-content{
 	display: block;
 	width: 100%;
-	background-color: blue;
+	background-color: grey;
 	border-radius: 10px 10px 0px 10px;
     z-index: 1;
     position: absolute;
     margin: 15px;
-    padding: 20px 10px;
-    bottom: 35px;
+    padding: 35px 25px;
+    bottom: 40px;
     right: 10px;
 }
 
 .plusnav-content a{
 	display: block;
+	color: white;
+	font-family: simplicity;
+	text-decoration: none;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-right: 2px;
+	font-size: 18px;
 }
 
-.plusnav-content a:hover {
-	background-color: #f1f1f1;
+.plusnav-content a:hover{
+	color:black;
 }
 
 .alert{

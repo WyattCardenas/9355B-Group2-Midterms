@@ -36,8 +36,7 @@ function today(){
 			}
 		}
 
-		var alert = document.getElementById("alert");
-		var alertMessage = document.getElementById("message");
+		
 		var end = JSON.parse(localStorage.getItem("end"));
 		if( monthString === end.month && dateNow == end.day && yearNow == end.year){
 			alert.className = "confirm";
@@ -302,28 +301,56 @@ function recordSemester(){
 	}
 
 	if(startMonth == "" || endMonth == ""){
-		document.getElementById("warning").innerHTML = "Please pick a month."; 
+		alert.className = "alert"
+		alertMessage.innerText = "Please pick a month.";
+		document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
   	}else if(startDay == "" || endDay == ""){
-		document.getElementById("warning").innerHTML = "Please pick a day.";
+  		alert.className = "alert"
+		alertMessage.innerText = "Please pick a day.";
+		document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
   	}else if(startMonth == endMonth && startDay == endDay){
-		document.getElementById("warning").innerHTML = "The semester cannot start and end at the same day.";
+  		alert.className = "alert"
+		alertMessage.innerText = "The semester cannot start and end at the same day.";
+		document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
   	}else if(valid === "false"){
-		document.getElementById("warning").innerHTML = "The semester hasn't started yet and it has already ended?";
+		alert.className = "alert"
+		alertMessage.innerText = "The semester hasn't started yet and it has already ended?";
+		document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
   	}else if(valid === "same"){
   		if(endDay-startDay == 1){
-  			document.getElementById("warning").innerHTML = "The semester only has " + (endDay - startDay) +" day?";
-  			return;
+  			alert.className = "alert"
+			alertMessage.innerText = "The semester only has " + (endDay - startDay) +" day?";
+			document.getElementById("ok").addEventListener("click", function(){
+				alert.className = "hide";
+			});
+			return;
   		}else{
-			document.getElementById("warning").innerHTML = "The semester only has " + (endDay - startDay) +" days?";
+  			alert.className = "alert"
+			alertMessage.innerText = "The semester only has " + (endDay - startDay) +" days?";
+			document.getElementById("ok").addEventListener("click", function(){
+				alert.className = "hide";
+			});
 			return;
   		}
   	}else if(valid === "moreThan6"){
-  		document.getElementById("warning").innerHTML = "Semester means 6, you dumb mother fucker.";
-  		return;
+  		alert.className = "alert"
+		alertMessage.innerText = "A semester lasts for a maximum for 6 months";
+		document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
+		return;
   	}else if(valid === ""){
   		return;
   	}else{
@@ -417,30 +444,61 @@ function recordSubjects(){
 
 
 	if( cCode === "" || cdesc === "" || timeStart === "" || timeEnd === "" || room === ""){
-		document.getElementById("may-mali").innerHTML = "Please fill up all fields";
+		alert.className = "alert"
+		alertMessage.innerText = "Please fill up all fields.";
+		document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
 	}
 
 	var validTime = timeStart < timeEnd;
 	if(validTime === false){
-		document.getElementById("may-mali").innerHTML = "Time end is earlier than time start.";
+		alert.className = "alert"
+		alertMessage.innerText = "Time end is earlier than time start.";
+		document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
 	}else if(validTime === true && (timeEnd.split(":")[0] - timeStart.split(":")[0]) > 10){
-		document.getElementById("may-mali").innerHTML = "classes are limited to 10 hours max";
+		alert.className = "alert"
+		alertMessage.innerText = "Classes are limited to 10 hours max.";
+		document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
 	}else if(validTime === true && (timeEnd.split(":")[0] - timeStart.split(":")[0]) > 3){
-		var c = confirm("Are you sure your class lasts for" + (timeEnd.split(":")[0] - timeStart.split(":")[0]) + "hours?");
+		var c
+		alert.className = "conf"
+		alertMessage.innerText = "Are you sure your class lasts for" + (timeEnd.split(":")[0] - timeStart.split(":")[0]) + "hours?";
+		document.getElementById("cancel").addEventListener("click", function(){
+			alert.className = "hide";
+			c = false;
+		});
+		document.getElementById("ok").addEventListener("click", c = true);
 		if ( c === false){
 			return;
 		}
 	}else if( timeStart < "07:30" || timeEnd <= "07:30"){
-		document.getElementById("may-mali").innerHTML = "You cannot have classes from 12:00 am - 7:30 am";
+		alert.className = "alert"
+		alertMessage.innerText = "You cannot have classes from 12:00 am - 7:30 am.";
+		document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
 	}else if( validTime === true && (timeEnd.split(":")[0]==timeStart.split(":")[0])  && (timeEnd.split(":")[1] - timeStart.split(":")[1]) != 0 ){
 		if((timeEnd.split(":")[1] - timeStart.split(":")[1]) == 1){
-			document.getElementById("may-mali").innerHTML = "Your class cant last for only " + (timeEnd.split(":")[1] - timeStart.split(":")[1]) + " min";	
+			alert.className = "alert"
+			alertMessage.innerText = "Your class cant last for only " + (timeEnd.split(":")[1] - timeStart.split(":")[1]) + " min";
+			document.getElementById("ok").addEventListener("click", function(){
+				alert.className = "hide";
+			});
 		}else{
-			document.getElementById("may-mali").innerHTML = "Your class cant last for only " + (timeEnd.split(":")[1] - timeStart.split(":")[1]) + " mins";	
+			alert.className = "alert"
+			alertMessage.innerText = "Your class cant last for only " + (timeEnd.split(":")[1] - timeStart.split(":")[1]) + " mins";
+			document.getElementById("ok").addEventListener("click", function(){
+				alert.className = "hide";
+			});
 		}
 		return;
 	}else{
@@ -533,16 +591,20 @@ function resetForm(){
 	}
 }
 
+function confirmSaveSubjects(){
+	alert.className = "conf"
+	alertMessage.innerText = "Do you want to finish setup?";
+	document.getElementById("cancel").addEventListener("click", function(){
+		alert.className = "hide";
+		return
+	});
+	document.getElementById("ok").addEventListener("click", saveSubjects);
+}
+
 function saveSubjects(){
-	var c = confirm("Do you want to finish setup?");
-	var saveButton = document.getElementById("save-subjects");
-	if(c === true){
-   	localStorage.setItem("hasData","true");
-    sessionStorage.clear();
-		window.location = "index.html";
-	}else{
-   		saveButton.value = "Finish";
-	}
+	localStorage.setItem("hasData","true");
+	sessionStorage.clear();
+	window.location = "index.html";
 }
 
 /********************
@@ -595,7 +657,11 @@ function saveNotes(){
 	var subject = document.getElementById("subject").value;
 	var noteTitle=document.getElementById("titleForm").value;
 	if(noteTitle === ""){
-		alert("walang title");
+		alert.className = "alert"
+		alertMessage.innerText = "Please enter a title.";
+		document.getElementById("ok").addEventListener("click", function(){
+			alert.className = "hide";
+		});
 		return;
 	}
 	var noteContent=document.getElementById("textForm").value;
@@ -623,9 +689,11 @@ function saveNotes(){
 	var noteJSON = JSON.stringify(noteArray);
 	localStorage.setItem(`notes`, noteJSON);
 	sessionStorage.clear();
-	alert("saved");
-
-	window.location = "notes.html";
+	alert.className = "alert"
+	alertMessage.innerText = "Saved.";
+	document.getElementById("ok").addEventListener("click", function(){
+		window.location = "notes.html";
+	});
 }
 
 function newNotes(){
@@ -673,9 +741,7 @@ function notes(){
   	if( localStorage.getItem('notes') != null ){
    	 	var asd = JSON.parse(localStorage.getItem('notes'));
 		for( i=0; i<asd.length; i++){
-			console.log(asd[i].subject)
 			if(asd[i].subject === undefined){
-				console.log("lanfglanfg");
 				if(document.getElementById("non-subject-notes") === null){
 					subDrop.innerHTML += "<span class=reminderTitle>Non Subject Reminders</span>"
 					subDrop.innerHTML +=`
@@ -690,7 +756,7 @@ function notes(){
 									<button onclick="editNotes(this, ${i}, 'notes')" style="display: inline; margin-left: 10px;">
 										Edit
 									</button>
-									<button onclick="confirm('del(${i})')" style="display: inline; margin-left: 10px;">
+									<button onclick="conf('del(${i})')" style="display: inline; margin-left: 10px;">
 										Delete
 									</button>
 								</div>
@@ -710,7 +776,7 @@ function notes(){
 								<button onclick="editNotes(this, ${i}, 'notes')" style="display: inline; margin-left: 10px;">
 									Edit
 								</button>
-								<button onclick="confirm('del(${i})')" style="display: inline; margin-left: 10px;">
+								<button onclick="conf('del(${i})')" style="display: inline; margin-left: 10px;">
 									Delete
 								</button>
 							</div>
@@ -735,7 +801,7 @@ function notes(){
 									<button onclick="editNotes(this, ${i}, 'notes')" style="display: inline; margin-left: 10px;">
 										Edit
 									</button>
-									<button onclick="confirm('del(${i})')" style="display: inline; margin-left: 10px;">
+									<button onclick="conf('del(${i})')" style="display: inline; margin-left: 10px;">
 										Delete
 									</button>
 								</div>
@@ -754,11 +820,12 @@ function notes(){
 								<button onclick="editNotes(this, ${i}, 'notes')" style="display: inline; margin-left: 10px;">
 									Edit
 								</button>
-								<button onclick="confirm('del(${i})')" style="display: inline; margin-left: 10px;">
+								<button onclick="conf('del(${i})')" style="display: inline; margin-left: 10px;">
 									X
 								</button>
 							</div>
-						</div>`
+						</div>
+					`
 				}
 			}
 		}
@@ -864,7 +931,7 @@ function saveEditedNotes(el, index, key){
 	window.location = "notes.html"
 }
 
-function confirm(f){
+function conf(f){
 	document.getElementById("alert").className = "confirm";
 	document.getElementById("ok").setAttribute("onclick", `${f}`);
 	document.getElementById("message").innerText = "Are you sure you want to delete?"
@@ -875,7 +942,7 @@ function confirm(f){
 	
 }
 
-function del(index, key){
+function del(index){
 	var asd = JSON.parse(localStorage.getItem("notes"));
 	asd.splice(parseFloat(index), 1);
 	var asdString = JSON.stringify(asd);
@@ -913,7 +980,7 @@ function saveRem(){
 	if(title === ""){
 		alert.className = "alert"
 		alertMessage.innerText = "walang title";
-		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+		document.getElementById("ok").addEventListener("click", function(){
 			alert.className = "hide";
 		});
 		return;
@@ -922,7 +989,7 @@ function saveRem(){
 	if(timeDue === ""){
 		alert.className = "alert"
 		alertMessage.innerText = "no time";
-		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+		document.getElementById("ok").addEventListener("click", function(){
 			alert.className = "hide";
 		});
 		return;
@@ -957,50 +1024,50 @@ function saveRem(){
 
 	if( year < yearNow){
 		alert.className = "alert"
-		alertMessage.innerText = "Year < year right now";
-		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+		alertMessage.innerText = "You cant have a reminder thats due before the current time.";
+		document.getElementById("ok").addEventListener("click", function(){
 			alert.className = "hide";
 		});
 		return;
 	}else if( year == yearNow && month < monthNow){
 		alert.className = "alert"
-		alertMessage.innerText = "month < monthNow";
-		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+		alertMessage.innerText = "You cant have a reminder thats due before the current time.";
+		document.getElementById("ok").addEventListener("click", function(){
 			alert.className = "hide";
 		});
 		return;
 	}else if( year == yearNow && month === monthNow && day<dayNow){
 		alert.className = "alert"
-		alertMessage.innerText = "day < dayNow";
-		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+		alertMessage.innerText = "You cant have a reminder thats due before the current time.";
+		document.getElementById("ok").addEventListener("click", function(){
 			alert.className = "hide";
 		});
 		return;
 	}else if( year == yearNow && month === monthNow && day === dayNow && time < timeNow){
 		alert.className = "alert"
-		alertMessage.innerText = "time < timeNow";
-		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+		alertMessage.innerText = "You cant have a reminder thats due before the current time.";
+		document.getElementById("ok").addEventListener("click", function(){
 			alert.className = "hide";
 		});
 		return;
 	}else if( year == yearNow && month === monthNow && day === dayNow && time === timeNow){
 		alert.className = "alert"
-		alertMessage.innerText = "time == timeNow";
-		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+		alertMessage.innerText = "You cant have a reminder thats due before the current time.";
+		document.getElementById("ok").addEventListener("click", function(){
 			alert.className = "hide";
 		});
 		return;
 	}else if( year == yearNow && month === monthNow && day === dayNow && hour == hourNow && min < minNow){
 		alert.className = "alert"
-		alertMessage.innerText = "time < timeNow";
-		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+		alertMessage.innerText = "You cant have a reminder thats due before the current time.";
+		document.getElementById("ok").addEventListener("click", function(){
 			alert.className = "hide";
 		});
 		return;
 	}else if( year == yearNow && month === monthNow && day === dayNow && hour == hourNow && minNow < min && min < 60){
 		alert.className = "alert"
-		alertMessage.innerText = "due date is so near why would you need a reminder :v";
-		var alertOk = document.getElementById("ok").addEventListener("click", function(){
+		alertMessage.innerText = "The time due is so near to the current time.";
+		document.getElementById("ok").addEventListener("click", function(){
 			alert.className = "hide";
 		});
 		return;
@@ -1015,12 +1082,20 @@ function saveRem(){
 		for(var i=0; i<reminderArray.length;i++){
 			if(subject === ""){
 				if(reminderArray[i].title === title && reminderArray[i].timeDue === convertedTime){
-					console.log("Reminder already exists");
+					alert.className = "alert"
+					alertMessage.innerText = "Reminder already exists";
+					document.getElementById("ok").addEventListener("click", function(){
+						alert.className = "hide";
+					});
 					return;
 				}
 			}else{
 				if(reminderArray[i].title === title && reminderArray[i].subject === subject && reminderArray[i].timeDue === convertedTime){
-					console.log("Reminder already exists");
+					alert.className = "alert"
+					alertMessage.innerText = "Reminder already exists";
+					document.getElementById("ok").addEventListener("click", function(){
+						alert.className = "hide";
+					});
 					return;
 				}
 			}
@@ -1092,7 +1167,7 @@ function saveRem(){
 	localStorage.setItem('reminders', reminderString);
 	alert.className = "alert"
 	alertMessage.innerText = "Saved!";
-	var alertOk = document.getElementById("ok").addEventListener("click", function(){
+	document.getElementById("ok").addEventListener("click", function(){
 		alarmCounter = 0;
 		alert.className = "hide";
 		window.location = "index.html"
@@ -1173,3 +1248,6 @@ if(document.getElementById("plusnavbutton") != null){
 		}
 	});	
 }
+
+var alert = document.getElementById("alert");
+var alertMessage = document.getElementById("message");
