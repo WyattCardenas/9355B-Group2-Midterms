@@ -321,14 +321,6 @@ h2{
     color: #FF3B3F;
 }
 
-.alertcont{
-    top: 65%;
-	left: 8%;
-	position: absolute;
-	transform: translateY(-50%);
-	transform: translateX(-50%);
-} 
-
 #ok{
     border: none;
 	color: #F3F3F3;
@@ -603,10 +595,11 @@ input{
 	margin: 0 auto;
 	transform: translateY(-50%);
 	position: fixed;
-	width: 200px;
-	height: 100px;
+	width: 250px;
+	height: 150px;
 	z-index: 50;
 	transition: .5s;
+
 }
 
 .alert .alertcont{
