@@ -5,10 +5,13 @@
  ********************/
 
 function today(){
+	var alert = document.getElementById("alert");
+	var alertMessage = document.getElementById("message");
 	if(localStorage.getItem("hasData") === null){
 		window.location = "setup.html"
 	}else{
 		checkRem();
+		
 		var d = new Date();
 		var dayToday = ["sun","mon","tue","wed","thu","fri","sat"][d.getDay()];
 		var dayString = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d.getDay()];
@@ -173,6 +176,8 @@ function checkRem(){
 
  ********************/
 function setup(){
+	var alert = document.getElementById("alert");
+	var alertMessage = document.getElementById("message");
 	var semester = document.getElementById("start-end-form");
 	var subject = document.getElementById("subject-form");
 
@@ -272,6 +277,8 @@ function firstTime () {
 }
 
 function recordSemester(){
+	var alert = document.getElementById("alert");
+	var alertMessage = document.getElementById("message");
 	var d = new Date();
 	var startEnd = document.getElementById("start-end");
 	var subjectAddition = document.getElementById("subject-addition");
@@ -434,6 +441,8 @@ function monthToNumber(month){
 
 var subjectArray = [];
 function recordSubjects(){
+	var alert = document.getElementById("alert");
+	var alertMessage = document.getElementById("message");
 	window.scrollTo(0,0);
 	var cCode = document.getElementById("cCode").value;
 	var cno = document.getElementById("cno").value;
@@ -592,6 +601,8 @@ function resetForm(){
 }
 
 function confirmSaveSubjects(){
+	var alert = document.getElementById("alert");
+	var alertMessage = document.getElementById("message");
 	alert.className = "conf"
 	alertMessage.innerText = "Do you want to finish setup?";
 	document.getElementById("cancel").addEventListener("click", function(){
@@ -654,6 +665,8 @@ function generateSchedule(){
 
  ********************/
 function saveNotes(){
+	var alert = document.getElementById("alert");
+	var alertMessage = document.getElementById("message");
 	var subject = document.getElementById("subject").value;
 	var noteTitle=document.getElementById("titleForm").value;
 	if(noteTitle === ""){
@@ -697,6 +710,7 @@ function saveNotes(){
 }
 
 function newNotes(){
+
 	displaySubjects();
 	var title = document.getElementById("titleForm");
 	title.addEventListener("input",up);
@@ -1240,6 +1254,8 @@ function delAlarm(el){
 }
 
 function addNewSubject(){
+	var alert = document.getElementById("alert");
+	var alertMessage = document.getElementById("message");
 	var cCode = document.getElementById("cCode").value;
 	var cno = document.getElementById("cno").value;
 	var cdesc = document.getElementById("cdesc").value;
@@ -1365,5 +1381,3 @@ if(document.getElementById("plusnavbutton") != null){
 	});	
 }
 
-var alert = document.getElementById("alert");
-var alertMessage = document.getElementById("message");
